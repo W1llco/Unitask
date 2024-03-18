@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace UniTask.entites
 {
-    internal class Election
+    public class Election
     {
         public Guid ID { get; set; }
         
@@ -18,5 +18,7 @@ namespace UniTask.entites
         public Guid VoteSystem{ get; set; }
 
         public Guid RegionID { get; set; }
+
+        
     }
 }

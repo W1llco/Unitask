@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace UniTask.entites
 {
-    public class Voter : User
+    public class Voter
     {
+        public Guid ID { get; set; }
+        [Required]
 
         public string UserID { get; set; }
         [Required]
@@ -20,6 +22,6 @@ namespace UniTask.entites
         [Required]
 
         public Guid RegionID { get; set; }
-        [Required]
+        
     }
 }

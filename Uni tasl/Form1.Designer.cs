@@ -28,12 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.dg_Regions = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dg_Regions)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // dg_Regions
+            // 
+            this.dg_Regions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dg_Regions.Location = new System.Drawing.Point(284, 156);
+            this.dg_Regions.Name = "dg_Regions";
+            this.dg_Regions.RowTemplate.Height = 25;
+            this.dg_Regions.Size = new System.Drawing.Size(240, 150);
+            this.dg_Regions.TabIndex = 0;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dg_Regions);
+            this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.dg_Regions)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private DataGridView dg_Regions;
     }
 }

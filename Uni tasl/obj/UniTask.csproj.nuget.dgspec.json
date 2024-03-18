@@ -1,38 +1,43 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\wbkir\\source\\repos\\Uni tasl\\Uni tasl\\UniTask.csproj": {}
+    "C:\\Git\\Unitask\\Uni tasl\\UniTask.csproj": {}
   },
   "projects": {
-    "C:\\Users\\wbkir\\source\\repos\\Uni tasl\\Uni tasl\\UniTask.csproj": {
+    "C:\\Git\\Unitask\\Uni tasl\\UniTask.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wbkir\\source\\repos\\Uni tasl\\Uni tasl\\UniTask.csproj",
+        "projectUniqueName": "C:\\Git\\Unitask\\Uni tasl\\UniTask.csproj",
         "projectName": "UniTask",
-        "projectPath": "C:\\Users\\wbkir\\source\\repos\\Uni tasl\\Uni tasl\\UniTask.csproj",
-        "packagesPath": "C:\\Users\\wbkir\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wbkir\\source\\repos\\Uni tasl\\Uni tasl\\obj\\",
+        "projectPath": "C:\\Git\\Unitask\\Uni tasl\\UniTask.csproj",
+        "packagesPath": "C:\\Users\\wkirk\\.nuget\\packages\\",
+        "outputPath": "C:\\Git\\Unitask\\Uni tasl\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\wbkir\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\wkirk\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net8.0-windows"
+          "net6.0-windows"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/highfieldabc/index.json": {}
         },
         "frameworks": {
-          "net8.0-windows7.0": {
-            "targetAlias": "net8.0-windows",
-            "projectReferences": {}
+          "net6.0-windows7.0": {
+            "targetAlias": "net6.0-windows",
+            "projectReferences": {
+              "C:\\Git\\Unitask\\UniTask.data\\UniTask.data.csproj": {
+                "projectPath": "C:\\Git\\Unitask\\UniTask.data\\UniTask.data.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -42,16 +47,16 @@
         }
       },
       "frameworks": {
-        "net8.0-windows7.0": {
-          "targetAlias": "net8.0-windows",
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[9.0.0-preview.2.24128.4, )"
+              "version": "[6.0.28, )"
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
-              "version": "[9.0.0-preview.2.24128.4, )"
+              "version": "[6.0.28, )"
             }
           },
           "imports": [
@@ -73,7 +78,153 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Git\\Unitask\\UniTask.data\\UniTask.data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Git\\Unitask\\UniTask.data\\UniTask.data.csproj",
+        "projectName": "UniTask.data",
+        "projectPath": "C:\\Git\\Unitask\\UniTask.data\\UniTask.data.csproj",
+        "packagesPath": "C:\\Users\\wkirk\\.nuget\\packages\\",
+        "outputPath": "C:\\Git\\Unitask\\UniTask.data\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\wkirk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/highfieldabc/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Git\\Unitask\\UniTask1.entites\\UniTask.entites.csproj": {
+                "projectPath": "C:\\Git\\Unitask\\UniTask1.entites\\UniTask.entites.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.28, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[6.0.28, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Git\\Unitask\\UniTask1.entites\\UniTask.entites.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Git\\Unitask\\UniTask1.entites\\UniTask.entites.csproj",
+        "projectName": "UniTask.entites",
+        "projectPath": "C:\\Git\\Unitask\\UniTask1.entites\\UniTask.entites.csproj",
+        "packagesPath": "C:\\Users\\wkirk\\.nuget\\packages\\",
+        "outputPath": "C:\\Git\\Unitask\\UniTask1.entites\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\wkirk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/highfieldabc/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.28, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[6.0.28, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

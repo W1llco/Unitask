@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UniTask.entites
 {
-    internal class Region
+    public class Region
     {
         public Guid ID { get; set; }
         [Required]
