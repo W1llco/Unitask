@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UniTask.entites
 {
-    internal class Party
+    public class Party
     {
         public Guid ID { get; set; }
         [Required]
@@ -17,6 +17,6 @@ namespace UniTask.entites
         [Required]
 
         public Guid RegionID { get; set; }
-        [Required]
+        
     }
 }

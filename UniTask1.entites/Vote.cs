@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UniTask.entites
 {
-    internal class Vote
+    public class Vote
     {
         public Guid ID { get; set; }
         [Required]

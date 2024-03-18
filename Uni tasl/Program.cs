@@ -1,17 +1,32 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Uni_tasl.Injections;
+using UniTask.data;
+
 namespace Uni_tasl
 {
-    internal static class Program
+    public class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
+        public static IServiceProvider _provider { get; set; }
+
         [STAThread]
-        static void Main()
+        public static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+            // seting up dependency injection
+            ServiceCollection services = new ServiceCollection();
+            services.AddScoped<VotingContext, VotingContext>();
+
+            services.AddSingleton(typeof(Form1));
+
+            DataInjections.InjectData(services);
+            
+            _provider = services.BuildServiceProvider();
+
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run((Form1)_provider.GetService(typeof(Form1)));
         }
+
+        
+
     }
 }
