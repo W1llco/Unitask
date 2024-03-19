@@ -555,7 +555,7 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "6.0.28",
           "Microsoft.EntityFrameworkCore.Sqlite": "6.0.28",
-          "UniTask.entites": "1.0.0"
+          "UniTask.Entites": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UniTask.data.dll": {}
@@ -564,7 +564,7 @@
           "bin/placeholder/UniTask.data.dll": {}
         }
       },
-      "UniTask.entites/1.0.0": {
+      "UniTask.Entites/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
@@ -572,10 +572,10 @@
           "Microsoft.EntityFrameworkCore.Sqlite": "6.0.28"
         },
         "compile": {
-          "bin/placeholder/UniTask.entites.dll": {}
+          "bin/placeholder/UniTask.Entites.dll": {}
         },
         "runtime": {
-          "bin/placeholder/UniTask.entites.dll": {}
+          "bin/placeholder/UniTask.Entites.dll": {}
         }
       }
     }
@@ -1228,10 +1228,10 @@
       "path": "../UniTask.data/UniTask.data.csproj",
       "msbuildProject": "../UniTask.data/UniTask.data.csproj"
     },
-    "UniTask.entites/1.0.0": {
+    "UniTask.Entites/1.0.0": {
       "type": "project",
-      "path": "../UniTask1.entites/UniTask.entites.csproj",
-      "msbuildProject": "../UniTask1.entites/UniTask.entites.csproj"
+      "path": "../UniTask1.entites/UniTask.Entites.csproj",
+      "msbuildProject": "../UniTask1.entites/UniTask.Entites.csproj"
     }
   },
   "projectFileDependencyGroups": {

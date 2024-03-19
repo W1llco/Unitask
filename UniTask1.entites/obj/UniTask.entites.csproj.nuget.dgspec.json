@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Git\\Unitask\\UniTask1.entites\\UniTask.entites.csproj": {}
+    "C:\\Git\\Unitask\\UniTask1.entites\\UniTask.Entites.csproj": {}
   },
   "projects": {
-    "C:\\Git\\Unitask\\UniTask1.entites\\UniTask.entites.csproj": {
+    "C:\\Git\\Unitask\\UniTask1.entites\\UniTask.Entites.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Git\\Unitask\\UniTask1.entites\\UniTask.entites.csproj",
-        "projectName": "UniTask.entites",
-        "projectPath": "C:\\Git\\Unitask\\UniTask1.entites\\UniTask.entites.csproj",
+        "projectUniqueName": "C:\\Git\\Unitask\\UniTask1.entites\\UniTask.Entites.csproj",
+        "projectName": "UniTask.Entites",
+        "projectPath": "C:\\Git\\Unitask\\UniTask1.entites\\UniTask.Entites.csproj",
         "packagesPath": "C:\\Users\\wkirk\\.nuget\\packages\\",
         "outputPath": "C:\\Git\\Unitask\\UniTask1.entites\\obj\\",
         "projectStyle": "PackageReference",
