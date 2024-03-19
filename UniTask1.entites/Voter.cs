@@ -18,7 +18,7 @@ namespace UniTask.entites
         public string VerifcationId { get; set; }
         [Required]
 
-        public Boolean HasVoted { get; set; }
+        public bool HasVoted { get; set; }
         [Required]
 
         public Guid RegionID { get; set; }

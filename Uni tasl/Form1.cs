@@ -23,11 +23,12 @@ namespace Uni_tasl
             base.OnLoad(e);
             //_dbContext.Database.EnsureDeleted();
             _dbContext.Database.EnsureCreated();
-            _dbContext.users.Load();
+
+            _dbContext.Users.Load();
             _dbContext.Regions.Load();
             _dbContext.Admins.Load();
             _dbContext.Voters.Load();
-            _dbContext.votes.Load();
+            _dbContext.Votes.Load();
             _dbContext.Elections.Load();
             _dbContext.Partys.Load();
             _dbContext.Candidates.Load();
