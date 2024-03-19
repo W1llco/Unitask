@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Kt9mqmL1sYqMzh7ZdEy0srh/dk/oozd0w0zu5rZgjeg/6iUIwmXa7gsMGhoRwLm6HkfF46mL7jjxPrPTPhQOdA==",
+  "dgSpecHash": "8+yZVYcr9/kX0POYi1/V/9MKdRP71q+TltDnckeKhVL7Sgin39ftxFh+Ny0eY3Dc4OZv45oGatFrCaNgah1o8g==",
   "success": true,
-  "projectFilePath": "C:\\Git\\Unitask\\UniTask1.entites\\UniTask.entites.csproj",
+  "projectFilePath": "C:\\Git\\Unitask\\UniTask1.entites\\UniTask.Entites.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\wkirk\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.28\\microsoft.data.sqlite.core.6.0.28.nupkg.sha512",
     "C:\\Users\\wkirk\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.28\\microsoft.entityframeworkcore.6.0.28.nupkg.sha512",

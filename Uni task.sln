@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniTask", "Uni tasl\UniTask.csproj", "{650D3666-F3C5-42DB-A843-BC891E8AE3F9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniTask.entites", "UniTask1.entites\UniTask.entites.csproj", "{05495C20-AF3F-4F3D-9458-B7FC5B1097D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniTask.Entites", "UniTask1.entites\UniTask.Entites.csproj", "{05495C20-AF3F-4F3D-9458-B7FC5B1097D5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniTask.data", "UniTask.data\UniTask.data.csproj", "{C1D610F6-F949-494D-A531-954582467C8C}"
 EndProject
