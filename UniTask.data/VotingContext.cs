@@ -15,11 +15,11 @@ namespace  UniTask.data
 
         public DbSet<Region> Regions { get; set; }
 
-        public DbSet<Results> Results { get; set; }
+        public DbSet<Result> Results { get; set; }
 
-        public DbSet<User>  users { get; set; }
+        public DbSet<User>  Users { get; set; }
 
-        public DbSet<Vote> votes { get; set; }  
+        public DbSet<Vote> Votes { get; set; }  
 
         public DbSet<Voter> Voters { get; set; }
 

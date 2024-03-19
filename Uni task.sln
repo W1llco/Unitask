@@ -7,7 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniTask", "Uni tasl\UniTask
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniTask.entites", "UniTask1.entites\UniTask.entites.csproj", "{05495C20-AF3F-4F3D-9458-B7FC5B1097D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniTask.data", "UniTask.data\UniTask.data.csproj", "{C1D610F6-F949-494D-A531-954582467C8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniTask.data", "UniTask.data\UniTask.data.csproj", "{C1D610F6-F949-494D-A531-954582467C8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unitask.Infrastructure", "Unitask.Infrastructure\Unitask.Infrastructure.csproj", "{AFDC5FD8-F582-4E3A-88DB-A3931BF94346}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unitask.DTOs", "Unitask.DTOs\Unitask.DTOs.csproj", "{CD33BE3F-EB36-45F6-9A0B-CB5F11E2D366}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{C1D610F6-F949-494D-A531-954582467C8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1D610F6-F949-494D-A531-954582467C8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1D610F6-F949-494D-A531-954582467C8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFDC5FD8-F582-4E3A-88DB-A3931BF94346}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFDC5FD8-F582-4E3A-88DB-A3931BF94346}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFDC5FD8-F582-4E3A-88DB-A3931BF94346}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFDC5FD8-F582-4E3A-88DB-A3931BF94346}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD33BE3F-EB36-45F6-9A0B-CB5F11E2D366}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD33BE3F-EB36-45F6-9A0B-CB5F11E2D366}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD33BE3F-EB36-45F6-9A0B-CB5F11E2D366}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD33BE3F-EB36-45F6-9A0B-CB5F11E2D366}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
