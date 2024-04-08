@@ -14,11 +14,13 @@ namespace Unitask.Infrastructure.Services
     {
         //declare
         private readonly VotersRepositories _votersRepositories;
+        private readonly CandidateService _candidateService;
 
         //construsuror for service depenedency injection
-        public VoterService(VotersRepositories votersRepositories)
+        public VoterService(VotersRepositories votersRepositories, CandidateService candidateService)
         {
             _votersRepositories = votersRepositories;
+            _candidateService = candidateService; 
         }
         // load object based on id
         public VoterDTO Load(Guid id)
@@ -74,6 +76,39 @@ namespace Unitask.Infrastructure.Services
                 HasVoted = DTO.HasVoted,
                 RegionID = DTO.RegionID
             };
+        }
+
+        public bool VerifyId(string verificationCode)
+        {
+            // Find the voter by the verification ID
+            var voter = _votersRepositories.FindByVerificationId(verificationCode);
+
+            // Check if the voter exists and hasn't voted yet
+            if (voter != null && !voter.HasVoted)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        // Method to cast a vote
+        public void CastVote(Guid voterId, Guid candidateId)
+        {
+            var voter = _votersRepositories.Load(voterId);
+
+            // Verify the voter exists and hasn't voted yet
+            if (voter != null && !voter.HasVoted)
+            {
+                // Now using CandidateService to increase the candidate's vote
+                bool voteIncreased = _candidateService.IncreaseCandidateVote(candidateId);
+
+                if (voteIncreased)
+                {
+                    voter.HasVoted = true;
+                    _votersRepositories.Save(voter);
+                }
+            }
         }
     }
 }

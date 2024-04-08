@@ -13,12 +13,17 @@ namespace Unitask.Infrastructure.Services
     {
         //declare
         private readonly VotingSystemsRepositories _votingSystemsRepositories;
+        private readonly PartyService _partyService;
+        private readonly CandidateService _candidateService;
 
         //construsuror for service depenedency injection
-        public VotingSystemService(VotingSystemsRepositories votingSystemsRepositories)
+        public VotingSystemService(VotingSystemsRepositories votingSystemsRepositories, PartyService partyService, CandidateService candidateService)
         {
             _votingSystemsRepositories = votingSystemsRepositories;
+            _partyService = partyService;
+            _candidateService = candidateService;
         }
+
         // load object based on id
         public VotingSystemDTO Load(Guid id)
         {
@@ -67,6 +72,35 @@ namespace Unitask.Infrastructure.Services
                 ID = DTO.ID,
                 Name = DTO.Name
             };
+        }
+
+        public PartyDTO GetWinnerFPTP(IEnumerable<Candidate> RegionWinners)
+        {
+            var Partys = _partyService.LoadAll();
+            var LabourWins = RegionWinners.Where(x => x.Name == "Labour").Count();
+            var ConservativeWins = RegionWinners.Where(x => x.Name == "Conservative").Count();
+            return LabourWins > ConservativeWins ? Partys.Single(x => x.Name == "Labour") : Partys.Single(x => x.Name == "Conservative");
+        }
+
+        public PartyDTO GetWinnerProportional(IEnumerable<Candidate> candidates)
+        {
+            var Partys = _partyService.LoadAll();
+            var LabourVoteCount = 0;
+            var ConservativeVoteCount = 0;
+
+            foreach (var Candidate in candidates)
+            {
+                if (Candidate.PartyID == Partys.Single(x => x.Name == "Labour").ID)
+                {
+                    LabourVoteCount += Candidate.VoteCount;
+                }
+                else
+                {
+                    ConservativeVoteCount += Candidate.VoteCount;
+                }
+
+            }
+            return LabourVoteCount > ConservativeVoteCount ? Partys.Single(x => x.Name == "Labour") : Partys.Single(x => x.Name == "Conservative");
         }
     }
 }

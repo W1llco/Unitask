@@ -73,5 +73,12 @@ namespace Unitask.Infrastructure.Services
                 RegionID = DTO.RegionID
             };
         }
+
+        // Retrieves all party entities, converting them to PartyDTO objects
+        public IEnumerable<PartyDTO> GetAllParties()
+        {
+            var entities = _partysRepositories.LoadAll();
+            return entities.Select(entity => GetDTO(entity));
+        }
     }
 }

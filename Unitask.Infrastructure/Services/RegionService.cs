@@ -13,11 +13,13 @@ namespace Unitask.Infrastructure.Services
     {
         //declare
         private readonly RegionsRepositories _regionsRepositories;
+        private readonly CandidatesRepositories _candidatesRepositories;
 
         //construsuror for service depenedency injection
-        public RegionService(RegionsRepositories regionsRepositories)
+        public RegionService(RegionsRepositories regionsRepositories, CandidatesRepositories candidatesRepositories)
         {
             _regionsRepositories = regionsRepositories;
+            _candidatesRepositories = candidatesRepositories;
         }
         // load object based on id
         public RegionDTO Load(Guid id)
@@ -67,6 +69,18 @@ namespace Unitask.Infrastructure.Services
                 ID = DTO.ID,
                 Name = DTO.Name
             };
+        }
+
+        // Get the Candidates for the region
+        public IEnumerable<Candidate> GetCandidatesForRegion (Guid RegionID)
+        {
+            return _candidatesRepositories.GetCandidatesForRegion(RegionID);
+        }
+
+        public Candidate GetRegionWinner(Guid RegionID, IEnumerable<Candidate> candidates )
+        {
+            var RegionCanidates = GetCandidatesForRegion(RegionID).OrderByDescending(x => x.VoteCount) ;
+            return RegionCanidates.FirstOrDefault();
         }
     }
 }

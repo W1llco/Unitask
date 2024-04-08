@@ -73,5 +73,10 @@ namespace UniTask.data.Repositories
             candidate.RegionID = entity.RegionID;
             _context.SaveChanges();
         }
+
+        public IEnumerable<Candidate> GetCandidatesForRegion(Guid regionID)
+        {
+           return _context.Candidates.Local.Where(x => x.RegionID == regionID);
+        }
     }
 }

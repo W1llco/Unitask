@@ -33,6 +33,7 @@ namespace  UniTask.data
             builder.Entity<Election>();
             builder.Entity<Voter>();
             builder.Entity<Vote>();
+            builder.Entity<Party>();
 
             builder.Entity<VotingSystem>().HasData(new VotingSystem { ID = Guid.NewGuid(), Name = "Proportional Representation" },
                 new VotingSystem { ID = Guid.NewGuid(), Name = "First Past The Post" });
@@ -40,6 +41,9 @@ namespace  UniTask.data
             builder.Entity<Region>().HasData(new Region { ID = Guid.NewGuid(), Name = "Scotland" },
                 new Region { ID = Guid.NewGuid(), Name = "Wales" }, 
                 new Region { ID = Guid.NewGuid(), Name = "England" });
+
+            builder.Entity<Party>().HasData(new Party { ID = Guid.NewGuid(), Name = "Labour" },
+                new Party { ID = Guid.NewGuid(), Name = "Conservative" });
 
             builder.Entity<User>().HasData(new VotingSystem { ID = new Guid("B5434315-B59C-4365-A011-71AFA80B0D4B"), Name ="Admin 1" });
 

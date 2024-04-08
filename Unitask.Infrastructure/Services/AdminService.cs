@@ -13,11 +13,17 @@ namespace Unitask.Infrastructure.Services
     {
         //declare
         private readonly AdminsRepositories _adminsRepositories;
+        private readonly VotersRepositories _votersRepository;
+        private readonly ElectionsRepositories _electionRepository;
+        private readonly CandidatesRepositories _candidatesRepository;
 
         //construsuror for service depenedency injection
-        public AdminService(AdminsRepositories adminsRepositories)
+        public AdminService(AdminsRepositories adminsRepositories, VotersRepositories votersRepository, ElectionsRepositories electionRepository, CandidatesRepositories candidatesRepository)
         {
             _adminsRepositories = adminsRepositories;
+            _votersRepository = votersRepository;
+            _electionRepository = electionRepository;
+            _candidatesRepository = candidatesRepository;
         }
         // load object based on id
         public AdminDTO Load(Guid id)
@@ -67,6 +73,37 @@ namespace Unitask.Infrastructure.Services
                 ID = DTO.ID,
                 UserID = DTO.UserID
             };
+        }
+
+        public bool VerifyVoter(string voterName, string verificationCode)
+        {
+            var voter = _votersRepository.FindByName(voterName);
+            return voter != null && voter.VerificationCode == verificationCode;
+        }
+
+        public void StartElection()
+        {
+            var election = new Election
+            {
+                StartTime = DateTime.UtcNow,
+                EndTime = null 
+            };
+            _electionRepository.StartNewElection(election);
+        }
+
+        public void EndElection()
+        {
+            _electionRepository.EndCurrentElection(DateTime.UtcNow);
+        }
+
+        public Party CountElection()
+        {
+            return _electionRepository.CountVotes();
+        }
+
+        public Candidate RegisterCandidate(Candidate candidate)
+        {
+            return _candidatesRepository.Save(candidate);
         }
     }
 }

@@ -16,6 +16,10 @@ namespace Unitask.DTOs
         public Guid VoteSystem { get; set; }
 
         public Guid RegionID { get; set; }
+
+        public Guid StartTime { get; set; } 
+
+        public Guid EndTime { get; set; }
     }
 
 

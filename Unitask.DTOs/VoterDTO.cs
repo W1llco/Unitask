@@ -18,5 +18,10 @@ namespace Unitask.DTOs
         public bool HasVoted { get; set; }
 
         public Guid RegionID { get; set; }
+
+        public string Name { get; set; }
+
+        public string VerificationCode { get; set; }
+
     }
 }

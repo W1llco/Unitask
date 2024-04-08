@@ -71,5 +71,32 @@ namespace UniTask.data.Repositories
             election.RegionID = entity.RegionID;
             _context.SaveChanges();
         }
+
+        public void StartNewElection(Election election)
+        {
+            if (election == null)
+                throw new ArgumentNullException(nameof(election));
+
+            Save(election);
+        }
+
+        public void EndCurrentElection(DateTime utcEndDateTime)
+        {
+            var currentElection = _context.Elections
+                .Where(e => !e.EndTime.HasValue) 
+                .OrderByDescending(e => e.StartTime) 
+                .FirstOrDefault();
+            if (currentElection != null)
+            {
+                currentElection.EndTime = utcEndDateTime;
+                Update(currentElection);
+            }
+        }
+
+        public Party CountVotes()
+        {
+            var winningParty = new Party();
+            return winningParty;
+        }
     }
 }

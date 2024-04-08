@@ -74,5 +74,27 @@ namespace Unitask.Infrastructure.Services
                 RegionID = DTO.RegionID
             };
         }
+
+        // Method to increase a candidate's vote count
+        public bool IncreaseCandidateVote(Guid candidateId)
+        {
+            var candidate = _candidatesRepositories.Load(candidateId);
+
+            // Verify the candidate exists
+            if (candidate != null)
+            {
+                candidate.VoteCount += 1;
+                _candidatesRepositories.Save(candidate);
+                return true;
+            }
+
+            return false;
+        }
+
+        public IEnumerable<CandidateDTO> GetAllCandidates()
+        {
+            return LoadAll();
+        }
     }
+
 }

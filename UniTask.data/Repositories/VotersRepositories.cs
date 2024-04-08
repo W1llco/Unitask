@@ -17,6 +17,17 @@ namespace UniTask.data.Repositories
         {
             _context = context;
         }
+        public Voter FindByVerificationId(string verificationId)
+        {
+            return _context.Voters.FirstOrDefault(v => v.VerifcationId == verificationId);
+        }
+
+        public Voter FindByName(string Name)
+        {
+            return _context.Voters.FirstOrDefault(v => v.Name == Name);
+        }
+
+
 
         // Load object based on primary key 
         public Voter Load(Guid id)
