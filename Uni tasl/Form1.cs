@@ -35,6 +35,22 @@ namespace Uni_tasl
 
         }
 
-        
+
+
+        private void buttonLogin_Click(object sender, EventArgs e)
+        {
+            if (textBoxUsername.Text=="yourUername" && textBoxPassword.Text=="yourPassword")
+            {
+                new VoterPage().Show();
+            }
+            else
+            {
+                MessageBox.Show(" The username or password is wrong try again");
+                textBoxUsername.Clear();
+                textBoxPassword.Clear();
+                textBoxUsername.Focus();
+            }
+        }
+
     }
 }
