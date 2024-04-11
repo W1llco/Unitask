@@ -12,9 +12,12 @@ namespace Uni_tasl
 {
     public partial class VoterPage : Form
     {
-        public VoterPage()
+        private string _username;
+
+        public VoterPage(string username)
         {
             InitializeComponent();
+            _username = username;
         }
     }
 }

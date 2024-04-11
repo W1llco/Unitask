@@ -55,7 +55,10 @@ namespace Unitask.Infrastructure.Services
             return new UserDTO()
             {
                 ID = entity.ID,
-                Name = entity.Name
+                Name = entity.Name,
+                Username = entity.Username,
+                Password = entity.Password,
+                IsAdmin = entity.IsAdmin
             };
         }
 
@@ -65,7 +68,10 @@ namespace Unitask.Infrastructure.Services
             return new User()
             {
                 ID = DTO.ID,
-                Name = DTO.Name
+                Name = DTO.Name,
+                Username = DTO.Username,
+                Password = DTO.Password,
+                IsAdmin = DTO.IsAdmin
             };
         }
     }

@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Uni_tasl
 {
-    public partial class LocalVote : Form
+    public partial class EndElection : Form
     {
-        public LocalVote()
+        public EndElection()
         {
             InitializeComponent();
-        }
-
-        private void LocalVote_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

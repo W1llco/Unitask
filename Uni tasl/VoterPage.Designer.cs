@@ -28,57 +28,75 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.voteButton = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            dropdownVote = new ComboBox();
+            label1 = new Label();
+            voteButton = new Button();
+            label2 = new Label();
+            SuspendLayout();
             // 
-            // comboBox1
+            // dropdownVote
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(40, 65);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 0;
+            dropdownVote.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            dropdownVote.FormattingEnabled = true;
+            dropdownVote.Location = new Point(57, 135);
+            dropdownVote.Margin = new Padding(4, 5, 4, 5);
+            dropdownVote.Name = "dropdownVote";
+            dropdownVote.Size = new Size(766, 53);
+            dropdownVote.TabIndex = 0;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(40, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 15);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Vote";
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 26F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(57, 23);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(325, 70);
+            label1.TabIndex = 1;
+            label1.Text = "Voting Page";
             // 
             // voteButton
             // 
-            this.voteButton.Location = new System.Drawing.Point(40, 117);
-            this.voteButton.Name = "voteButton";
-            this.voteButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.voteButton.Size = new System.Drawing.Size(75, 23);
-            this.voteButton.TabIndex = 2;
-            this.voteButton.Text = "Vote";
-            this.voteButton.UseVisualStyleBackColor = true;
+            voteButton.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            voteButton.Location = new Point(57, 211);
+            voteButton.Margin = new Padding(4, 5, 4, 5);
+            voteButton.Name = "voteButton";
+            voteButton.RightToLeft = RightToLeft.Yes;
+            voteButton.Size = new Size(107, 57);
+            voteButton.TabIndex = 2;
+            voteButton.Text = "Vote";
+            voteButton.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(57, 105);
+            label2.Name = "label2";
+            label2.Size = new Size(163, 25);
+            label2.TabIndex = 3;
+            label2.Text = "Please select below";
             // 
             // VoterPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.voteButton);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
-            this.Name = "VoterPage";
-            this.Text = "VoterPage";
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1143, 750);
+            Controls.Add(label2);
+            Controls.Add(voteButton);
+            Controls.Add(label1);
+            Controls.Add(dropdownVote);
+            Margin = new Padding(4, 5, 4, 5);
+            Name = "VoterPage";
+            Text = "VoterPage";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private ComboBox comboBox1;
+        private ComboBox dropdownVote;
         private Label label1;
         private Button voteButton;
+        private Label label2;
     }
 }

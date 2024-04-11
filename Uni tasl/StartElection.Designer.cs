@@ -1,6 +1,6 @@
 ﻿namespace Uni_tasl
 {
-    partial class LocalVote
+    partial class StartElection
     {
         /// <summary>
         /// Required designer variable.
@@ -28,78 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox1 = new TextBox();
             label1 = new Label();
-            label2 = new Label();
-            comboBox1 = new ComboBox();
             button1 = new Button();
             SuspendLayout();
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(32, 60);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(150, 31);
-            textBox1.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(48, 28);
+            label1.Location = new Point(40, 41);
             label1.Name = "label1";
-            label1.Size = new Size(91, 25);
-            label1.TabIndex = 1;
-            label1.Text = "Username";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(37, 118);
-            label2.Name = "label2";
-            label2.Size = new Size(130, 25);
-            label2.TabIndex = 2;
-            label2.Text = "Voting Choices";
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(37, 173);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(182, 33);
-            comboBox1.TabIndex = 3;
+            label1.Size = new Size(314, 25);
+            label1.TabIndex = 0;
+            label1.Text = "Choose one of the creteadted election";
             // 
             // button1
             // 
-            button1.Location = new Point(36, 241);
+            button1.Location = new Point(85, 198);
             button1.Name = "button1";
             button1.Size = new Size(112, 34);
-            button1.TabIndex = 4;
-            button1.Text = "Vote";
+            button1.TabIndex = 1;
+            button1.Text = "Start";
             button1.UseVisualStyleBackColor = true;
             // 
-            // LocalVote
+            // StartElection
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(button1);
-            Controls.Add(comboBox1);
-            Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(textBox1);
-            Name = "LocalVote";
-            Text = "LocalVote";
-            Load += LocalVote_Load;
+            Name = "StartElection";
+            Text = "StartElection";
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private TextBox textBox1;
         private Label label1;
-        private Label label2;
-        private ComboBox comboBox1;
         private Button button1;
     }
 }

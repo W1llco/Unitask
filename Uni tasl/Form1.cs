@@ -39,13 +39,28 @@ namespace Uni_tasl
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            if (textBoxUsername.Text=="yourUername" && textBoxPassword.Text=="yourPassword")
+            var user = _dbContext.Users.FirstOrDefault(u => u.Username == textBoxUsername.Text && u.Password == textBoxPassword.Text);
+
+            if (user != null)
             {
-                new VoterPage().Show();
+                // User found, check if user is an admin
+                if (user.IsAdmin)
+                {
+                    // Open admin area
+                    new AdminDashboard(user.Username).Show();
+                }
+                else
+                {
+                    // User is not an admin, proceed with normal login
+                    new VoterPage(user.Username).Show();
+                }
+
+                this.Close();
             }
             else
             {
-                MessageBox.Show(" The username or password is wrong try again");
+                // User not found, show error message
+                MessageBox.Show("The username or password is wrong. Try again.");
                 textBoxUsername.Clear();
                 textBoxPassword.Clear();
                 textBoxUsername.Focus();

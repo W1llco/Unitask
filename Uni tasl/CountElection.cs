@@ -7,20 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Uni_tasl
 {
-    public partial class AdminDashboard : Form
+    public partial class CountElection : Form
     {
-        private string _username;
-        public AdminDashboard(string username)
+        public CountElection()
         {
-            _username = username;
             InitializeComponent();
         }
 
-        private void AdminDashboard_Load(object sender, EventArgs e)
+        private void CountElection_Load(object sender, EventArgs e)
         {
 
         }
