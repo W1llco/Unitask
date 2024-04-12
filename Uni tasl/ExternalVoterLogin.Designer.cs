@@ -35,11 +35,13 @@
             this.UsernameTextBox = new System.Windows.Forms.TextBox();
             this.DOBlabel = new System.Windows.Forms.Label();
             this.DobDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.CodeTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Login
             // 
-            this.Login.Location = new System.Drawing.Point(22, 198);
+            this.Login.Location = new System.Drawing.Point(20, 249);
             this.Login.Name = "Login";
             this.Login.Size = new System.Drawing.Size(75, 23);
             this.Login.TabIndex = 10;
@@ -68,9 +70,10 @@
             this.UsernameLabel.AutoSize = true;
             this.UsernameLabel.Location = new System.Drawing.Point(22, 29);
             this.UsernameLabel.Name = "UsernameLabel";
-            this.UsernameLabel.Size = new System.Drawing.Size(60, 15);
+            this.UsernameLabel.Size = new System.Drawing.Size(39, 15);
             this.UsernameLabel.TabIndex = 7;
-            this.UsernameLabel.Text = "Username";
+            this.UsernameLabel.Text = "Name";
+            this.UsernameLabel.Click += new System.EventHandler(this.UsernameLabel_Click);
             // 
             // UsernameTextBox
             // 
@@ -96,11 +99,29 @@
             this.DobDateTimePicker.Size = new System.Drawing.Size(200, 23);
             this.DobDateTimePicker.TabIndex = 14;
             // 
+            // CodeTextBox
+            // 
+            this.CodeTextBox.Location = new System.Drawing.Point(20, 208);
+            this.CodeTextBox.Name = "CodeTextBox";
+            this.CodeTextBox.Size = new System.Drawing.Size(100, 23);
+            this.CodeTextBox.TabIndex = 15;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 190);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 15);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "One time code";
+            // 
             // ExternalVoterLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.CodeTextBox);
             this.Controls.Add(this.DobDateTimePicker);
             this.Controls.Add(this.DOBlabel);
             this.Controls.Add(this.Login);
@@ -124,5 +145,7 @@
         private TextBox UsernameTextBox;
         private Label DOBlabel;
         private DateTimePicker DobDateTimePicker;
+        private TextBox CodeTextBox;
+        private Label label1;
     }
 }

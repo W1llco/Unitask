@@ -28,32 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dg_Regions = new System.Windows.Forms.DataGridView();
-            this.dg_Partys = new System.Windows.Forms.DataGridView();
             this.sqliteCommand1 = new Microsoft.Data.Sqlite.SqliteCommand();
             this.label1 = new System.Windows.Forms.Label();
             this.LoginFromHomeButton = new System.Windows.Forms.Button();
             this.LoginFromBoothButton = new System.Windows.Forms.Button();
             this.LoginAsAdminButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dg_Regions)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dg_Partys)).BeginInit();
             this.SuspendLayout();
             // 
             // dg_Regions
             // 
-            this.dg_Regions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dg_Regions.Location = new System.Drawing.Point(557, 288);
-            this.dg_Regions.Name = "dg_Regions";
-            this.dg_Regions.RowTemplate.Height = 25;
-            this.dg_Regions.Size = new System.Drawing.Size(240, 150);
-            this.dg_Regions.TabIndex = 0;
-            
-            this.dg_Partys.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dg_Partys.Location = new System.Drawing.Point(450, 400);
-            this.dg_Partys.Name = "dg_Partys";
-            this.dg_Partys.RowTemplate.Height = 25;
-            this.dg_Partys.Size = new System.Drawing.Size(240, 150);
-            this.dg_Partys.TabIndex = 0;
+             
             // 
             // sqliteCommand1
             // 
@@ -114,8 +98,6 @@
             this.Controls.Add(this.dg_Partys);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.dg_Regions)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dg_Partys)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -15,8 +15,6 @@ namespace Uni_tasl
             _dbContext = dbContext;
 
             InitializeComponent();
-            dg_Regions.DataSource = _dbContext.Regions.Local.ToBindingList();
-            dg_Partys.DataSource = _dbContext.Partys.Local.ToBindingList();
             
         }
         protected override void OnLoad(EventArgs e)

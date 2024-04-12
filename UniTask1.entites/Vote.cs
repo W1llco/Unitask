@@ -11,8 +11,9 @@ namespace UniTask.entites
     {
         public Guid ID { get; set; }
         [Required]
-        public string Name { get; set; }
+        public Guid VoterId { get; set; }
         [Required]
+        public Guid ElectionId { get; set; }
 
         public Guid CandiateId { get; set; }
     }

@@ -66,8 +66,9 @@ namespace UniTask.data.Repositories
         private void Update(Vote entity)
         {
             var vote = _context.Votes.FirstOrDefault(x => x.ID == entity.ID);
-            vote.Name = entity.Name;
+            vote.VoterId = entity.VoterId;
             vote.CandiateId = entity.CandiateId;
+            vote.ElectionId = entity.ElectionId;
             _context.SaveChanges();
         }
     }

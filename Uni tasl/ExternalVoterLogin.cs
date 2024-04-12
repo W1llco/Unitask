@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Uni_tasl;
 using UniTask.data;
+using UniTask.data.Repositories;
+using UniTask.entites;
 
 namespace Uni_tasl
 {
@@ -17,17 +19,20 @@ namespace Uni_tasl
     {
         //injecting voting context
         private readonly VotingContext _dbContext;
-
+        private readonly VotesRepositories _votesRepositories;
+        private readonly ElectionsRepositories _electionsRepositories;
         public ExternalVoterLogin(VotingContext dbContext)
         {
             InitializeComponent();
             _dbContext = dbContext;
+            _votesRepositories = new VotesRepositories(_dbContext);
+            _electionsRepositories = new ElectionsRepositories(_dbContext);
             
         }
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            _dbContext.Database.EnsureDeleted();
+            //_dbContext.Database.EnsureDeleted();
             _dbContext.Database.EnsureCreated();
 
             _dbContext.Users.Load();
@@ -50,13 +55,39 @@ namespace Uni_tasl
 
         private void Login_Click(object sender, EventArgs e)
         {
+            var elections = _electionsRepositories.LoadAll();
             DateTime dateOfBirth = DobDateTimePicker.Value.Date;
+            
+            var voter = _dbContext.Voters.FirstOrDefault(u => u.Name == UsernameTextBox.Text && u.Password == PasswordTextBox.Text && u.DateOfBirth == dateOfBirth && u.VerifcationCode == CodeTextBox.Text);
 
-            var voter = _dbContext.Voters.FirstOrDefault(u => u.Name == UsernameTextBox.Text && u.Password == PasswordTextBox.Text && u.DateOfBirth == dateOfBirth);
-
-            if (voter != null)
+            if (voter != null )
             {
-                new VoterPage(_dbContext).Show();
+                var votes = _votesRepositories.LoadAll().Where(x => x.VoterId == voter.ID);
+
+                var existingVoteIds = votes.Select(x => x.ElectionId).ToList();
+                var electionIds = elections.Select(x => x.ID).ToList();
+                var electionsWithNoVotes = electionIds.Except(existingVoteIds).ToList();
+
+                if (votes.Any())
+                {
+                    if (electionsWithNoVotes.Any())
+                    {
+                        foreach (var id in electionsWithNoVotes)
+                        {
+                            _votesRepositories.Save(new Vote() {ElectionId = id, VoterId = voter.ID});
+                        }
+
+                    }
+                }
+                else
+                {
+                    foreach (var id in electionsWithNoVotes)
+                    {
+                        _votesRepositories.Save(new Vote() { ElectionId = id, VoterId = voter.ID });
+                    }
+
+                }
+                new SelectElection(_dbContext, voter.UserID).Show();
             }
             else
             {
@@ -66,6 +97,11 @@ namespace Uni_tasl
                 PasswordTextBox.Clear();
                 UsernameTextBox.Focus();
             }
+        }
+
+        private void UsernameLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -57,7 +57,8 @@ namespace Unitask.Infrastructure.Services
                 ID = entity.ID, 
                 Winner = entity.Winner,
                 VoteSystem = entity.VoteSystem,
-                RegionID = entity.RegionID
+                RegionID = entity.RegionID,
+                Name = entity.Name,
 
             };
         }
@@ -71,6 +72,7 @@ namespace Unitask.Infrastructure.Services
                 Winner = DTO.Winner,
                 VoteSystem = DTO.VoteSystem,
                 RegionID = DTO.RegionID,
+                Name = DTO.Name,
             };
         }
     }

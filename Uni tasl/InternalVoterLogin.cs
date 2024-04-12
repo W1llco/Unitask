@@ -47,7 +47,7 @@ namespace Uni_tasl
 
             if (voter != null)
             {
-                new VoterPage(_dbContext).Show();
+                new SelectElection(_dbContext, voter.UserID).Show();
             }
             else
             {

@@ -34,7 +34,7 @@ namespace UniTask.data.Repositories
         {
             if (id == Guid.Empty)
                 return null;
-            return _context.Voters.Local.First(x => x.ID == id);
+            return _context.Voters.Local.First(x => x.UserID == id);
         }
         //Load all
         public IEnumerable<Voter> LoadAll()

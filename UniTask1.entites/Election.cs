@@ -22,5 +22,7 @@ namespace UniTask.entites
         public DateTime StartTime { get; set; }
 
         public DateTime? EndTime { get; set; }
+        [Required]
+        public string Name { get; set; }
     }
 }

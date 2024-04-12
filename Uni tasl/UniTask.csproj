@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UniTask.data\UniTask.data.csproj" />
+    <ProjectReference Include="..\Unitask.Infrastructure\Unitask.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

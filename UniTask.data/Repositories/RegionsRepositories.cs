@@ -27,7 +27,7 @@ namespace UniTask.data.Repositories
         {
             if (id == Guid.Empty)
                 return null;
-            return _context.Regions.Local.First(x => x.ID == id);
+            return _context.Regions.Local.FirstOrDefault(x => x.ID == id);
         }
         //Load all
         public IEnumerable<Region> LoadAll()
@@ -46,6 +46,11 @@ namespace UniTask.data.Repositories
             }
             Update(entity);
             return entity;
+        }
+
+        public Region GetRegion(string region)
+        {
+            return _context.Regions.Local.FirstOrDefault(x => x.Name == region);
         }
 
         //dele existing object 

@@ -55,8 +55,9 @@ namespace Unitask.Infrastructure.Services
             return new VoteDTO()
             {
                 ID = entity.ID,
-                Name = entity.Name,
-                CandiateId = entity.CandiateId
+                VoterId = entity.VoterId,
+                CandiateId = entity.CandiateId,
+                ElectionId = entity.ElectionId
             };
         }
 
@@ -66,8 +67,9 @@ namespace Unitask.Infrastructure.Services
             return new Vote()
             {
                 ID = DTO.ID,
-                Name = DTO.Name,
-                CandiateId = DTO.CandiateId
+                VoterId = DTO.VoterId,
+                CandiateId = DTO.CandiateId,
+                ElectionId = DTO.ElectionId
             };
         }
     }

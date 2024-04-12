@@ -564,6 +564,16 @@
           "bin/placeholder/UniTask.data.dll": {}
         }
       },
+      "Unitask.DTOs/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Unitask.DTOs.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Unitask.DTOs.dll": {}
+        }
+      },
       "UniTask.Entites/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -576,6 +586,20 @@
         },
         "runtime": {
           "bin/placeholder/UniTask.Entites.dll": {}
+        }
+      },
+      "Unitask.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "UniTask.data": "1.0.0",
+          "Unitask.DTOs": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Unitask.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Unitask.Infrastructure.dll": {}
         }
       }
     }
@@ -1228,17 +1252,28 @@
       "path": "../UniTask.data/UniTask.data.csproj",
       "msbuildProject": "../UniTask.data/UniTask.data.csproj"
     },
+    "Unitask.DTOs/1.0.0": {
+      "type": "project",
+      "path": "../Unitask.DTOs/Unitask.DTOs.csproj",
+      "msbuildProject": "../Unitask.DTOs/Unitask.DTOs.csproj"
+    },
     "UniTask.Entites/1.0.0": {
       "type": "project",
       "path": "../UniTask1.entites/UniTask.Entites.csproj",
       "msbuildProject": "../UniTask1.entites/UniTask.Entites.csproj"
+    },
+    "Unitask.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../Unitask.Infrastructure/Unitask.Infrastructure.csproj",
+      "msbuildProject": "../Unitask.Infrastructure/Unitask.Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0-windows7.0": [
       "Microsoft.EntityFrameworkCore >= 6.0.28",
       "Microsoft.EntityFrameworkCore.Sqlite >= 6.0.28",
-      "UniTask.data >= 1.0.0"
+      "UniTask.data >= 1.0.0",
+      "Unitask.Infrastructure >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -1277,6 +1312,9 @@
           "projectReferences": {
             "C:\\Git\\Unitask\\UniTask.data\\UniTask.data.csproj": {
               "projectPath": "C:\\Git\\Unitask\\UniTask.data\\UniTask.data.csproj"
+            },
+            "C:\\Git\\Unitask\\Unitask.Infrastructure\\Unitask.Infrastructure.csproj": {
+              "projectPath": "C:\\Git\\Unitask\\Unitask.Infrastructure\\Unitask.Infrastructure.csproj"
             }
           }
         }

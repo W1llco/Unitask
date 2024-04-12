@@ -44,6 +44,11 @@ namespace UniTask.data.Repositories
             return entity;
         }
 
+        public Election GetByName(string electionName)
+        {
+            return _context.Elections.Local.Single(x => x.Name == electionName);
+        }
+
         //dele existing object 
         public void Delete(Election entity)
         {
@@ -69,6 +74,7 @@ namespace UniTask.data.Repositories
             election.Winner = entity.Winner;
             election.VoteSystem = entity.VoteSystem;
             election.RegionID = entity.RegionID;
+            election.Name = entity.Name;
             _context.SaveChanges();
         }
 
