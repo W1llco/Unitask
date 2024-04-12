@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UniTask.data;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Uni_tasl
@@ -14,13 +15,39 @@ namespace Uni_tasl
     public partial class AdminDashboard : Form
     {
         private string _username;
+        private VotingContext dbContext;
+
         public AdminDashboard(string username)
         {
             _username = username;
             InitializeComponent();
         }
 
+        public AdminDashboard(VotingContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+
         private void AdminDashboard_Load(object sender, EventArgs e)
+        {
+            this.label1.Text = _username;
+        }
+
+        public void ChangeLabelText(string text)
+        {
+            if (this.InvokeRequired)
+            {
+                // If true, call this method again on the UI thread
+                this.Invoke(new MethodInvoker(() => ChangeLabelText(text)));
+            }
+            else
+            {
+                // If already on the UI thread, safely update the label's text
+                this.label1.Text = text;
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

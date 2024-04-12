@@ -18,5 +18,8 @@ namespace Unitask.DTOs
         public string Password { get; set; }
 
         public bool IsAdmin { get; set; }
+
+        public string? OneTimeCode { get; set; }
+        public DateTime? DateOfBirth { get; set; }
     }
 }

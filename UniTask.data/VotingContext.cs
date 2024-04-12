@@ -34,6 +34,7 @@ namespace  UniTask.data
             builder.Entity<Voter>();
             builder.Entity<Vote>();
             builder.Entity<Party>();
+            
 
             builder.Entity<VotingSystem>().HasData(new VotingSystem { ID = Guid.NewGuid(), Name = "Proportional Representation" },
                 new VotingSystem { ID = Guid.NewGuid(), Name = "First Past The Post" });
@@ -45,10 +46,14 @@ namespace  UniTask.data
             builder.Entity<Party>().HasData(new Party { ID = Guid.NewGuid(), Name = "Labour" },
                 new Party { ID = Guid.NewGuid(), Name = "Conservative" });
 
-            builder.Entity<User>().HasData(new VotingSystem { ID = new Guid("B5434315-B59C-4365-A011-71AFA80B0D4B"), Name ="Admin 1" });
+            //builder.Entity<User>().HasData(new VotingSystem { ID = new Guid("B5434315-B59C-4365-A011-71AFA80B0D4B"), Name ="Admin 1"});
+
+            builder.Entity<Voter>().HasData(new Voter { ID = Guid.NewGuid(), UserID = new Guid("B6434325-B59C-4765-A511-71AFA80B7D4B"), Password ="Voter", VerifcationCode="1234567", HasVoted = false, /*RegionID = Guid*/ Name ="Voter", DateOfBirth = new DateTime(2002, 10, 10) });
 
             builder.Entity<Admin>().HasData(new Admin { ID = Guid.NewGuid(), UserID = new Guid("B5434315-B59C-4365-A011-71AFA80B0D4B")});
 
+            builder.Entity<User>().HasData(new User { ID = Guid.NewGuid(), Name = "ExampleName", Username = "Admin", Password = "Admin", IsAdmin = true },
+            new User { ID = Guid.NewGuid(), Name = "ExampleName1", Username = "User", Password = "User", IsAdmin = false,DateOfBirth = new DateTime(2002, 10, 10), OneTimeCode="1234567"});
         }
     }
 }

@@ -11,9 +11,11 @@ namespace Unitask.DTOs
     {
         public Guid ID { get; set; }
 
-        public string UserID { get; set; }
+        public Guid UserID { get; set; }
 
-        public string VerifcationId { get; set; }
+        public string Password { get; set; }
+
+        public string VerifcationCode { get; set; }
 
         public bool HasVoted { get; set; }
 
@@ -21,7 +23,8 @@ namespace Unitask.DTOs
 
         public string Name { get; set; }
 
-        public string VerificationCode { get; set; }
+        public DateTime DateOfBirth { get; set; }
+
 
     }
 }

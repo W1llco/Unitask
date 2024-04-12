@@ -78,7 +78,7 @@ namespace Unitask.Infrastructure.Services
         public bool VerifyVoter(string voterName, string verificationCode)
         {
             var voter = _votersRepository.FindByName(voterName);
-            return voter != null && voter.VerificationCode == verificationCode;
+            return voter != null && voter.VerifcationCode == verificationCode;
         }
 
         public void StartElection()

@@ -23,7 +23,7 @@ namespace Uni_tasl
             _provider = services.BuildServiceProvider();
 
             ApplicationConfiguration.Initialize();
-            Application.Run((Form1)_provider.GetService(typeof(Form1)));
+            Application.Run((Form1)_provider.GetService(serviceType: typeof(Form1)));
         }
 
         

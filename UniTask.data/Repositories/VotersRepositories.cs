@@ -17,9 +17,9 @@ namespace UniTask.data.Repositories
         {
             _context = context;
         }
-        public Voter FindByVerificationId(string verificationId)
+        public Voter FindByVerificationId(string verificationCode)
         {
-            return _context.Voters.FirstOrDefault(v => v.VerifcationId == verificationId);
+            return _context.Voters.FirstOrDefault(v => v.VerifcationCode == verificationCode);
         }
 
         public Voter FindByName(string Name)
@@ -78,9 +78,11 @@ namespace UniTask.data.Repositories
         {
             var voter = _context.Voters.FirstOrDefault(x => x.ID == entity.ID);
             voter.UserID = entity.UserID;
-            voter.VerifcationId = entity.VerifcationId;
+            voter.Password = entity.Password;
+            voter.VerifcationCode = entity.VerifcationCode;
             voter.HasVoted = entity.HasVoted;
             voter.RegionID = entity.RegionID;
+            voter.DateOfBirth = entity.DateOfBirth;
             _context.SaveChanges();
         }
     }

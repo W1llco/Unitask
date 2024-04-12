@@ -16,13 +16,14 @@ namespace Uni_tasl
 
             InitializeComponent();
             dg_Regions.DataSource = _dbContext.Regions.Local.ToBindingList();
+            dg_Partys.DataSource = _dbContext.Partys.Local.ToBindingList();
             
         }
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            //_dbContext.Database.EnsureDeleted();
-            _dbContext.Database.EnsureCreated();
+            _dbContext.Database.EnsureDeletedAsync();
+            _dbContext.Database.EnsureCreatedAsync();
 
             _dbContext.Users.Load();
             _dbContext.Regions.Load();
@@ -35,37 +36,25 @@ namespace Uni_tasl
 
         }
 
-
-
-        private void buttonLogin_Click(object sender, EventArgs e)
+        private void LoginFromHomeButton_Click(object sender, EventArgs e)
         {
-            var user = _dbContext.Users.FirstOrDefault(u => u.Username == textBoxUsername.Text && u.Password == textBoxPassword.Text);
-
-            if (user != null)
-            {
-                // User found, check if user is an admin
-                if (user.IsAdmin)
-                {
-                    // Open admin area
-                    new AdminDashboard(user.Username).Show();
-                }
-                else
-                {
-                    // User is not an admin, proceed with normal login
-                    new VoterPage(user.Username).Show();
-                }
-
-                this.Close();
-            }
-            else
-            {
-                // User not found, show error message
-                MessageBox.Show("The username or password is wrong. Try again.");
-                textBoxUsername.Clear();
-                textBoxPassword.Clear();
-                textBoxUsername.Focus();
-            }
+            ExternalVoterLogin externalVoterLogin = new ExternalVoterLogin(_dbContext);
+            externalVoterLogin.Show();
+            this.Hide();
         }
 
+        private void LoginFromBoothButton_Click(object sender, EventArgs e)
+        {
+            InternalVoterLogin internalVoterLogin = new InternalVoterLogin(_dbContext);
+            internalVoterLogin.Show();
+            this.Hide();
+        }
+
+        private void LoginAsAdminButton_Click(object sender, EventArgs e)
+        {
+            AdminLogin adminLogin = new AdminLogin(_dbContext);
+            adminLogin.Show();
+            this.Hide();
+        }
     }
 }

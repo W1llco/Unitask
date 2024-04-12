@@ -28,120 +28,133 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            textBox1 = new TextBox();
-            checkBox1 = new CheckBox();
-            dataGridView1 = new DataGridView();
-            label2 = new Label();
-            label3 = new Label();
-            button1 = new Button();
-            button2 = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            SuspendLayout();
+            this.label1 = new System.Windows.Forms.Label();
+            this.UsernameBox = new System.Windows.Forms.TextBox();
+            this.VerifyedcheckBox = new System.Windows.Forms.CheckBox();
+            this.dataGridViewUser = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.Search = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUser)).BeginInit();
+            this.SuspendLayout();
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(12, 29);
-            label1.Name = "label1";
-            label1.Size = new Size(184, 45);
-            label1.TabIndex = 0;
-            label1.Text = "Verify Voter";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(8, 17);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(128, 30);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Verify Voter";
             // 
-            // textBox1
+            // UsernameBox
             // 
-            textBox1.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(12, 112);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(836, 50);
-            textBox1.TabIndex = 1;
+            this.UsernameBox.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.UsernameBox.Location = new System.Drawing.Point(8, 67);
+            this.UsernameBox.Margin = new System.Windows.Forms.Padding(2);
+            this.UsernameBox.Name = "UsernameBox";
+            this.UsernameBox.Size = new System.Drawing.Size(586, 36);
+            this.UsernameBox.TabIndex = 1;
             // 
-            // checkBox1
+            // VerifyedcheckBox
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(12, 322);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(125, 29);
-            checkBox1.TabIndex = 2;
-            checkBox1.Text = "ID Verifyed";
-            checkBox1.UseVisualStyleBackColor = true;
+            this.VerifyedcheckBox.AutoSize = true;
+            this.VerifyedcheckBox.Location = new System.Drawing.Point(8, 193);
+            this.VerifyedcheckBox.Margin = new System.Windows.Forms.Padding(2);
+            this.VerifyedcheckBox.Name = "VerifyedcheckBox";
+            this.VerifyedcheckBox.Size = new System.Drawing.Size(82, 19);
+            this.VerifyedcheckBox.TabIndex = 2;
+            this.VerifyedcheckBox.Text = "ID Verifyed";
+            this.VerifyedcheckBox.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dataGridViewUser
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 216);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new Size(740, 74);
-            dataGridView1.TabIndex = 3;
+            this.dataGridViewUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewUser.Location = new System.Drawing.Point(8, 130);
+            this.dataGridViewUser.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridViewUser.Name = "dataGridViewUser";
+            this.dataGridViewUser.RowHeadersWidth = 62;
+            this.dataGridViewUser.RowTemplate.Height = 33;
+            this.dataGridViewUser.Size = new System.Drawing.Size(518, 44);
+            this.dataGridViewUser.TabIndex = 3;
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(12, 84);
-            label2.Name = "label2";
-            label2.Size = new Size(94, 25);
-            label2.TabIndex = 4;
-            label2.Text = "UserName";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(8, 50);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(60, 15);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Username";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(12, 179);
-            label3.Name = "label3";
-            label3.Size = new Size(67, 25);
-            label3.TabIndex = 5;
-            label3.Text = "Results";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(8, 107);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 15);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Results";
             // 
-            // button1
+            // Search
             // 
-            button1.Location = new Point(854, 126);
-            button1.Name = "button1";
-            button1.Size = new Size(112, 34);
-            button1.TabIndex = 6;
-            button1.Text = "Search";
-            button1.UseVisualStyleBackColor = true;
+            this.Search.Location = new System.Drawing.Point(598, 76);
+            this.Search.Margin = new System.Windows.Forms.Padding(2);
+            this.Search.Name = "Search";
+            this.Search.Size = new System.Drawing.Size(78, 20);
+            this.Search.TabIndex = 6;
+            this.Search.Text = "Search";
+            this.Search.UseVisualStyleBackColor = true;
+            this.Search.Click += new System.EventHandler(this.Search_Click);
             // 
             // button2
             // 
-            button2.Location = new Point(14, 379);
-            button2.Name = "button2";
-            button2.Size = new Size(112, 34);
-            button2.TabIndex = 7;
-            button2.Text = "Submitted";
-            button2.UseVisualStyleBackColor = true;
+            this.button2.Location = new System.Drawing.Point(10, 227);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(78, 20);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Submitted";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // VerifyVoter
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1013, 570);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(dataGridView1);
-            Controls.Add(checkBox1);
-            Controls.Add(textBox1);
-            Controls.Add(label1);
-            Name = "VerifyVoter";
-            Text = "VerifyVoter";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(709, 342);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.Search);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.dataGridViewUser);
+            this.Controls.Add(this.VerifyedcheckBox);
+            this.Controls.Add(this.UsernameBox);
+            this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Name = "VerifyVoter";
+            this.Text = "VerifyVoter";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUser)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
 
         private Label label1;
-        private TextBox textBox1;
-        private CheckBox checkBox1;
-        private DataGridView dataGridView1;
+        private TextBox UsernameBox;
+        private CheckBox VerifyedcheckBox;
+        private DataGridView dataGridViewUser;
         private Label label2;
         private Label label3;
-        private Button button1;
+        private Button Search;
         private Button button2;
     }
 }

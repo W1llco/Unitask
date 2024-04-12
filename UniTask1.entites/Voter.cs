@@ -13,24 +13,26 @@ namespace UniTask.entites
         public Guid ID { get; set; }
         [Required]
 
-        public string UserID { get; set; }
+        public Guid UserID { get; set; }
         [Required]
 
-        public string VerifcationId { get; set; }
+        public string Password { get; set; }
+        [Required]
+
+        public string VerifcationCode { get; set; }
         [Required]
 
         public bool HasVoted { get; set; }
-        [Required]
+        
 
         public Guid RegionID { get; set; }
 
         [Required]
         public string Name { get; set; }
-
         [Required]
+        public DateTime DateOfBirth { get; set; }
 
-        public string VerificationCode { get; set; }
-        
+
 
     }
 }

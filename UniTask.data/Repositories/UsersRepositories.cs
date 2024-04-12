@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -67,6 +68,9 @@ namespace UniTask.data.Repositories
         {
             var user = _context.Users.FirstOrDefault(x => x.ID == entity.ID);
             user.Name = entity.Name;
+            user.Username = entity.Username;
+            user.Password = entity.Password;
+            user.IsAdmin = entity.IsAdmin;
             _context.SaveChanges();
         }
     }

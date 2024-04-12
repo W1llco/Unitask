@@ -18,5 +18,7 @@ namespace UniTask.entites
         public string Password { get; set; }
         [Required]
         public bool IsAdmin { get; set; }
+        public string? OneTimeCode { get; set; }
+        public DateTime? DateOfBirth { get; set; }
     }
 }

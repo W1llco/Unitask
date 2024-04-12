@@ -59,9 +59,11 @@ namespace Unitask.Infrastructure.Services
             {
                 ID = entity.ID,
                 UserID = entity.UserID,
-                VerifcationId = entity.VerifcationId,
+                Password = entity.Password,
+                VerifcationCode = entity.VerifcationCode,
                 HasVoted = entity.HasVoted, 
-                RegionID = entity.RegionID
+                RegionID = entity.RegionID,
+                DateOfBirth = entity.DateOfBirth
             };
         }
 
@@ -72,9 +74,11 @@ namespace Unitask.Infrastructure.Services
             {
                 ID = DTO.ID,
                 UserID = DTO.UserID,
-                VerifcationId = DTO.VerifcationId,
+                Password = DTO.Password,
+                VerifcationCode = DTO.VerifcationCode,
                 HasVoted = DTO.HasVoted,
-                RegionID = DTO.RegionID
+                RegionID = DTO.RegionID,
+                DateOfBirth = DTO.DateOfBirth
             };
         }
 

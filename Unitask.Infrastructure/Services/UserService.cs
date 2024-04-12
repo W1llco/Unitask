@@ -58,10 +58,11 @@ namespace Unitask.Infrastructure.Services
                 Name = entity.Name,
                 Username = entity.Username,
                 Password = entity.Password,
-                IsAdmin = entity.IsAdmin
+                IsAdmin = entity.IsAdmin,
+                OneTimeCode = entity.OneTimeCode,
+                DateOfBirth = entity.DateOfBirth
             };
         }
-
         // convert sata transfer obeject to database model
         private User GetEntity(UserDTO DTO)
         {
@@ -71,7 +72,9 @@ namespace Unitask.Infrastructure.Services
                 Name = DTO.Name,
                 Username = DTO.Username,
                 Password = DTO.Password,
-                IsAdmin = DTO.IsAdmin
+                IsAdmin = DTO.IsAdmin,
+                OneTimeCode = DTO.OneTimeCode,
+                DateOfBirth = DTO.DateOfBirth
             };
         }
     }
