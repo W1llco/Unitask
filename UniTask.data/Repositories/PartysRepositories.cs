@@ -31,6 +31,11 @@ namespace UniTask.data.Repositories
             return _context.Partys.Local.AsEnumerable();
         }
 
+        public Party GetParty(string party)
+        {
+            return _context.Partys.Local.FirstOrDefault(x => x.Name == party);
+        }
+
         //save new object 
         public Party Save(Party entity)
         {

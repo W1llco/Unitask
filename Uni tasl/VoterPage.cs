@@ -27,7 +27,6 @@ namespace Uni_tasl
         private readonly CandidatesRepositories _candidatesRepositories;
         private readonly PartysRepositories _partysRepositories;
 
-
         public VoterPage(VotingContext _dbContext, Guid userID, Guid electionID)
         {
             this._dbContext = _dbContext;
@@ -42,54 +41,42 @@ namespace Uni_tasl
             InitializeComboBox();
         }
 
-        
-
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-            _dbContext.Database.EnsureDeleted();
-            _dbContext.Database.EnsureCreated();
-
-            _dbContext.Users.Load();
-            _dbContext.Regions.Load();
-            _dbContext.Admins.Load();
-            _dbContext.Voters.Load();
-            _dbContext.Votes.Load();
-            _dbContext.Elections.Load();
-            _dbContext.Partys.Load();
-            _dbContext.Candidates.Load();
-
-        }
-
-        
 
         private void InitializeComboBox()
         {
-            
             var voter = _votersRepositories.Load(_userId);
             var regions = _regionRepositories.Load(voter.RegionID);
             var elections = _electionsRepositories.LoadAll();
             var candidates = _candidatesRepositories.LoadAll().Where(x => x.RegionID == voter.RegionID);
             var partys = _partysRepositories.LoadAll();
             DisplayName.Text = $"Hello {voter.Name} you are voting in {regions.Name}";
-            dropdownVote.Text = _userId.ToString();
+            dropdownVote.Text = "Click on this and choose a choice";
             foreach (var c in candidates)
             {
                 dropdownVote.Items.Add($"{c.Name} ({partys.FirstOrDefault( x => x.ID == c.PartyID).Name})");
-                //dropdownVote.Items.Add(new KeyValuePair($"{c.Name} ({partys.FirstOrDefault( x => x.ID == c.PartyID).Name})", c.ID));
             }
-
-            dropdownVote.SelectedIndexChanged += dropdownVote_SelectedIndexChanged;
-        }
-
-        private void dropdownVote_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            MessageBox.Show($"You selected: {dropdownVote.SelectedItem}");
         }
 
         private void voteButton_Click(object sender, EventArgs e)
         {
-
+            string candidateName = dropdownVote.SelectedItem.ToString(); ; 
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to vote for " + candidateName + "?", "Vote Confirmation", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                // user clicked 'Yes'
+                var selectedCandidate = _candidatesRepositories.LoadAll().FirstOrDefault(c => c.Name == candidateName);
+                if (selectedCandidate != null)
+                {
+                    //selectedCandidate.VoteCount += 1;
+                    _candidatesRepositories.Update(selectedCandidate);
+                }
+                MessageBox.Show("You have voted for " + candidateName + ".", "Vote Submitted", MessageBoxButtons.OK);
+                this.Close();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                // user clicked 'No', do nothing
+            }
         }
     }
 }

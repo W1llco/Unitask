@@ -16,9 +16,12 @@ namespace Uni_tasl
         {
             // seting up dependency injection
             ServiceCollection services = new ServiceCollection();
-            services.AddScoped<VotingContext, VotingContext>();
+            services.AddSingleton<VotingContext, VotingContext>(); //Come back to this
 
             services.AddSingleton(typeof(Form1));
+            services.AddTransient(typeof(VerifyVoter));
+            services.AddTransient(typeof(CreateCandidates));
+            services.AddTransient(typeof(CreateElection));
 
             DataInjections.InjectData(services);
             
@@ -26,27 +29,7 @@ namespace Uni_tasl
 
             ApplicationConfiguration.Initialize();
             Application.Run((Form1)_provider.GetService(serviceType: typeof(Form1)));
-            services.AddScoped<AdminsRepositories>();
-            services.AddScoped<BaseRepositories>();
-            services.AddScoped<CandidatesRepositories>();
-            services.AddScoped<ElectionsRepositories>();
-            services.AddScoped<PartysRepositories>();
-            services.AddScoped<RegionsRepositories>();
-            services.AddScoped<ResultsRepositories>();
-            services.AddScoped<UsersRepositories>();
-            services.AddScoped<VotersRepositories>();
-            services.AddScoped<VotesRepositories>();
-            services.AddScoped<VotingSystemsRepositories>();
-            services.AddScoped<AdminService>();
-            services.AddScoped<CandidateService>();
-            services.AddScoped<ElectionService>();
-            services.AddScoped<PartyService>();
-            services.AddScoped<RegionService>();
-            services.AddScoped<ResultService>();
-            services.AddScoped<UserService>();
-            services.AddScoped<VoterService>();
-            services.AddScoped<VoteService>();
-            services.AddScoped<VotingSystemService>();
+            
         }
 
 

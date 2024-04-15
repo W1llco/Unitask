@@ -1,13 +1,16 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UniTask.data;
+using UniTask.entites;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Uni_tasl
@@ -50,6 +53,25 @@ namespace Uni_tasl
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void verifyVoterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            var pageOpen = (VerifyVoter)Program._provider.GetService(typeof(VerifyVoter));
+            pageOpen.Show();
+        }
+
+        private void createCandidatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var pageOpen = (CreateCandidates)Program._provider.GetService(typeof(CreateCandidates));
+            pageOpen.Show();
+        }
+
+        private void createElectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var pageOpen = (CreateElection)Program._provider.GetService(typeof(CreateElection));
+            pageOpen.Show();
         }
     }
 }

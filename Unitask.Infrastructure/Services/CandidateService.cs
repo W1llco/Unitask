@@ -56,7 +56,6 @@ namespace Unitask.Infrastructure.Services
             {
                 ID = entity.ID,
                 Name = entity.Name,
-                VoteCount = entity.VoteCount,
                 PartyID = entity.PartyID,
                 RegionID = entity.RegionID
             };
@@ -69,7 +68,6 @@ namespace Unitask.Infrastructure.Services
             {
                 ID = DTO.ID,
                 Name = DTO.Name,
-                VoteCount = DTO.VoteCount,
                 PartyID = DTO.PartyID,
                 RegionID = DTO.RegionID
             };
@@ -83,7 +81,7 @@ namespace Unitask.Infrastructure.Services
             // Verify the candidate exists
             if (candidate != null)
             {
-                candidate.VoteCount += 1;
+                //candidate.VoteCount += 1;
                 _candidatesRepositories.Save(candidate);
                 return true;
             }

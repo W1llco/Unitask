@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -30,6 +31,11 @@ namespace UniTask.data.Repositories
         public IEnumerable<Candidate> LoadAll()
         {
             return _context.Candidates.Local.AsEnumerable();
+        }
+
+        public IEnumerable<Candidate> GetCandidates(Guid regionId, Guid partyId)
+        {
+           return _context.Candidates.Local.Where(x => x.RegionID == regionId).Where(x => x.PartyID == partyId);
         }
 
         //save new object 
@@ -64,14 +70,16 @@ namespace UniTask.data.Repositories
         }
 
         //update existing object 
-        private void Update(Candidate entity)
+        public void Update(Candidate entity)
         {
             var candidate = _context.Candidates.FirstOrDefault(x => x.ID == entity.ID);
-            candidate.Name = entity.Name;
-            candidate.VoteCount = entity.VoteCount;
-            candidate.PartyID = entity.PartyID;
-            candidate.RegionID = entity.RegionID;
-            _context.SaveChanges();
+            if (candidate != null)
+            {
+                candidate.Name = entity.Name;
+                candidate.PartyID = entity.PartyID;
+                candidate.RegionID = entity.RegionID;
+                _context.SaveChanges();
+            }
         }
 
         public IEnumerable<Candidate> GetCandidatesForRegion(Guid regionID)

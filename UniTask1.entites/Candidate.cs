@@ -12,8 +12,7 @@ namespace UniTask.entites
         public Guid ID { get; set; }
         [Required]
         public string Name { get; set; }
-        [Required]
-        public int VoteCount {  get; set; }
+        
         [Required]
 
         public Guid PartyID { get; set; }

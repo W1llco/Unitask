@@ -61,7 +61,9 @@ namespace Unitask.Infrastructure.Services
             return new AdminDTO()
             {
                 ID = entity.ID,
-                UserID = entity.UserID
+                UserID = entity.UserID,
+                Username = entity.Username,
+                Password = entity.Password
             };
         }
 
@@ -71,15 +73,28 @@ namespace Unitask.Infrastructure.Services
             return new Admin()
             {
                 ID = DTO.ID,
-                UserID = DTO.UserID
+                UserID = DTO.UserID,
+                Username = DTO.Username,
+                Password = DTO.Password
             };
         }
 
-        public bool VerifyVoter(string voterName, string verificationCode)
-        {
-            var voter = _votersRepository.FindByName(voterName);
-            return voter != null && voter.VerifcationCode == verificationCode;
-        }
+        //public bool VerifyVoter(string voterName, string verificationCode)
+        //{
+        //    if (string.IsNullOrEmpty(voterName) || string.IsNullOrEmpty(verificationCode))
+        //    {
+        //        throw new ArgumentException("Voter name and verification code must not be empty.");
+        //    }
+
+        //    var voter = _votersRepository.FindByName(voterName);
+        //    if (voter == null)
+        //    {
+        //        // Optionally, you can handle this case differently, e.g., log the attempt or handle it silently
+        //        return false;
+        //    }
+
+        //    return voter.VerifcationCode == verificationCode;
+        //}
 
         public void StartElection()
         {

@@ -43,7 +43,6 @@
             this.dropdownVote.Name = "dropdownVote";
             this.dropdownVote.Size = new System.Drawing.Size(537, 38);
             this.dropdownVote.TabIndex = 0;
-            this.dropdownVote.SelectedIndexChanged += new System.EventHandler(this.dropdownVote_SelectedIndexChanged);
             // 
             // label1
             // 

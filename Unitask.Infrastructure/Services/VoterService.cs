@@ -61,9 +61,12 @@ namespace Unitask.Infrastructure.Services
                 UserID = entity.UserID,
                 Password = entity.Password,
                 VerifcationCode = entity.VerifcationCode,
-                HasVoted = entity.HasVoted, 
+                IsVerified = entity.IsVerified,
+                HasVoted = entity.HasVoted,
                 RegionID = entity.RegionID,
-                DateOfBirth = entity.DateOfBirth
+                DateOfBirth = entity.DateOfBirth,
+                Name = entity.Name,
+                Email = entity.Email,
             };
         }
 
@@ -76,16 +79,19 @@ namespace Unitask.Infrastructure.Services
                 UserID = DTO.UserID,
                 Password = DTO.Password,
                 VerifcationCode = DTO.VerifcationCode,
+                IsVerified=DTO.IsVerified,
                 HasVoted = DTO.HasVoted,
                 RegionID = DTO.RegionID,
-                DateOfBirth = DTO.DateOfBirth
+                DateOfBirth = DTO.DateOfBirth,
+                Name = DTO.Name,
+                Email = DTO.Email
             };
         }
 
         public bool VerifyId(string verificationCode)
         {
             // Find the voter by the verification ID
-            var voter = _votersRepositories.FindByVerificationId(verificationCode);
+            var voter = _votersRepositories.FindByVerificationCode(verificationCode);
 
             // Check if the voter exists and hasn't voted yet
             if (voter != null && !voter.HasVoted)

@@ -28,24 +28,9 @@ namespace Uni_tasl
             _electionsRepositories = new ElectionsRepositories(_dbContext);
             InitializeComponent();
             InitializeComboBox();
+            
         }
 
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-            _dbContext.Database.EnsureDeleted();
-            _dbContext.Database.EnsureCreated();
-
-            _dbContext.Users.Load();
-            _dbContext.Regions.Load();
-            _dbContext.Admins.Load();
-            _dbContext.Voters.Load();
-            _dbContext.Votes.Load();
-            _dbContext.Elections.Load();
-            _dbContext.Partys.Load();
-            _dbContext.Candidates.Load();
-
-        }
 
         private void InitializeComboBox()
         {
@@ -77,6 +62,7 @@ namespace Uni_tasl
         private void Continuebutton_Click(object sender, EventArgs e)
         {          
             new VoterPage(_dbContext, _userId, _electionsRepositories.GetByName(comboBox1.SelectedItem.ToString()).ID).Show();
+            this.Hide();
         }
     }
 }

@@ -11,5 +11,8 @@ namespace Unitask.DTOs
     {
         public Guid ID { get; set; }
         public Guid UserID { get; set; }
+        public string Username { get; set; }
+        
+        public string Password { get; set; }
     }
 }

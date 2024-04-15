@@ -22,6 +22,9 @@ namespace UniTask.entites
         public string VerifcationCode { get; set; }
         [Required]
 
+        public bool IsVerified { get; set; }
+        [Required]
+
         public bool HasVoted { get; set; }
         
 
@@ -31,8 +34,8 @@ namespace UniTask.entites
         public string Name { get; set; }
         [Required]
         public DateTime DateOfBirth { get; set; }
-
-
+        [Required]
+        public string Email { get; set; }
 
     }
 }

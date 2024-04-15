@@ -67,6 +67,8 @@ namespace UniTask.data.Repositories
         {
             var admin = _context.Admins.FirstOrDefault(x => x.ID == entity.ID);
             admin.UserID = entity.UserID;
+            admin.Username = entity.Username;
+            admin.Password = entity.Password;
             _context.SaveChanges();
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,17 +18,21 @@ namespace UniTask.data.Repositories
         {
             _context = context;
         }
-        public Voter FindByVerificationId(string verificationCode)
+        public Voter FindByVerificationCode(string verificationCode)
         {
             return _context.Voters.FirstOrDefault(v => v.VerifcationCode == verificationCode);
         }
 
-        public Voter FindByName(string Name)
+        public IEnumerable<Voter> FindByName(string Name)
         {
-            return _context.Voters.FirstOrDefault(v => v.Name == Name);
+            return _context.Voters.Where(v => v.Name == Name);
         }
 
 
+        public IEnumerable<Voter> FindByEmail(string Email)
+        {
+            return _context.Voters.Where(v => v.Email == Email);
+        }
 
         // Load object based on primary key 
         public Voter Load(Guid id)
@@ -74,15 +79,17 @@ namespace UniTask.data.Repositories
         }
 
         //udate existing object 
-        private void Update(Voter entity)
+        public void Update(Voter entity)
         {
             var voter = _context.Voters.FirstOrDefault(x => x.ID == entity.ID);
             voter.UserID = entity.UserID;
             voter.Password = entity.Password;
             voter.VerifcationCode = entity.VerifcationCode;
+            voter.IsVerified = entity.IsVerified;
             voter.HasVoted = entity.HasVoted;
             voter.RegionID = entity.RegionID;
             voter.DateOfBirth = entity.DateOfBirth;
+            voter.Name = entity.Name;
             _context.SaveChanges();
         }
     }

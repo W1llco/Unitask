@@ -77,10 +77,10 @@ namespace Unitask.Infrastructure.Services
             return _candidatesRepositories.GetCandidatesForRegion(RegionID);
         }
 
-        public Candidate GetRegionWinner(Guid RegionID, IEnumerable<Candidate> candidates )
-        {
-            var RegionCanidates = GetCandidatesForRegion(RegionID).OrderByDescending(x => x.VoteCount) ;
-            return RegionCanidates.FirstOrDefault();
-        }
+        //public Candidate GetRegionWinner(Guid RegionID, IEnumerable<Candidate> candidates )
+        //{
+        //    //var RegionCanidates = GetCandidatesForRegion(RegionID).OrderByDescending(x => x.VoteCount) ;
+        //    //return RegionCanidates.FirstOrDefault();
+        //}
     }
 }

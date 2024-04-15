@@ -51,19 +51,16 @@ namespace Uni_tasl
 
         }
 
-        
-
         private void Login_Click(object sender, EventArgs e)
         {
             var elections = _electionsRepositories.LoadAll();
             DateTime dateOfBirth = DobDateTimePicker.Value.Date;
             
-            var voter = _dbContext.Voters.FirstOrDefault(u => u.Name == UsernameTextBox.Text && u.Password == PasswordTextBox.Text && u.DateOfBirth == dateOfBirth && u.VerifcationCode == CodeTextBox.Text);
+            var voter = _dbContext.Voters.FirstOrDefault(u => u.Name == UsernameTextBox.Text && u.Password == PasswordTextBox.Text && u.DateOfBirth == dateOfBirth && u.VerifcationCode == CodeTextBox.Text && u.HasVoted == false);
 
             if (voter != null )
             {
                 var votes = _votesRepositories.LoadAll().Where(x => x.VoterId == voter.ID);
-
                 var existingVoteIds = votes.Select(x => x.ElectionId).ToList();
                 var electionIds = elections.Select(x => x.ID).ToList();
                 var electionsWithNoVotes = electionIds.Except(existingVoteIds).ToList();
@@ -76,7 +73,6 @@ namespace Uni_tasl
                         {
                             _votesRepositories.Save(new Vote() {ElectionId = id, VoterId = voter.ID});
                         }
-
                     }
                 }
                 else
@@ -88,6 +84,7 @@ namespace Uni_tasl
 
                 }
                 new SelectElection(_dbContext, voter.UserID).Show();
+                this.Hide();
             }
             else
             {
@@ -95,6 +92,8 @@ namespace Uni_tasl
                 MessageBox.Show("The username or password is wrong. Try again.");
                 UsernameTextBox.Clear();
                 PasswordTextBox.Clear();
+                CodeTextBox.Clear();
+                DobDateTimePicker.ResetText();
                 UsernameTextBox.Focus();
             }
         }

@@ -23,22 +23,7 @@ namespace Uni_tasl
             _dbContext = dbContext;
         }
 
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-            _dbContext.Database.EnsureDeleted();
-            _dbContext.Database.EnsureCreated();
-
-            _dbContext.Users.Load();
-            _dbContext.Regions.Load();
-            _dbContext.Admins.Load();
-            _dbContext.Voters.Load();
-            _dbContext.Votes.Load();
-            _dbContext.Elections.Load();
-            _dbContext.Partys.Load();
-            _dbContext.Candidates.Load();
-
-        }
+       
 
 
         private void LoginButton_Click(object sender, EventArgs e)

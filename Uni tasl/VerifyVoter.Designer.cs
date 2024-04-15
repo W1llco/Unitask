@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.UsernameBox = new System.Windows.Forms.TextBox();
+            this.NameBox = new System.Windows.Forms.TextBox();
             this.VerifyedcheckBox = new System.Windows.Forms.CheckBox();
-            this.dataGridViewUser = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.Search = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUser)).BeginInit();
+            this.dataGridViewVoters = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewVoters)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -50,36 +50,25 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Verify Voter";
             // 
-            // UsernameBox
+            // NameBox
             // 
-            this.UsernameBox.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.UsernameBox.Location = new System.Drawing.Point(8, 67);
-            this.UsernameBox.Margin = new System.Windows.Forms.Padding(2);
-            this.UsernameBox.Name = "UsernameBox";
-            this.UsernameBox.Size = new System.Drawing.Size(586, 36);
-            this.UsernameBox.TabIndex = 1;
+            this.NameBox.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.NameBox.Location = new System.Drawing.Point(8, 67);
+            this.NameBox.Margin = new System.Windows.Forms.Padding(2);
+            this.NameBox.Name = "NameBox";
+            this.NameBox.Size = new System.Drawing.Size(586, 36);
+            this.NameBox.TabIndex = 1;
             // 
             // VerifyedcheckBox
             // 
             this.VerifyedcheckBox.AutoSize = true;
-            this.VerifyedcheckBox.Location = new System.Drawing.Point(8, 193);
+            this.VerifyedcheckBox.Location = new System.Drawing.Point(11, 288);
             this.VerifyedcheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.VerifyedcheckBox.Name = "VerifyedcheckBox";
             this.VerifyedcheckBox.Size = new System.Drawing.Size(82, 19);
             this.VerifyedcheckBox.TabIndex = 2;
             this.VerifyedcheckBox.Text = "ID Verifyed";
             this.VerifyedcheckBox.UseVisualStyleBackColor = true;
-            // 
-            // dataGridViewUser
-            // 
-            this.dataGridViewUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewUser.Location = new System.Drawing.Point(8, 130);
-            this.dataGridViewUser.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridViewUser.Name = "dataGridViewUser";
-            this.dataGridViewUser.RowHeadersWidth = 62;
-            this.dataGridViewUser.RowTemplate.Height = 33;
-            this.dataGridViewUser.Size = new System.Drawing.Size(518, 44);
-            this.dataGridViewUser.TabIndex = 3;
             // 
             // label2
             // 
@@ -115,7 +104,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(10, 227);
+            this.button2.Location = new System.Drawing.Point(11, 311);
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(78, 20);
@@ -124,23 +113,33 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // dataGridViewVoters
+            // 
+            this.dataGridViewVoters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewVoters.Location = new System.Drawing.Point(8, 129);
+            this.dataGridViewVoters.Name = "dataGridViewVoters";
+            this.dataGridViewVoters.RowTemplate.Height = 25;
+            this.dataGridViewVoters.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewVoters.Size = new System.Drawing.Size(668, 154);
+            this.dataGridViewVoters.TabIndex = 8;
+            // 
             // VerifyVoter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(709, 342);
+            this.Controls.Add(this.dataGridViewVoters);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.Search);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dataGridViewUser);
             this.Controls.Add(this.VerifyedcheckBox);
-            this.Controls.Add(this.UsernameBox);
+            this.Controls.Add(this.NameBox);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "VerifyVoter";
             this.Text = "VerifyVoter";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUser)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewVoters)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -151,10 +150,12 @@
         private Label label1;
         private TextBox UsernameBox;
         private CheckBox VerifyedcheckBox;
-        private DataGridView dataGridViewUser;
         private Label label2;
         private Label label3;
         private Button Search;
         private Button button2;
+        private TextBox NameBox;
+        private TableLayoutPanel tableLayoutPanel1;
+        private DataGridView dataGridViewVoters;
     }
 }

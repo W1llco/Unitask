@@ -28,226 +28,247 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            label4 = new Label();
-            label5 = new Label();
-            label6 = new Label();
-            label7 = new Label();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            label8 = new Label();
-            label9 = new Label();
-            label10 = new Label();
-            label11 = new Label();
-            textBox5 = new TextBox();
-            textBox6 = new TextBox();
-            label12 = new Label();
-            label13 = new Label();
-            button1 = new Button();
-            SuspendLayout();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.candiateEnglandConservativeComboBox = new System.Windows.Forms.ComboBox();
+            this.candiateEnglandLabourComboBox = new System.Windows.Forms.ComboBox();
+            this.candiateWalesLabourComboBox = new System.Windows.Forms.ComboBox();
+            this.candiateWalesConservativeComboBox = new System.Windows.Forms.ComboBox();
+            this.candiateScotlandLabourComboBox = new System.Windows.Forms.ComboBox();
+            this.candiateScotlandConservativeComboBox = new System.Windows.Forms.ComboBox();
+            this.SuspendLayout();
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(53, 27);
-            label1.Name = "label1";
-            label1.Size = new Size(128, 25);
-            label1.TabIndex = 0;
-            label1.Text = "Create Election";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(37, 16);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Create Election";
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(87, 263);
-            label2.Name = "label2";
-            label2.Size = new Size(113, 25);
-            label2.TabIndex = 1;
-            label2.Text = "Conservative";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(61, 158);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 15);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Conservative";
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(87, 308);
-            label3.Name = "label3";
-            label3.Size = new Size(67, 25);
-            label3.TabIndex = 2;
-            label3.Text = "Labour";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(226, 257);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(150, 31);
-            textBox1.TabIndex = 3;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(226, 302);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(150, 31);
-            textBox2.TabIndex = 4;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(61, 185);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 15);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Labour";
             // 
             // label4
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(87, 212);
-            label4.Name = "label4";
-            label4.Size = new Size(76, 25);
-            label4.TabIndex = 5;
-            label4.Text = "England";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(61, 127);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(50, 15);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "England";
             // 
             // label5
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(226, 212);
-            label5.Name = "label5";
-            label5.Size = new Size(141, 25);
-            label5.TabIndex = 6;
-            label5.Text = "Candiates Name";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(158, 127);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(94, 15);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Candiates Name";
             // 
             // label6
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(578, 212);
-            label6.Name = "label6";
-            label6.Size = new Size(141, 25);
-            label6.TabIndex = 12;
-            label6.Text = "Candiates Name";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(405, 127);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(94, 15);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Candiates Name";
             // 
             // label7
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(439, 212);
-            label7.Name = "label7";
-            label7.Size = new Size(58, 25);
-            label7.TabIndex = 11;
-            label7.Text = "Wales";
-            label7.Click += label7_Click;
-            // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(578, 302);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(150, 31);
-            textBox3.TabIndex = 10;
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(578, 257);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(150, 31);
-            textBox4.TabIndex = 9;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(307, 127);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(38, 15);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "Wales";
             // 
             // label8
             // 
-            label8.AutoSize = true;
-            label8.Location = new Point(439, 308);
-            label8.Name = "label8";
-            label8.Size = new Size(67, 25);
-            label8.TabIndex = 8;
-            label8.Text = "Labour";
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(307, 185);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(44, 15);
+            this.label8.TabIndex = 8;
+            this.label8.Text = "Labour";
             // 
             // label9
             // 
-            label9.AutoSize = true;
-            label9.Location = new Point(439, 263);
-            label9.Name = "label9";
-            label9.Size = new Size(113, 25);
-            label9.TabIndex = 7;
-            label9.Text = "Conservative";
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(307, 158);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(75, 15);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "Conservative";
             // 
             // label10
             // 
-            label10.AutoSize = true;
-            label10.Location = new Point(969, 212);
-            label10.Name = "label10";
-            label10.Size = new Size(141, 25);
-            label10.TabIndex = 18;
-            label10.Text = "Candiates Name";
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(678, 127);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(94, 15);
+            this.label10.TabIndex = 18;
+            this.label10.Text = "Candiates Name";
             // 
             // label11
             // 
-            label11.AutoSize = true;
-            label11.Location = new Point(830, 212);
-            label11.Name = "label11";
-            label11.Size = new Size(81, 25);
-            label11.TabIndex = 17;
-            label11.Text = "Soctland";
-            // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(969, 302);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(150, 31);
-            textBox5.TabIndex = 16;
-            // 
-            // textBox6
-            // 
-            textBox6.Location = new Point(969, 257);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(150, 31);
-            textBox6.TabIndex = 15;
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(581, 127);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(53, 15);
+            this.label11.TabIndex = 17;
+            this.label11.Text = "Soctland";
             // 
             // label12
             // 
-            label12.AutoSize = true;
-            label12.Location = new Point(830, 308);
-            label12.Name = "label12";
-            label12.Size = new Size(67, 25);
-            label12.TabIndex = 14;
-            label12.Text = "Labour";
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(581, 185);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(44, 15);
+            this.label12.TabIndex = 14;
+            this.label12.Text = "Labour";
             // 
             // label13
             // 
-            label13.AutoSize = true;
-            label13.Location = new Point(830, 263);
-            label13.Name = "label13";
-            label13.Size = new Size(113, 25);
-            label13.TabIndex = 13;
-            label13.Text = "Conservative";
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(581, 158);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(75, 15);
+            this.label13.TabIndex = 13;
+            this.label13.Text = "Conservative";
             // 
             // button1
             // 
-            button1.Location = new Point(81, 410);
-            button1.Name = "button1";
-            button1.Size = new Size(112, 34);
-            button1.TabIndex = 19;
-            button1.Text = "Create";
-            button1.UseVisualStyleBackColor = true;
+            this.button1.Location = new System.Drawing.Point(57, 246);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(78, 20);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "Create";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // candiateEnglandConservativeComboBox
+            // 
+            this.candiateEnglandConservativeComboBox.FormattingEnabled = true;
+            this.candiateEnglandConservativeComboBox.Location = new System.Drawing.Point(158, 154);
+            this.candiateEnglandConservativeComboBox.Name = "candiateEnglandConservativeComboBox";
+            this.candiateEnglandConservativeComboBox.Size = new System.Drawing.Size(121, 23);
+            this.candiateEnglandConservativeComboBox.TabIndex = 20;
+            // 
+            // candiateEnglandLabourComboBox
+            // 
+            this.candiateEnglandLabourComboBox.FormattingEnabled = true;
+            this.candiateEnglandLabourComboBox.Location = new System.Drawing.Point(158, 185);
+            this.candiateEnglandLabourComboBox.Name = "candiateEnglandLabourComboBox";
+            this.candiateEnglandLabourComboBox.Size = new System.Drawing.Size(121, 23);
+            this.candiateEnglandLabourComboBox.TabIndex = 21;
+            // 
+            // candiateWalesLabourComboBox
+            // 
+            this.candiateWalesLabourComboBox.FormattingEnabled = true;
+            this.candiateWalesLabourComboBox.Location = new System.Drawing.Point(405, 186);
+            this.candiateWalesLabourComboBox.Name = "candiateWalesLabourComboBox";
+            this.candiateWalesLabourComboBox.Size = new System.Drawing.Size(121, 23);
+            this.candiateWalesLabourComboBox.TabIndex = 23;
+            // 
+            // candiateWalesConservativeComboBox
+            // 
+            this.candiateWalesConservativeComboBox.FormattingEnabled = true;
+            this.candiateWalesConservativeComboBox.Location = new System.Drawing.Point(405, 155);
+            this.candiateWalesConservativeComboBox.Name = "candiateWalesConservativeComboBox";
+            this.candiateWalesConservativeComboBox.Size = new System.Drawing.Size(121, 23);
+            this.candiateWalesConservativeComboBox.TabIndex = 22;
+            // 
+            // candiateScotlandLabourComboBox
+            // 
+            this.candiateScotlandLabourComboBox.FormattingEnabled = true;
+            this.candiateScotlandLabourComboBox.Location = new System.Drawing.Point(678, 185);
+            this.candiateScotlandLabourComboBox.Name = "candiateScotlandLabourComboBox";
+            this.candiateScotlandLabourComboBox.Size = new System.Drawing.Size(121, 23);
+            this.candiateScotlandLabourComboBox.TabIndex = 25;
+            // 
+            // candiateScotlandConservativeComboBox
+            // 
+            this.candiateScotlandConservativeComboBox.FormattingEnabled = true;
+            this.candiateScotlandConservativeComboBox.Location = new System.Drawing.Point(678, 154);
+            this.candiateScotlandConservativeComboBox.Name = "candiateScotlandConservativeComboBox";
+            this.candiateScotlandConservativeComboBox.Size = new System.Drawing.Size(121, 23);
+            this.candiateScotlandConservativeComboBox.TabIndex = 24;
             // 
             // CreateElection
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1415, 801);
-            Controls.Add(button1);
-            Controls.Add(label10);
-            Controls.Add(label11);
-            Controls.Add(textBox5);
-            Controls.Add(textBox6);
-            Controls.Add(label12);
-            Controls.Add(label13);
-            Controls.Add(label6);
-            Controls.Add(label7);
-            Controls.Add(textBox3);
-            Controls.Add(textBox4);
-            Controls.Add(label8);
-            Controls.Add(label9);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Name = "CreateElection";
-            Text = "CreateElection";
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(990, 481);
+            this.Controls.Add(this.candiateScotlandLabourComboBox);
+            this.Controls.Add(this.candiateScotlandConservativeComboBox);
+            this.Controls.Add(this.candiateWalesLabourComboBox);
+            this.Controls.Add(this.candiateWalesConservativeComboBox);
+            this.Controls.Add(this.candiateEnglandLabourComboBox);
+            this.Controls.Add(this.candiateEnglandConservativeComboBox);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Name = "CreateElection";
+            this.Text = "CreateElection";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
@@ -255,22 +276,22 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private TextBox textBox1;
-        private TextBox textBox2;
         private Label label4;
         private Label label5;
         private Label label6;
         private Label label7;
-        private TextBox textBox3;
-        private TextBox textBox4;
         private Label label8;
         private Label label9;
         private Label label10;
         private Label label11;
-        private TextBox textBox5;
-        private TextBox textBox6;
         private Label label12;
         private Label label13;
         private Button button1;
+        private ComboBox candiateEnglandConservativeComboBox;
+        private ComboBox candiateEnglandLabourComboBox;
+        private ComboBox candiateWalesLabourComboBox;
+        private ComboBox candiateWalesConservativeComboBox;
+        private ComboBox candiateScotlandLabourComboBox;
+        private ComboBox candiateScotlandConservativeComboBox;
     }
 }

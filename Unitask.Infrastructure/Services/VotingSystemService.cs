@@ -90,14 +90,14 @@ namespace Unitask.Infrastructure.Services
 
             foreach (var Candidate in candidates)
             {
-                if (Candidate.PartyID == Partys.Single(x => x.Name == "Labour").ID)
-                {
-                    LabourVoteCount += Candidate.VoteCount;
-                }
-                else
-                {
-                    ConservativeVoteCount += Candidate.VoteCount;
-                }
+                //if (Candidate.PartyID == Partys.Single(x => x.Name == "Labour").ID)
+                //{
+                //    LabourVoteCount += Candidate.VoteCount;
+                //}
+                //else
+                //{
+                //    ConservativeVoteCount += Candidate.VoteCount;
+                //}
 
             }
             return LabourVoteCount > ConservativeVoteCount ? Partys.Single(x => x.Name == "Labour") : Partys.Single(x => x.Name == "Conservative");

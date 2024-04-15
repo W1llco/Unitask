@@ -17,6 +17,8 @@ namespace Unitask.DTOs
 
         public string VerifcationCode { get; set; }
 
+        public bool IsVerified { get; set; }
+
         public bool HasVoted { get; set; }
 
         public Guid RegionID { get; set; }
@@ -24,6 +26,8 @@ namespace Unitask.DTOs
         public string Name { get; set; }
 
         public DateTime DateOfBirth { get; set; }
+
+        public string Email { get ; set; }
 
 
     }

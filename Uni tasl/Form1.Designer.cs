@@ -33,11 +33,8 @@
             this.LoginFromHomeButton = new System.Windows.Forms.Button();
             this.LoginFromBoothButton = new System.Windows.Forms.Button();
             this.LoginAsAdminButton = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // dg_Regions
-            // 
-             
             // 
             // sqliteCommand1
             // 
@@ -51,9 +48,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(50, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(168, 15);
+            this.label1.Size = new System.Drawing.Size(171, 15);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Welcome to the voting system";
+            this.label1.Text = "Welcome to the voting system ";
             // 
             // LoginFromHomeButton
             // 
@@ -85,17 +82,25 @@
             this.LoginAsAdminButton.UseVisualStyleBackColor = true;
             this.LoginAsAdminButton.Click += new System.EventHandler(this.LoginAsAdminButton_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(52, 41);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(219, 15);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Please Select one of the login in Options";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.LoginAsAdminButton);
             this.Controls.Add(this.LoginFromBoothButton);
             this.Controls.Add(this.LoginFromHomeButton);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dg_Regions);
-            this.Controls.Add(this.dg_Partys);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -112,5 +117,6 @@
         private Button LoginFromHomeButton;
         private Button LoginFromBoothButton;
         private Button LoginAsAdminButton;
+        private Label label2;
     }
 }

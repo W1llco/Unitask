@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.votePagelocalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.electionControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startElectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.endElectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.countElectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createElectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteElectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createCandidatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verifyVoterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.getResultsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
@@ -47,7 +47,6 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.votePagelocalToolStripMenuItem,
             this.electionControlToolStripMenuItem,
             this.verifyVoterToolStripMenuItem,
             this.getResultsToolStripMenuItem});
@@ -57,12 +56,6 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // votePagelocalToolStripMenuItem
-            // 
-            this.votePagelocalToolStripMenuItem.Name = "votePagelocalToolStripMenuItem";
-            this.votePagelocalToolStripMenuItem.Size = new System.Drawing.Size(107, 20);
-            this.votePagelocalToolStripMenuItem.Text = "Vote page (local)";
-            // 
             // electionControlToolStripMenuItem
             // 
             this.electionControlToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -70,7 +63,8 @@
             this.endElectionToolStripMenuItem,
             this.countElectionToolStripMenuItem,
             this.createElectionToolStripMenuItem,
-            this.deleteElectionToolStripMenuItem});
+            this.deleteElectionToolStripMenuItem,
+            this.createCandidatesToolStripMenuItem});
             this.electionControlToolStripMenuItem.Name = "electionControlToolStripMenuItem";
             this.electionControlToolStripMenuItem.Size = new System.Drawing.Size(104, 20);
             this.electionControlToolStripMenuItem.Text = "Election Control";
@@ -78,38 +72,47 @@
             // startElectionToolStripMenuItem
             // 
             this.startElectionToolStripMenuItem.Name = "startElectionToolStripMenuItem";
-            this.startElectionToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.startElectionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.startElectionToolStripMenuItem.Text = "Start Election";
             // 
             // endElectionToolStripMenuItem
             // 
             this.endElectionToolStripMenuItem.Name = "endElectionToolStripMenuItem";
-            this.endElectionToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.endElectionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.endElectionToolStripMenuItem.Text = "End Election";
             // 
             // countElectionToolStripMenuItem
             // 
             this.countElectionToolStripMenuItem.Name = "countElectionToolStripMenuItem";
-            this.countElectionToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.countElectionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.countElectionToolStripMenuItem.Text = "Count Election";
             // 
             // createElectionToolStripMenuItem
             // 
             this.createElectionToolStripMenuItem.Name = "createElectionToolStripMenuItem";
-            this.createElectionToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.createElectionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.createElectionToolStripMenuItem.Text = "Create Election";
+            this.createElectionToolStripMenuItem.Click += new System.EventHandler(this.createElectionToolStripMenuItem_Click);
             // 
             // deleteElectionToolStripMenuItem
             // 
             this.deleteElectionToolStripMenuItem.Name = "deleteElectionToolStripMenuItem";
-            this.deleteElectionToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.deleteElectionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.deleteElectionToolStripMenuItem.Text = "Delete Election";
+            // 
+            // createCandidatesToolStripMenuItem
+            // 
+            this.createCandidatesToolStripMenuItem.Name = "createCandidatesToolStripMenuItem";
+            this.createCandidatesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.createCandidatesToolStripMenuItem.Text = "Create Candidates";
+            this.createCandidatesToolStripMenuItem.Click += new System.EventHandler(this.createCandidatesToolStripMenuItem_Click);
             // 
             // verifyVoterToolStripMenuItem
             // 
             this.verifyVoterToolStripMenuItem.Name = "verifyVoterToolStripMenuItem";
             this.verifyVoterToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
             this.verifyVoterToolStripMenuItem.Text = "Verify Voter";
+            this.verifyVoterToolStripMenuItem.Click += new System.EventHandler(this.verifyVoterToolStripMenuItem_Click);
             // 
             // getResultsToolStripMenuItem
             // 
@@ -161,7 +164,6 @@
         #endregion
 
         private MenuStrip menuStrip1;
-        private ToolStripMenuItem votePagelocalToolStripMenuItem;
         private ToolStripMenuItem electionControlToolStripMenuItem;
         private ToolStripMenuItem startElectionToolStripMenuItem;
         private ToolStripMenuItem endElectionToolStripMenuItem;
@@ -172,5 +174,6 @@
         private ToolStripMenuItem getResultsToolStripMenuItem;
         private Label label1;
         private Label label2;
+        private ToolStripMenuItem createCandidatesToolStripMenuItem;
     }
 }
