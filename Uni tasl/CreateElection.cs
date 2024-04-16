@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using UniTask.data;
 using UniTask.data.Repositories;
 using UniTask.entites;
+using static System.Windows.Forms.DataFormats;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using ComboBox = System.Windows.Forms.ComboBox;
 
 namespace Uni_tasl
 {
@@ -30,10 +33,19 @@ namespace Uni_tasl
             _partysRepositories = partysRepositories;
             _regionsRepositories = regionsRepositories;
             InitializeComboBoxAll();
+            startDateTimePicker.Format = DateTimePickerFormat.Custom;
+            startDateTimePicker.CustomFormat = "MM/dd/yyyy hh:mm";
+            endDateTimePicker.Format = DateTimePickerFormat.Custom;
+            endDateTimePicker.CustomFormat = "MM/dd/yyyy hh:mm";
         }
+
+
+        
 
         private void InitializeComboBoxAll()
         {
+            
+
             var partys = _partysRepositories.LoadAll();
             var regions = _regionsRepositories.LoadAll();
             var englandConservative = _candidatesRepositories.GetCandidates(regions.Single(x => x.Name == "England").ID, partys.Single(x => x.Name == "Conservative").ID);
@@ -43,33 +55,66 @@ namespace Uni_tasl
             var walesConservative = _candidatesRepositories.GetCandidates(regions.Single(x => x.Name == "Wales").ID, partys.Single(x => x.Name == "Conservative").ID);
             var walesLabour = _candidatesRepositories.GetCandidates(regions.Single(x => x.Name == "Wales").ID, partys.Single(x => x.Name == "Labour").ID);
 
-            foreach (var c in englandConservative)
-            {
-                candiateEnglandConservativeComboBox.Items.Add(c.Name);
-            }
-            foreach (var c in englandLabour)
-            {
-                candiateEnglandLabourComboBox.Items.Add(c.Name);
-            }
-            foreach (var c in scotlandConservative)
-            {
-                candiateScotlandConservativeComboBox.Items.Add(c.Name); 
-            }
-            foreach (var c in scotlandLabour)
-            {
-                candiateScotlandLabourComboBox.Items.Add(c.Name);
-            }
-            foreach (var c in walesConservative)
-            {
-                candiateWalesConservativeComboBox.Items.Add(c.Name);
-            }
-            foreach (var c in walesLabour)
-            {
-                candiateWalesLabourComboBox.Items.Add(c.Name);
-            }
+            GetVaulesForDropdown(candiateEnglandConservativeComboBox, englandConservative);
+            GetVaulesForDropdown(candiateEnglandLabourComboBox, englandLabour);
+            GetVaulesForDropdown(candiateScotlandConservativeComboBox, scotlandConservative);
+            GetVaulesForDropdown(candiateScotlandLabourComboBox, scotlandLabour);
+            GetVaulesForDropdown(candiateWalesConservativeComboBox, walesConservative);
+            GetVaulesForDropdown(candiateWalesLabourComboBox, walesLabour);
+
+            //foreach (var c in englandConservative)
+            //{
+            //    candiateEnglandConservativeComboBox.Items.Add(c.Name);
+            //}
+            //foreach (var c in englandLabour)
+            //{
+            //    candiateEnglandLabourComboBox.Items.Add(c.Name);
+            //}
+            //foreach (var c in scotlandConservative)
+            //{
+            //    candiateScotlandConservativeComboBox.Items.Add(c.Name);
+            //}
+            //foreach (var c in scotlandLabour)
+            //{
+            //    candiateScotlandLabourComboBox.Items.Add(c.Name);
+            //}
+            //foreach (var c in walesConservative)
+            //{
+            //    candiateWalesConservativeComboBox.Items.Add(c.Name);
+            //}
+            //foreach (var c in walesLabour)
+            //{
+            //    candiateWalesLabourComboBox.Items.Add(c.Name);
+            //}
 
         }
 
-        
+        private void GetVaulesForDropdown(ComboBox comboBox, IEnumerable<Candidate> candidates)
+        {
+            BindingSource bs = new BindingSource();
+            comboBox.DataBindings.Add(new Binding("Text", bs, "Format", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            List<KeyValuePair<Guid, string>> keyValuePairs = new List<KeyValuePair<Guid, string>>();
+            foreach (Candidate c in candidates)
+            {
+                keyValuePairs.Add(new KeyValuePair<Guid, string>(c.ID, c.Name));
+            }
+            comboBox.DataSource = new BindingSource(keyValuePairs, null);
+            comboBox.DisplayMember = "Value";
+            comboBox.ValueMember = "Key";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var entity = new Election()
+            {
+                Name = nameOfElectionTextBox.Text,
+                StartTime = startDateTimePicker.Value,
+                EndTime = endDateTimePicker.Value,
+
+            };
+            _electionsRepositories.Save(entity);
+
+            MessageBox.Show("New person made", "Yay", MessageBoxButtons.OK);
+        }
     }
 }

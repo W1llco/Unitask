@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UniTask.entites;
+using UniTask.Entites;
 
 namespace UniTask.data.Repositories
 {
@@ -43,7 +44,10 @@ namespace UniTask.data.Repositories
             Update(entity);
             return entity;
         }
+        public CandidateXElection SaveElectionCandidate( CandidateXElection entity)
+        {
 
+        }
         public Election GetByName(string electionName)
         {
             return _context.Elections.Local.Single(x => x.Name == electionName);
