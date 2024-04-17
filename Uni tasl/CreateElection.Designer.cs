@@ -49,11 +49,13 @@
             this.candiateScotlandLabourComboBox = new System.Windows.Forms.ComboBox();
             this.candiateScotlandConservativeComboBox = new System.Windows.Forms.ComboBox();
             this.startDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.endDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.nameOfElectionTextBox = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
+            this.endDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.votingSystemComboBox = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -188,7 +190,7 @@
             // 
             // createButton
             // 
-            this.createButton.Location = new System.Drawing.Point(58, 306);
+            this.createButton.Location = new System.Drawing.Point(62, 363);
             this.createButton.Margin = new System.Windows.Forms.Padding(2);
             this.createButton.Name = "createButton";
             this.createButton.Size = new System.Drawing.Size(78, 20);
@@ -252,16 +254,6 @@
             this.startDateTimePicker.Size = new System.Drawing.Size(200, 23);
             this.startDateTimePicker.TabIndex = 26;
             // 
-            // endDateTimePicker
-            // 
-            this.endDateTimePicker.AllowDrop = true;
-            this.endDateTimePicker.Enabled = false;
-            this.endDateTimePicker.Location = new System.Drawing.Point(64, 169);
-            this.endDateTimePicker.Name = "endDateTimePicker";
-            this.endDateTimePicker.ShowUpDown = true;
-            this.endDateTimePicker.Size = new System.Drawing.Size(200, 23);
-            this.endDateTimePicker.TabIndex = 27;
-            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -296,16 +288,42 @@
             this.label16.TabIndex = 31;
             this.label16.Text = "Name Of Election ";
             // 
+            // endDateTimePicker
+            // 
+            this.endDateTimePicker.Location = new System.Drawing.Point(64, 169);
+            this.endDateTimePicker.Name = "endDateTimePicker";
+            this.endDateTimePicker.Size = new System.Drawing.Size(200, 23);
+            this.endDateTimePicker.TabIndex = 32;
+            // 
+            // votingSystemComboBox
+            // 
+            this.votingSystemComboBox.FormattingEnabled = true;
+            this.votingSystemComboBox.Location = new System.Drawing.Point(62, 335);
+            this.votingSystemComboBox.Name = "votingSystemComboBox";
+            this.votingSystemComboBox.Size = new System.Drawing.Size(121, 23);
+            this.votingSystemComboBox.TabIndex = 33;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(62, 306);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(82, 15);
+            this.label17.TabIndex = 34;
+            this.label17.Text = "Voting System";
+            // 
             // CreateElection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(990, 481);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.votingSystemComboBox);
+            this.Controls.Add(this.endDateTimePicker);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.nameOfElectionTextBox);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.endDateTimePicker);
             this.Controls.Add(this.startDateTimePicker);
             this.Controls.Add(this.candiateScotlandLabourComboBox);
             this.Controls.Add(this.candiateScotlandConservativeComboBox);
@@ -358,10 +376,12 @@
         private ComboBox candiateScotlandLabourComboBox;
         private ComboBox candiateScotlandConservativeComboBox;
         private DateTimePicker startDateTimePicker;
-        private DateTimePicker endDateTimePicker;
         private Label label14;
         private Label label15;
         private TextBox nameOfElectionTextBox;
         private Label label16;
+        private DateTimePicker endDateTimePicker;
+        private ComboBox votingSystemComboBox;
+        private Label label17;
     }
 }

@@ -33,7 +33,9 @@ namespace Uni_tasl
             if (user.IsAdmin)
             {
                 // Open admin area
-                new AdminDashboard(user.Username).Show();
+                AdminDashboard adminDashboard = (AdminDashboard)Program._provider.GetService(typeof(AdminDashboard));
+                adminDashboard.Show();
+                this.Hide();
             }
             else
             {

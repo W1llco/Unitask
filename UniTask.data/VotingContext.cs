@@ -55,13 +55,11 @@ namespace  UniTask.data
                 new Party { ID = new Guid("892C3F0B-DDBA-441C-970B-4AE2E305A6F2"), Name = "Conservative" });
 
             builder.Entity<Candidate>().HasData(new Candidate { ID = Guid.NewGuid(), Name = "Bob", PartyID = new Guid("05ECA4E5-4096-48D8-A5CE-8F041C1FAA0F"), RegionID = new Guid("2E482B35-CC65-4322-B8F5-CB453D0BCE7E") },
-            new Candidate{ ID = Guid.NewGuid(), Name = "John", PartyID = new Guid("892C3F0B-DDBA-441C-970B-4AE2E305A6F2"), RegionID = new Guid("2E482B35-CC65-4322-B8F5-CB453D0BCE7E")},
+            new Candidate { ID = Guid.NewGuid(), Name = "John", PartyID = new Guid("892C3F0B-DDBA-441C-970B-4AE2E305A6F2"), RegionID = new Guid("2E482B35-CC65-4322-B8F5-CB453D0BCE7E")},
             new Candidate { ID = Guid.NewGuid(), Name = "Vev", PartyID = new Guid("05ECA4E5-4096-48D8-A5CE-8F041C1FAA0F"), RegionID = new Guid("95814AF1-4246-4722-AA92-4456D6BFCA6D")},
             new Candidate { ID = Guid.NewGuid(), Name = "Greg", PartyID = new Guid("892C3F0B-DDBA-441C-970B-4AE2E305A6F2"), RegionID = new Guid("95814AF1-4246-4722-AA92-4456D6BFCA6D")},
             new Candidate { ID = Guid.NewGuid(), Name = "Steve", PartyID = new Guid("05ECA4E5-4096-48D8-A5CE-8F041C1FAA0F"), RegionID = new Guid("EF2B02DB-456D-4E78-8ABD-E34F7CDCDA7D") },
             new Candidate { ID = Guid.NewGuid(), Name = "Fred", PartyID = new Guid("892C3F0B-DDBA-441C-970B-4AE2E305A6F2"), RegionID = new Guid("EF2B02DB-456D-4E78-8ABD-E34F7CDCDA7D") });
-
-            //builder.Entity<User>().HasData(new VotingSystem { ID = new Guid("B5434315-B59C-4365-A011-71AFA80B0D4B"), Name ="Admin 1"});
 
             builder.Entity<Voter>().HasData(new Voter { ID = Guid.NewGuid(), UserID = new Guid("B6434325-B59C-4765-A511-71AFA80B7D4B"), Password ="Voter", VerifcationCode="1234577", IsVerified = false ,HasVoted = false, RegionID= new Guid ("2E482B35-CC65-4322-B8F5-CB453D0BCE7E") ,Name ="Voter", DateOfBirth = new DateTime(2002, 10, 10), Email = "Tom@hotmail.com" },
             new Voter { ID = Guid.NewGuid(), UserID = new Guid("B6434325-B59C-4765-A512-81AFA80B7D4B"), Password = "Voter", VerifcationCode = "1234567", IsVerified = false, HasVoted = false, RegionID = new Guid("2E482B35-CC65-4322-B8F5-CB453D0BCE7E"), Name = "Voter", DateOfBirth = new DateTime(2002, 12, 11), Email = "John@hotmail.com" });

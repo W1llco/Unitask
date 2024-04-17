@@ -13,56 +13,78 @@ using System.Windows.Forms;
 using UniTask.data;
 using UniTask.data.Repositories;
 using UniTask.entites;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Uni_tasl
 {
     public partial class SelectElection : Form
     {
         private readonly VotingContext _dbContext;
-        private Guid _userId;
         private readonly ElectionsRepositories _electionsRepositories;
-        public SelectElection(VotingContext _dbContext, Guid userID)
+        public Guid voterId;
+        public Guid electionId;
+
+        public SelectElection(VotingContext _dbContext, ElectionsRepositories electionsRepositories)
         {
             this._dbContext = _dbContext;
-            _userId = userID;
-            _electionsRepositories = new ElectionsRepositories(_dbContext);
+            _electionsRepositories = electionsRepositories;
             InitializeComponent();
             InitializeComboBox();
-            
         }
 
+        public void SetIds(Guid voterId)
+        {
+            this.voterId = voterId;
+        }
 
         private void InitializeComboBox()
         {
-            var election = _electionsRepositories.LoadAll();
-            if (!election.Any()) 
-            { 
-                comboBox1.Visible = false; 
+            var election = _electionsRepositories.LoadAllActive();
+            if (!election.Any())
+            {
+                comboBox1.Visible = false;
                 Continuebutton.Visible = false;
                 comboBox1.Text = "No Elections";
             }
-            else 
+            else
             {
-                comboBox1.Text = "Please select your Election";
-                foreach (var e in election)
-                {
-                    comboBox1.Items.Add($"{e.Name}");
-                    //dropdownVote.Items.Add(new KeyValuePair($"{c.Name} ({partys.FirstOrDefault( x => x.ID == c.PartyID).Name})", c.ID));
-                }
 
+                List<KeyValuePair<Guid, string>> keyValuePairs = new List<KeyValuePair<Guid, string>>();
+                keyValuePairs.Add(new KeyValuePair<Guid, string>(Guid.Empty, "Please Select"));
+                foreach (Election c in election)
+                {
+                    keyValuePairs.Add(new KeyValuePair<Guid, string>(c.ID, $"{c.Name}"));
+                }
+                comboBox1.DataSource = new BindingSource(keyValuePairs, null);
                 comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+                comboBox1.DisplayMember = "Value";
+                comboBox1.ValueMember = "Key";
             }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (comboBox1.SelectedValue is Guid)
+            {
+                electionId = (Guid)comboBox1.SelectedValue;
+            }
         }
 
         private void Continuebutton_Click(object sender, EventArgs e)
-        {          
-            new VoterPage(_dbContext, _userId, _electionsRepositories.GetByName(comboBox1.SelectedItem.ToString()).ID).Show();
-            this.Hide();
+        {
+            if ((Guid)comboBox1.SelectedValue == Guid.Empty)
+            {
+                MessageBox.Show("Please select a election", "Error", MessageBoxButtons.OK);
+            }
+            else
+            {
+
+                VoterPage voterPage = (VoterPage)Program._provider.GetService(typeof(VoterPage));
+                voterPage.SetIds(voterId, electionId);
+                voterPage.InitializePage();
+                voterPage.Show();
+                this.Hide();
+            }
         }
     }
 }

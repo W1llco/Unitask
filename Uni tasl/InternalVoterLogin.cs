@@ -64,7 +64,9 @@ namespace Uni_tasl
                     }
 
                 }
-                new SelectElection(_dbContext, voter.UserID).Show();
+                SelectElection selectElection = (SelectElection)Program._provider.GetService(typeof(SelectElection));
+                selectElection.SetIds(voter.ID);
+                selectElection.Show();
                 this.Hide();
             }
             else

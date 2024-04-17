@@ -28,7 +28,8 @@ namespace UniTask.data.Repositories
         //Load all
         public IEnumerable<VotingSystem> LoadAll()
         {
-            return _context.VotingSystems.Local.AsEnumerable();
+            var x = _context.VotingSystems.Local.AsEnumerable();
+            return x;
         }
 
         //save new object 

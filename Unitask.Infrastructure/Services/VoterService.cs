@@ -15,12 +15,14 @@ namespace Unitask.Infrastructure.Services
         //declare
         private readonly VotersRepositories _votersRepositories;
         private readonly CandidateService _candidateService;
+        private readonly VotesRepositories _votesRepositories;
 
         //construsuror for service depenedency injection
-        public VoterService(VotersRepositories votersRepositories, CandidateService candidateService)
+        public VoterService(VotersRepositories votersRepositories, CandidateService candidateService, VotesRepositories votesRepositories)
         {
             _votersRepositories = votersRepositories;
-            _candidateService = candidateService; 
+            _candidateService = candidateService;
+            _votesRepositories = votesRepositories;
         }
         // load object based on id
         public VoterDTO Load(Guid id)
@@ -103,22 +105,21 @@ namespace Unitask.Infrastructure.Services
         }
 
         // Method to cast a vote
-        public void CastVote(Guid voterId, Guid candidateId)
+        public Vote? CastVote(Guid voterId, Guid electionId, Guid candidateId)
         {
-            var voter = _votersRepositories.Load(voterId);
-
-            // Verify the voter exists and hasn't voted yet
-            if (voter != null && !voter.HasVoted)
+            var vote = _votesRepositories.GetVote(voterId, electionId);
+            if (vote != null)
             {
-                // Now using CandidateService to increase the candidate's vote
-                bool voteIncreased = _candidateService.IncreaseCandidateVote(candidateId);
-
-                if (voteIncreased)
-                {
-                    voter.HasVoted = true;
-                    _votersRepositories.Save(voter);
-                }
+                vote.CandiateId = candidateId;
+                _votesRepositories.Save(vote);
+                _candidateService.IncreaseCandidateVote(candidateId, electionId);
+                return vote;
             }
+            else
+            {
+                return null;
+            }
+            
         }
     }
 }

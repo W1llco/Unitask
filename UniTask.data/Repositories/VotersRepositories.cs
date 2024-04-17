@@ -34,12 +34,17 @@ namespace UniTask.data.Repositories
             return _context.Voters.Where(v => v.Email == Email);
         }
 
+        public Voter ConfirmVoterLogin(Voter voter)
+        {
+            return _context.Voters.FirstOrDefault(x => x.Name == voter.Name && x.Password == voter.Password && x.DateOfBirth == voter.DateOfBirth && x.VerifcationCode == voter.VerifcationCode);
+        }
+
         // Load object based on primary key 
         public Voter Load(Guid id)
         {
             if (id == Guid.Empty)
                 return null;
-            return _context.Voters.Local.First(x => x.UserID == id);
+            return _context.Voters.Local.First(x => x.ID == id);
         }
         //Load all
         public IEnumerable<Voter> LoadAll()

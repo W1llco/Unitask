@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,30 +22,17 @@ namespace Uni_tasl
         private readonly VotingContext _dbContext;
         private readonly VotesRepositories _votesRepositories;
         private readonly ElectionsRepositories _electionsRepositories;
-        public ExternalVoterLogin(VotingContext dbContext)
+        private readonly VotersRepositories _votersRepositories;
+        public ExternalVoterLogin(VotingContext dbContext, VotersRepositories votersRepositories, VotesRepositories votesRepositories, ElectionsRepositories electionsRepositories)
         {
             InitializeComponent();
             _dbContext = dbContext;
-            _votesRepositories = new VotesRepositories(_dbContext);
-            _electionsRepositories = new ElectionsRepositories(_dbContext);
+            _votesRepositories = votesRepositories;
+            _electionsRepositories = electionsRepositories;
+            _votersRepositories = votersRepositories;
             
         }
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-            //_dbContext.Database.EnsureDeleted();
-            _dbContext.Database.EnsureCreated();
-
-            _dbContext.Users.Load();
-            _dbContext.Regions.Load();
-            _dbContext.Admins.Load();
-            _dbContext.Voters.Load();
-            _dbContext.Votes.Load();
-            _dbContext.Elections.Load();
-            _dbContext.Partys.Load();
-            _dbContext.Candidates.Load();
-
-        }
+        
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -55,8 +43,9 @@ namespace Uni_tasl
         {
             var elections = _electionsRepositories.LoadAll();
             DateTime dateOfBirth = DobDateTimePicker.Value.Date;
-            
-            var voter = _dbContext.Voters.FirstOrDefault(u => u.Name == UsernameTextBox.Text && u.Password == PasswordTextBox.Text && u.DateOfBirth == dateOfBirth && u.VerifcationCode == CodeTextBox.Text && u.HasVoted == false);
+
+            var x = _votersRepositories.LoadAll();
+            var voter = _votersRepositories.ConfirmVoterLogin(new Voter() {Name = UsernameTextBox.Text, Password = PasswordTextBox.Text, DateOfBirth = dateOfBirth, VerifcationCode = CodeTextBox.Text });
 
             if (voter != null )
             {
@@ -83,7 +72,9 @@ namespace Uni_tasl
                     }
 
                 }
-                new SelectElection(_dbContext, voter.UserID).Show();
+                SelectElection selectElection = (SelectElection)Program._provider.GetService(typeof(SelectElection));
+                selectElection.SetIds(voter.ID);
+                selectElection.Show();
                 this.Hide();
             }
             else

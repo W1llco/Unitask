@@ -74,15 +74,15 @@ namespace Unitask.Infrastructure.Services
         }
 
         // Method to increase a candidate's vote count
-        public bool IncreaseCandidateVote(Guid candidateId)
+        public bool IncreaseCandidateVote(Guid candidateId, Guid electionId)
         {
-            var candidate = _candidatesRepositories.Load(candidateId);
-
+            var candidate = _candidatesRepositories.GetElectionCandidate(candidateId, electionId);
+            
             // Verify the candidate exists
             if (candidate != null)
             {
-                //candidate.VoteCount += 1;
-                _candidatesRepositories.Save(candidate);
+                candidate.VoteCount += 1;
+                _candidatesRepositories.SaveElectionCandidate(candidate);
                 return true;
             }
 

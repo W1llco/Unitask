@@ -31,14 +31,14 @@ namespace Uni_tasl
             _dbContext.Elections.Load();
             _dbContext.Partys.Load();
             _dbContext.Candidates.Load();
+            _dbContext.VotingSystems.Load();
 
         }
 
         private void LoginFromHomeButton_Click(object sender, EventArgs e)
         {
-            ExternalVoterLogin externalVoterLogin = new ExternalVoterLogin(_dbContext);
-            externalVoterLogin.Show();
-            this.Hide();
+            var pageOpen = (ExternalVoterLogin)Program._provider.GetService(typeof(ExternalVoterLogin));
+            pageOpen.Show();
         }
 
         private void LoginFromBoothButton_Click(object sender, EventArgs e)

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UniTask.data.Repositories;
 using Unitask.Infrastructure.Services;
+using Uni_tasl.Helpers;
 
 namespace Uni_tasl.Injections
 {
@@ -35,6 +36,7 @@ namespace Uni_tasl.Injections
             services.AddScoped<VoterService, VoterService>();
             services.AddScoped<VoteService, VoteService>();
             services.AddScoped<VotingSystemService, VotingSystemService>();
+            services.AddScoped<HelperFunctions, HelperFunctions>();
         }
     }
 }

@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UniTask.data;
+using UniTask.data.Repositories;
 using UniTask.entites;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -17,23 +18,34 @@ namespace Uni_tasl
 {
     public partial class AdminDashboard : Form
     {
-        private string _username;
-        private VotingContext dbContext;
+        
+        private VotingContext _dbContext;
+        private ElectionsRepositories _electionsRepositories;
 
-        public AdminDashboard(string username)
+        public AdminDashboard( ElectionsRepositories electionsRepositories, VotingContext dbContext)
         {
-            _username = username;
+            
+            _electionsRepositories = electionsRepositories;
+            _dbContext = dbContext;
             InitializeComponent();
+            InitializeDataGridView();
         }
 
-        public AdminDashboard(VotingContext dbContext)
+        private void InitializeDataGridView()
         {
-            this.dbContext = dbContext;
-        }
+            var elections = _electionsRepositories.LoadAll();
+            electionDataGridView.Columns.Add("Name","Name");
+            electionDataGridView.Columns.Add("Start Date","Start Date");
+            electionDataGridView.Columns.Add("End Date","End Date");
+            electionDataGridView.Columns.Add("Voting System","Voting System");
+            electionDataGridView.Columns.Add("Winner","Winner");
 
-        private void AdminDashboard_Load(object sender, EventArgs e)
-        {
-            this.label1.Text = _username;
+            electionDataGridView.AutoGenerateColumns = false;
+
+            foreach( var election in elections)
+            {
+                electionDataGridView.Rows.Add(election.Name, election.StartTime, election.EndTime, election.VoteSystem, election.Winner);
+            }
         }
 
         public void ChangeLabelText(string text)
@@ -72,6 +84,15 @@ namespace Uni_tasl
         {
             var pageOpen = (CreateElection)Program._provider.GetService(typeof(CreateElection));
             pageOpen.Show();
+        }
+
+        private void pickElectionButton_Click(object sender, EventArgs e)
+        {
+            var modifyElection = (ModifyElection)Program._provider.GetService(typeof(ModifyElection));
+            var selectedRow = electionDataGridView.SelectedRows[0];
+            //modifyElection.SetIds(election.id);
+            modifyElection.Show();
+
         }
     }
 }

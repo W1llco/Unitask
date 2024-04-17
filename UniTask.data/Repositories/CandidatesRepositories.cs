@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using UniTask.entites;
+using UniTask.Entites;
 
 namespace UniTask.data.Repositories
 {
@@ -85,6 +86,37 @@ namespace UniTask.data.Repositories
         public IEnumerable<Candidate> GetCandidatesForRegion(Guid regionID)
         {
            return _context.Candidates.Local.Where(x => x.RegionID == regionID);
+        }
+
+        public IEnumerable<Candidate> GetCandidatesForElection(Guid electionId)
+        {
+            var candidatesXElections = _context.CandidateXElection.Where(x => x.ElectionId == electionId).Select(x => x.CandidateId).AsEnumerable();
+            return _context.Candidates.Where(x => candidatesXElections.Contains(x.ID));
+        }
+
+        public IEnumerable<Candidate> GetCandidatesForElectionByRegion(Guid electionId, Guid regionID)
+        {
+            var candidatesXElections = _context.CandidateXElection.Where(x => x.ElectionId == electionId).Select(x => x.CandidateId).AsEnumerable();
+            return _context.Candidates.Where(x => candidatesXElections.Contains(x.ID)&& x.RegionID == regionID);
+        }
+
+        public CandidateXElection GetElectionCandidate(Guid candidateId, Guid electionId)
+        {
+            var returns = _context.CandidateXElection.Where(x => x.CandidateId == candidateId  && x.ElectionId == electionId).AsEnumerable();
+            if (returns.Count() == 1)
+            {
+                return returns.First();
+            }
+            else
+            {
+                throw new Exception();
+            }
+        }
+
+        public void SaveElectionCandidate (CandidateXElection candidate)
+        {
+            _context.CandidateXElection.Update(candidate);
+            _context.SaveChanges();
         }
     }
 }

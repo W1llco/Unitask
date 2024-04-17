@@ -32,6 +32,11 @@ namespace UniTask.data.Repositories
             return _context.Elections.Local.AsEnumerable();
         }
 
+        public IEnumerable<Election> LoadAllActive()
+        {
+            return _context.Elections.Local.Where(x => x.StartTime<= DateTime.Now).Where(x => x.EndTime>= DateTime.Now).AsEnumerable();
+        }
+
         //save new object 
         public Election Save(Election entity)
         {
@@ -44,10 +49,23 @@ namespace UniTask.data.Repositories
             Update(entity);
             return entity;
         }
-        public CandidateXElection SaveElectionCandidate( CandidateXElection entity)
-        {
 
+        public void SaveElectionCandidate(Guid electionId, Guid candidateId)
+        {
+            var entity = new CandidateXElection() 
+            {
+                 CandidateId = candidateId,
+                 ElectionId = electionId,
+                 Id = Guid.NewGuid(),
+                 VoteCount = 0                 
+            };
+            if (!_context.CandidateXElection.Any(x => x.ElectionId == electionId && x.CandidateId == candidateId))
+            {
+                _context.CandidateXElection.Add(entity);
+                _context.SaveChanges();
+            }
         }
+
         public Election GetByName(string electionName)
         {
             return _context.Elections.Local.Single(x => x.Name == electionName);

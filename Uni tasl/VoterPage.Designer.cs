@@ -79,7 +79,7 @@
             // DisplayName
             // 
             this.DisplayName.AutoSize = true;
-            this.DisplayName.Location = new System.Drawing.Point(50, 61);
+            this.DisplayName.Location = new System.Drawing.Point(40, 61);
             this.DisplayName.Name = "DisplayName";
             this.DisplayName.Size = new System.Drawing.Size(38, 15);
             this.DisplayName.TabIndex = 4;

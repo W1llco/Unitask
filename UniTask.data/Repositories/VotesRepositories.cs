@@ -71,5 +71,18 @@ namespace UniTask.data.Repositories
             vote.ElectionId = entity.ElectionId;
             _context.SaveChanges();
         }
+
+        public Vote? GetVote(Guid voterId, Guid electionId)
+        {
+            var vote = _context.Votes.Where(x => x.VoterId == voterId && x.ElectionId == electionId).FirstOrDefault();
+            if (vote != null)
+            {
+                return vote;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

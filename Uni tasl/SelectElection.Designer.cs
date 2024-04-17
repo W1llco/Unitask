@@ -36,24 +36,24 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(103, 60);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 15);
+            this.label1.Size = new System.Drawing.Size(179, 32);
             this.label1.TabIndex = 0;
             this.label1.Text = "Select Election";
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 96);
+            this.comboBox1.Location = new System.Drawing.Point(12, 44);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(283, 23);
             this.comboBox1.TabIndex = 1;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // Continuebutton
             // 
-            this.Continuebutton.Location = new System.Drawing.Point(68, 161);
+            this.Continuebutton.Location = new System.Drawing.Point(12, 84);
             this.Continuebutton.Name = "Continuebutton";
             this.Continuebutton.Size = new System.Drawing.Size(75, 23);
             this.Continuebutton.TabIndex = 2;

@@ -19,9 +19,15 @@ namespace Uni_tasl
             services.AddSingleton<VotingContext, VotingContext>(); //Come back to this
 
             services.AddSingleton(typeof(Form1));
+            services.AddTransient(typeof(AdminDashboard));
             services.AddTransient(typeof(VerifyVoter));
             services.AddTransient(typeof(CreateCandidates));
             services.AddTransient(typeof(CreateElection));
+            services.AddTransient(typeof(VoterPage));
+            services.AddTransient(typeof(SelectElection));
+            services.AddTransient(typeof(ExternalVoterLogin));
+            services.AddTransient(typeof(ModifyElection));
+            
 
             DataInjections.InjectData(services);
             
