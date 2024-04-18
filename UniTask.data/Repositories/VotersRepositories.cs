@@ -39,6 +39,11 @@ namespace UniTask.data.Repositories
             return _context.Voters.FirstOrDefault(x => x.Name == voter.Name && x.Password == voter.Password && x.DateOfBirth == voter.DateOfBirth && x.VerifcationCode == voter.VerifcationCode);
         }
 
+        public Voter ConfirmInternalVoterLogin(Voter voter)
+        {
+            return _context.Voters.FirstOrDefault(x => x.Name == voter.Name && x.VerifcationCode == voter.VerifcationCode && x.IsVerified == voter.IsVerified);
+        }
+
         // Load object based on primary key 
         public Voter Load(Guid id)
         {

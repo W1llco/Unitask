@@ -23,7 +23,6 @@ namespace Uni_tasl
         private readonly CandidatesRepositories _candidatesRepositories;
         public CreateCandidates(VotingContext dbContext, PartysRepositories partysRepositories, RegionsRepositories regionsRepositories, CandidatesRepositories candidatesRepositories)
         {
-
             InitializeComponent();
             _dbContext = dbContext;
             _partysRepositories = partysRepositories;
@@ -40,7 +39,6 @@ namespace Uni_tasl
             {
                 regionComboBox.Items.Add($"{r.Name}");
             }
-
         }
 
         private void InitializePartyComboBox()
@@ -50,9 +48,7 @@ namespace Uni_tasl
             {
                 partyComboBox.Items.Add($"{p.Name}");
             }
-
         }
-
 
         private void submitButton_Click(object sender, EventArgs e)
         {

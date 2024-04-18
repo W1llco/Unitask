@@ -10,7 +10,6 @@ using Uni_tasl.Helpers;
 
 namespace Uni_tasl.Injections
 {
-    
     public static class DataInjections
     {
         public static void InjectData(this IServiceCollection services) 

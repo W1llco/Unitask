@@ -22,7 +22,6 @@ namespace Uni_tasl
 
         public VerifyVoter(VotingContext dbContext, VotersRepositories votersRepositories)
         {
-            
             _dbContext = dbContext;
             _votersRepositories = votersRepositories;
             InitializeComponent();
@@ -36,11 +35,8 @@ namespace Uni_tasl
             dataGridViewVoters.Columns.Add("DateOfBirth", "DateOfBirth");
             dataGridViewVoters.Columns.Add("Email", "Email");
             dataGridViewVoters.Columns.Add("Verifcation Code", "Verifcation Code");
-
-
             dataGridViewVoters.AutoGenerateColumns = false; 
         }
-
 
         private void Search_Click(object sender, EventArgs e)
         {
@@ -86,11 +82,6 @@ namespace Uni_tasl
             {
                 MessageBox.Show("No row selected", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

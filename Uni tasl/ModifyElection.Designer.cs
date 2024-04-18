@@ -34,11 +34,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.countElectionButton = new System.Windows.Forms.Button();
-            this.startTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.finishTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.startDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.endDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.votingSystemComboBox = new System.Windows.Forms.ComboBox();
             this.modifyButton = new System.Windows.Forms.Button();
             this.winnerLabel = new System.Windows.Forms.Label();
+            this.startElection = new System.Windows.Forms.Button();
+            this.endElection = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // electionName
@@ -94,20 +96,21 @@
             this.countElectionButton.TabIndex = 7;
             this.countElectionButton.Text = "Count Election";
             this.countElectionButton.UseVisualStyleBackColor = true;
+            this.countElectionButton.Click += new System.EventHandler(this.countElectionButton_Click);
             // 
-            // startTimePicker1
+            // startDateTimePicker
             // 
-            this.startTimePicker1.Location = new System.Drawing.Point(143, 44);
-            this.startTimePicker1.Name = "startTimePicker1";
-            this.startTimePicker1.Size = new System.Drawing.Size(200, 23);
-            this.startTimePicker1.TabIndex = 8;
+            this.startDateTimePicker.Location = new System.Drawing.Point(143, 44);
+            this.startDateTimePicker.Name = "startDateTimePicker";
+            this.startDateTimePicker.Size = new System.Drawing.Size(200, 23);
+            this.startDateTimePicker.TabIndex = 8;
             // 
-            // finishTimePicker
+            // endDateTimePicker
             // 
-            this.finishTimePicker.Location = new System.Drawing.Point(143, 73);
-            this.finishTimePicker.Name = "finishTimePicker";
-            this.finishTimePicker.Size = new System.Drawing.Size(200, 23);
-            this.finishTimePicker.TabIndex = 9;
+            this.endDateTimePicker.Location = new System.Drawing.Point(143, 73);
+            this.endDateTimePicker.Name = "endDateTimePicker";
+            this.endDateTimePicker.Size = new System.Drawing.Size(200, 23);
+            this.endDateTimePicker.TabIndex = 9;
             // 
             // votingSystemComboBox
             // 
@@ -125,6 +128,7 @@
             this.modifyButton.TabIndex = 11;
             this.modifyButton.Text = "Modify Election";
             this.modifyButton.UseVisualStyleBackColor = true;
+            this.modifyButton.Click += new System.EventHandler(this.modifyButton_Click);
             // 
             // winnerLabel
             // 
@@ -135,16 +139,38 @@
             this.winnerLabel.TabIndex = 12;
             this.winnerLabel.Text = "Not Available";
             // 
+            // startElection
+            // 
+            this.startElection.Location = new System.Drawing.Point(236, 173);
+            this.startElection.Name = "startElection";
+            this.startElection.Size = new System.Drawing.Size(92, 23);
+            this.startElection.TabIndex = 13;
+            this.startElection.Text = "Start Election";
+            this.startElection.UseVisualStyleBackColor = true;
+            this.startElection.Click += new System.EventHandler(this.startElection_Click);
+            // 
+            // endElection
+            // 
+            this.endElection.Location = new System.Drawing.Point(334, 173);
+            this.endElection.Name = "endElection";
+            this.endElection.Size = new System.Drawing.Size(90, 23);
+            this.endElection.TabIndex = 14;
+            this.endElection.Text = "End Election";
+            this.endElection.UseVisualStyleBackColor = true;
+            this.endElection.Click += new System.EventHandler(this.endElection_Click);
+            // 
             // ModifyElection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.endElection);
+            this.Controls.Add(this.startElection);
             this.Controls.Add(this.winnerLabel);
             this.Controls.Add(this.modifyButton);
             this.Controls.Add(this.votingSystemComboBox);
-            this.Controls.Add(this.finishTimePicker);
-            this.Controls.Add(this.startTimePicker1);
+            this.Controls.Add(this.endDateTimePicker);
+            this.Controls.Add(this.startDateTimePicker);
             this.Controls.Add(this.countElectionButton);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -166,10 +192,13 @@
         private Label label3;
         private Label label4;
         private Button countElectionButton;
-        private DateTimePicker startTimePicker1;
-        private DateTimePicker finishTimePicker;
+        private DateTimePicker startDateTimePicker;
+        private DateTimePicker endDateTimePicker;
         private ComboBox votingSystemComboBox;
         private Button modifyButton;
         private Label winnerLabel;
+        private Button startElection;
+        private Button endElection;
+        private Button updateModificationButton;
     }
 }

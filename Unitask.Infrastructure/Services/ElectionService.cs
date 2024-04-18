@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UniTask.data.Repositories;
 using Unitask.DTOs;
 using UniTask.entites;
+using Unitask.DTOs.ViewModels;
 
 namespace Unitask.Infrastructure.Services
 {
@@ -13,11 +14,19 @@ namespace Unitask.Infrastructure.Services
     {
         //declare
         private readonly ElectionsRepositories _electionsRepositories;
+        private readonly VotingSystemService _votingSystemService;
+        private readonly CandidatesRepositories _candidatesRepositories;
+        private readonly RegionsRepositories _regionsRepositories;
+        private readonly CandidateService _candidateService;
 
         //construsuror for service depenedency injection
-        public ElectionService(ElectionsRepositories electionsRepositories)
+        public ElectionService(ElectionsRepositories electionsRepositories, VotingSystemService votingSystemService, CandidatesRepositories candidatesRepositories, RegionsRepositories regionsRepositories, CandidateService candidateService)
         {
             _electionsRepositories = electionsRepositories;
+            _votingSystemService = votingSystemService;
+            _candidatesRepositories = candidatesRepositories;
+            _regionsRepositories = regionsRepositories;
+            _candidateService = candidateService;
         }
         // load object based on id
         public ElectionDTO Load(Guid id)
@@ -74,6 +83,32 @@ namespace Unitask.Infrastructure.Services
                 RegionID = DTO.RegionID,
                 Name = DTO.Name,
             };
+        }
+        
+        public PartyDTO CountElection(Guid electionId, Guid votingSystemId)
+        {
+            var votingSystem = _votingSystemService.LoadAll();
+            var candidates = _candidatesRepositories.GetAllCandidatesForElection(electionId);
+            var regions = _regionsRepositories.LoadAll();
+
+            if (votingSystemId == votingSystem.Single(x => x.Name == "Proportional Representation").ID)
+            {
+                return _votingSystemService.GetWinnerProportional(candidates);
+            }
+            else
+            {
+                var candidateViewModels = _candidateService.CandidateXElectionViewModels(candidates);
+                var regionWinners = new List<CandidateXElectionViewModel>();
+                var scotland = candidateViewModels.Where(x => x.Candidate.RegionID == regions.Single(x => x.Name == "Scotland").ID).OrderByDescending(x => x.CandidateXElection.VoteCount);
+                var england = candidateViewModels.Where(x => x.Candidate.RegionID == regions.Single(x => x.Name == "England").ID).OrderByDescending(x => x.CandidateXElection.VoteCount);
+                var wales = candidateViewModels.Where(x => x.Candidate.RegionID == regions.Single(x => x.Name == "Wales").ID).OrderByDescending(x => x.CandidateXElection.VoteCount);
+
+                regionWinners.Add(scotland.First());
+                regionWinners.Add(england.First());
+                regionWinners.Add(wales.First());
+
+                return _votingSystemService.GetWinnerFPTP(regionWinners.Select(x => x.CandidateXElection));
+            }
         }
     }
 }

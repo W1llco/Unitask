@@ -23,6 +23,7 @@ namespace Uni_tasl
         private readonly VotesRepositories _votesRepositories;
         private readonly ElectionsRepositories _electionsRepositories;
         private readonly VotersRepositories _votersRepositories;
+
         public ExternalVoterLogin(VotingContext dbContext, VotersRepositories votersRepositories, VotesRepositories votesRepositories, ElectionsRepositories electionsRepositories)
         {
             InitializeComponent();
@@ -30,13 +31,6 @@ namespace Uni_tasl
             _votesRepositories = votesRepositories;
             _electionsRepositories = electionsRepositories;
             _votersRepositories = votersRepositories;
-            
-        }
-        
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void Login_Click(object sender, EventArgs e)
@@ -87,11 +81,6 @@ namespace Uni_tasl
                 DobDateTimePicker.ResetText();
                 UsernameTextBox.Focus();
             }
-        }
-
-        private void UsernameLabel_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

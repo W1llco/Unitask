@@ -8,14 +8,11 @@ namespace Uni_tasl
     {
         //injecting voting context
         private readonly VotingContext _dbContext;
-
         
         public Form1(VotingContext dbContext)
         {
             _dbContext = dbContext;
-
             InitializeComponent();
-            
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -43,15 +40,15 @@ namespace Uni_tasl
 
         private void LoginFromBoothButton_Click(object sender, EventArgs e)
         {
-            InternalVoterLogin internalVoterLogin = new InternalVoterLogin(_dbContext);
-            internalVoterLogin.Show();
+            var pageOpen = (InternalVoterLogin)Program._provider.GetService(typeof(InternalVoterLogin));
+            pageOpen.Show();
             this.Hide();
         }
 
         private void LoginAsAdminButton_Click(object sender, EventArgs e)
         {
-            AdminLogin adminLogin = new AdminLogin(_dbContext);
-            adminLogin.Show();
+            var pageOpen = (AdminLogin)Program._provider.GetService(typeof(AdminLogin));
+            pageOpen.Show();
             this.Hide();
         }
     }

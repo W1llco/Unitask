@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UniTask.data;
+using UniTask.data.Repositories;
+using UniTask.entites;
 
 namespace Uni_tasl
 {
@@ -16,24 +18,27 @@ namespace Uni_tasl
     {
         //injecting voting context
         private readonly VotingContext _dbContext;
+        private readonly AdminsRepositories _adminsRepositories;
 
-        public AdminLogin(VotingContext dbContext)
+        public AdminLogin(VotingContext dbContext, AdminsRepositories adminsRepositories)
         {
             InitializeComponent();
             _dbContext = dbContext;
+            _adminsRepositories = adminsRepositories;
         }
-
-       
-
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            var user = _dbContext.Users.FirstOrDefault(u => u.Username == UsernameTextBox.Text && u.Password == PasswordTextBox.Text);
+            var x = _adminsRepositories.LoadAll();
+            var admin = _adminsRepositories.ConfirmVoterLogin(new Admin() { Username = UsernameTextBox.Text, Password = PasswordTextBox.Text});
 
-            if (user.IsAdmin)
+            if (admin != null)
             {
+                var admins = _adminsRepositories.LoadAll().Where(x => x.ID == admin.ID);
                 // Open admin area
                 AdminDashboard adminDashboard = (AdminDashboard)Program._provider.GetService(typeof(AdminDashboard));
+                adminDashboard.SetIds(admin.ID);
+                adminDashboard.InitializePage();
                 adminDashboard.Show();
                 this.Hide();
             }

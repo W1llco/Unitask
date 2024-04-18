@@ -30,19 +30,17 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.electionControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.startElectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.endElectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.countElectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createElectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteElectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createCandidatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verifyVoterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.getResultsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
+            this.welcomeLabel = new System.Windows.Forms.Label();
             this.electionDataGridView = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
             this.pickElectionButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.electionDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -61,33 +59,12 @@
             // electionControlToolStripMenuItem
             // 
             this.electionControlToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.startElectionToolStripMenuItem,
-            this.endElectionToolStripMenuItem,
-            this.countElectionToolStripMenuItem,
             this.createElectionToolStripMenuItem,
             this.deleteElectionToolStripMenuItem,
             this.createCandidatesToolStripMenuItem});
             this.electionControlToolStripMenuItem.Name = "electionControlToolStripMenuItem";
             this.electionControlToolStripMenuItem.Size = new System.Drawing.Size(104, 20);
             this.electionControlToolStripMenuItem.Text = "Election Control";
-            // 
-            // startElectionToolStripMenuItem
-            // 
-            this.startElectionToolStripMenuItem.Name = "startElectionToolStripMenuItem";
-            this.startElectionToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.startElectionToolStripMenuItem.Text = "Start Election";
-            // 
-            // endElectionToolStripMenuItem
-            // 
-            this.endElectionToolStripMenuItem.Name = "endElectionToolStripMenuItem";
-            this.endElectionToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.endElectionToolStripMenuItem.Text = "End Election";
-            // 
-            // countElectionToolStripMenuItem
-            // 
-            this.countElectionToolStripMenuItem.Name = "countElectionToolStripMenuItem";
-            this.countElectionToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.countElectionToolStripMenuItem.Text = "Count Election";
             // 
             // createElectionToolStripMenuItem
             // 
@@ -122,17 +99,16 @@
             this.getResultsToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
             this.getResultsToolStripMenuItem.Text = "Get results";
             // 
-            // label1
+            // welcomeLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(8, 44);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(289, 65);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Welcome ...";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.welcomeLabel.AutoSize = true;
+            this.welcomeLabel.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.welcomeLabel.Location = new System.Drawing.Point(8, 44);
+            this.welcomeLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.welcomeLabel.Name = "welcomeLabel";
+            this.welcomeLabel.Size = new System.Drawing.Size(194, 45);
+            this.welcomeLabel.TabIndex = 1;
+            this.welcomeLabel.Text = "Welcome ...";
             // 
             // electionDataGridView
             // 
@@ -146,7 +122,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 119);
+            this.label3.Location = new System.Drawing.Point(8, 125);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 15);
             this.label3.TabIndex = 3;
@@ -154,11 +130,11 @@
             // 
             // pickElectionButton
             // 
-            this.pickElectionButton.Location = new System.Drawing.Point(8, 361);
+            this.pickElectionButton.Location = new System.Drawing.Point(8, 345);
             this.pickElectionButton.Name = "pickElectionButton";
-            this.pickElectionButton.Size = new System.Drawing.Size(85, 44);
+            this.pickElectionButton.Size = new System.Drawing.Size(159, 44);
             this.pickElectionButton.TabIndex = 4;
-            this.pickElectionButton.Text = "Pick Election";
+            this.pickElectionButton.Text = "Pick An Election To Modify";
             this.pickElectionButton.UseVisualStyleBackColor = true;
             this.pickElectionButton.Click += new System.EventHandler(this.pickElectionButton_Click);
             // 
@@ -170,7 +146,7 @@
             this.Controls.Add(this.pickElectionButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.electionDataGridView);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.welcomeLabel);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "AdminDashboard";
@@ -187,9 +163,6 @@
 
         private MenuStrip menuStrip1;
         private ToolStripMenuItem electionControlToolStripMenuItem;
-        private ToolStripMenuItem startElectionToolStripMenuItem;
-        private ToolStripMenuItem endElectionToolStripMenuItem;
-        private ToolStripMenuItem countElectionToolStripMenuItem;
         private ToolStripMenuItem createElectionToolStripMenuItem;
         private ToolStripMenuItem deleteElectionToolStripMenuItem;
         private ToolStripMenuItem verifyVoterToolStripMenuItem;
@@ -200,5 +173,6 @@
         private DataGridView electionDataGridView;
         private Label label3;
         private Button pickElectionButton;
+        private Label welcomeLabel;
     }
 }

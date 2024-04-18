@@ -63,8 +63,6 @@ namespace Uni_tasl
             helpersFunctions.GetCandidateValuesForDropdown(candiateWalesConservativeComboBox, walesConservative, false);
             helpersFunctions.GetCandidateValuesForDropdown(candiateWalesLabourComboBox, walesLabour, false);
             helpersFunctions.GetVotingSystemValuesForDropdown(votingSystemComboBox, votingsystem);
-
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -99,7 +97,6 @@ namespace Uni_tasl
                 _electionsRepositories.SaveElectionCandidate(entity.ID, (Guid)candiateScotlandLabourComboBox.SelectedValue);
                 _electionsRepositories.SaveElectionCandidate(entity.ID, (Guid)candiateWalesConservativeComboBox.SelectedValue);
                 _electionsRepositories.SaveElectionCandidate(entity.ID, (Guid)candiateWalesLabourComboBox.SelectedValue);
-
 
                 MessageBox.Show("New Election Made", "Created", MessageBoxButtons.OK);
             }

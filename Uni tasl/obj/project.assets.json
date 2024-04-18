@@ -555,7 +555,8 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "6.0.28",
           "Microsoft.EntityFrameworkCore.Sqlite": "6.0.28",
-          "UniTask.Entites": "1.0.0"
+          "UniTask.Entites": "1.0.0",
+          "Unitask.DTOs": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UniTask.data.dll": {}

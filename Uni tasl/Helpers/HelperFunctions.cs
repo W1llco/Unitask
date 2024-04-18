@@ -35,7 +35,6 @@ namespace Uni_tasl.Helpers
             comboBox.DataSource = new BindingSource(keyValuePairs, null);
             comboBox.DisplayMember = "Value";
             comboBox.ValueMember = "Key";
-            
         }
 
         public void GetVotingSystemValuesForDropdown(ComboBox comboBox, IEnumerable<VotingSystem> votingSystem)
@@ -49,7 +48,6 @@ namespace Uni_tasl.Helpers
             comboBox.DataSource = new BindingSource(keyValuePairs, null);
             comboBox.DisplayMember = "Value";
             comboBox.ValueMember = "Key";
-
         }
     }
 }

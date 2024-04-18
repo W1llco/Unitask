@@ -73,7 +73,6 @@
             this.UsernameLabel.Size = new System.Drawing.Size(39, 15);
             this.UsernameLabel.TabIndex = 7;
             this.UsernameLabel.Text = "Name";
-            this.UsernameLabel.Click += new System.EventHandler(this.UsernameLabel_Click);
             // 
             // UsernameTextBox
             // 
@@ -90,7 +89,6 @@
             this.DOBlabel.Size = new System.Drawing.Size(73, 15);
             this.DOBlabel.TabIndex = 12;
             this.DOBlabel.Text = "Date of Birth";
-            this.DOBlabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // DobDateTimePicker
             // 

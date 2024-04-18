@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using UniTask.data.Repositories;
 using Unitask.DTOs;
 using UniTask.entites;
+using UniTask.Entites;
+using Unitask.DTOs.ViewModels;
 
 namespace Unitask.Infrastructure.Services
 {
@@ -73,6 +75,31 @@ namespace Unitask.Infrastructure.Services
             };
         }
 
+        //converting database modle to data treansfer object dto
+        private CandidateXElectionDTO GetCXEDTO(CandidateXElection entity)
+        {
+            if (entity == null) return null;
+            return new CandidateXElectionDTO()
+            {
+                Id = entity.Id,
+                CandidateId = entity.CandidateId,
+                ElectionId = entity.ElectionId,
+                VoteCount = entity.VoteCount
+            };
+        }
+
+        // convert sata transfer obeject to database model
+        private CandidateXElection GetCXEEntity(CandidateXElectionDTO DTO)
+        {
+            return new CandidateXElection()
+            {
+                Id = DTO.Id,
+                CandidateId = DTO.CandidateId,
+                ElectionId = DTO.ElectionId,
+                VoteCount = DTO.VoteCount
+            };
+        }
+
         // Method to increase a candidate's vote count
         public bool IncreaseCandidateVote(Guid candidateId, Guid electionId)
         {
@@ -93,6 +120,26 @@ namespace Unitask.Infrastructure.Services
         {
             return LoadAll();
         }
+
+        public IEnumerable<CandidateXElectionViewModel> CandidateXElectionViewModels(IEnumerable<CandidateXElection> candidateXElections)
+        {
+            var candidates = new List<CandidateXElectionViewModel>();
+            foreach (var c in candidateXElections)
+            {
+                candidates.Add(new CandidateXElectionViewModel()
+                {
+                    CandidateXElection = GetCXEDTO(c),
+                    Candidate = GetDTO(_candidatesRepositories.Load(c.CandidateId))
+                });
+            }
+            return candidates;
+        }
+
+        //public IEnumerable<CandidateXElection> GetRegionWinners(Guid electionId)
+        //{
+        //    var candidateXElection = _
+        //        var candidates = _candidatesRepositories.GetAllCandidatesForElection(electionId);
+        //}
     }
 
 }

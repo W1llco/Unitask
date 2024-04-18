@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,6 +71,11 @@ namespace UniTask.data.Repositories
             admin.Username = entity.Username;
             admin.Password = entity.Password;
             _context.SaveChanges();
+        }
+
+        public Admin ConfirmVoterLogin(Admin admin)
+        {
+            return _context.Admins.FirstOrDefault(x => x.Username == admin.Username && x.Password == admin.Password);
         }
     }
 }

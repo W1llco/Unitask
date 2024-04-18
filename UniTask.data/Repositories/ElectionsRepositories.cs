@@ -90,7 +90,7 @@ namespace UniTask.data.Repositories
         }
 
         //udate existing object 
-        private void Update(Election entity)
+        public void Update(Election entity)
         {
             var election = _context.Elections.FirstOrDefault(x => x.ID == entity.ID);
             election.Winner = entity.Winner;
@@ -111,7 +111,7 @@ namespace UniTask.data.Repositories
         public void EndCurrentElection(DateTime utcEndDateTime)
         {
             var currentElection = _context.Elections
-                .Where(e => !e.EndTime.HasValue) 
+                .Where(e => e.EndTime<DateTime.Now) 
                 .OrderByDescending(e => e.StartTime) 
                 .FirstOrDefault();
             if (currentElection != null)

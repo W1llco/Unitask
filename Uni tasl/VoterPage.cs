@@ -31,7 +31,6 @@ namespace Uni_tasl
         private readonly VoterService _voterService;
         public HelperFunctions helpersFunctions;
 
-
         public void SetIds(Guid voterId, Guid electionId)
         {
             _voterId = voterId;
@@ -67,11 +66,6 @@ namespace Uni_tasl
             dropdownVote.Text = "Click on this and choose a choice";
 
             helpersFunctions.GetCandidateValuesForDropdown(dropdownVote, candidates, true);
-
-            //foreach (var c in candidates)
-            //{
-            //    dropdownVote.Items.Add($"{c.Name} ({partys.FirstOrDefault( x => x.ID == c.PartyID).Name})");
-            //}
         }
 
 

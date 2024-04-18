@@ -48,7 +48,6 @@ namespace Uni_tasl
             }
             else
             {
-
                 List<KeyValuePair<Guid, string>> keyValuePairs = new List<KeyValuePair<Guid, string>>();
                 keyValuePairs.Add(new KeyValuePair<Guid, string>(Guid.Empty, "Please Select"));
                 foreach (Election c in election)
@@ -78,7 +77,6 @@ namespace Uni_tasl
             }
             else
             {
-
                 VoterPage voterPage = (VoterPage)Program._provider.GetService(typeof(VoterPage));
                 voterPage.SetIds(voterId, electionId);
                 voterPage.InitializePage();

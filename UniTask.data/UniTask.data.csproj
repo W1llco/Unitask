@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Unitask.DTOs\Unitask.DTOs.csproj" />
     <ProjectReference Include="..\UniTask1.entites\UniTask.Entites.csproj" />
   </ItemGroup>
 

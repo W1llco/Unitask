@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Unitask.DTOs.ViewModels;
 using UniTask.entites;
 using UniTask.Entites;
 
@@ -118,5 +119,12 @@ namespace UniTask.data.Repositories
             _context.CandidateXElection.Update(candidate);
             _context.SaveChanges();
         }
+
+        public IEnumerable<CandidateXElection> GetAllCandidatesForElection(Guid electionId)
+        {
+            return _context.CandidateXElection.Where(x => x.ElectionId == electionId);
+        }
+
+        
     }
 }

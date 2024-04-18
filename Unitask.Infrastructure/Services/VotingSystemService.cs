@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UniTask.data.Repositories;
 using Unitask.DTOs;
 using UniTask.entites;
+using UniTask.Entites;
 
 namespace Unitask.Infrastructure.Services
 {
@@ -74,33 +75,46 @@ namespace Unitask.Infrastructure.Services
             };
         }
 
-        public PartyDTO GetWinnerFPTP(IEnumerable<Candidate> RegionWinners)
-        {
-            var Partys = _partyService.LoadAll();
-            var LabourWins = RegionWinners.Where(x => x.Name == "Labour").Count();
-            var ConservativeWins = RegionWinners.Where(x => x.Name == "Conservative").Count();
-            return LabourWins > ConservativeWins ? Partys.Single(x => x.Name == "Labour") : Partys.Single(x => x.Name == "Conservative");
+        public PartyDTO GetWinnerFPTP(IEnumerable<CandidateXElectionDTO> regionWinners)
+        {   
+            int labourWins = 0;
+            int conservativeWins = 0;
+            var partys = _partyService.LoadAll();
+            foreach (CandidateXElectionDTO candidateXElection in regionWinners)
+            {
+                var candidate = _candidateService.Load(candidateXElection.CandidateId);
+                if (candidate.PartyID == partys.First(x => x.Name == "Labour").ID)
+                {
+                    labourWins++;
+                }
+                else
+                {
+                    conservativeWins++;
+                }
+            }
+
+            return labourWins > conservativeWins ? partys.Single(x => x.Name == "Labour") : partys.Single(x => x.Name == "Conservative");
         }
 
-        public PartyDTO GetWinnerProportional(IEnumerable<Candidate> candidates)
+        public PartyDTO GetWinnerProportional(IEnumerable<CandidateXElection> candidates)
         {
-            var Partys = _partyService.LoadAll();
-            var LabourVoteCount = 0;
-            var ConservativeVoteCount = 0;
+            var partys = _partyService.LoadAll();
+            int labourVoteCount = 0;
+            int conservativeVoteCount = 0;
 
-            foreach (var Candidate in candidates)
+            foreach (CandidateXElection candidateXElection in candidates)
             {
-                //if (Candidate.PartyID == Partys.Single(x => x.Name == "Labour").ID)
-                //{
-                //    LabourVoteCount += Candidate.VoteCount;
-                //}
-                //else
-                //{
-                //    ConservativeVoteCount += Candidate.VoteCount;
-                //}
-
+                var candidate = _candidateService.Load(candidateXElection.CandidateId);
+                if (candidate.PartyID == partys.First(x => x.Name == "Labour").ID)
+                {
+                    labourVoteCount++;
+                }
+                else
+                {
+                    conservativeVoteCount++;
+                }
             }
-            return LabourVoteCount > ConservativeVoteCount ? Partys.Single(x => x.Name == "Labour") : Partys.Single(x => x.Name == "Conservative");
+            return labourVoteCount > conservativeVoteCount ? partys.Single(x => x.Name == "Labour") : partys.Single(x => x.Name == "Conservative");
         }
     }
 }

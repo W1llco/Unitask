@@ -79,29 +79,12 @@ namespace Unitask.Infrastructure.Services
             };
         }
 
-        //public bool VerifyVoter(string voterName, string verificationCode)
-        //{
-        //    if (string.IsNullOrEmpty(voterName) || string.IsNullOrEmpty(verificationCode))
-        //    {
-        //        throw new ArgumentException("Voter name and verification code must not be empty.");
-        //    }
-
-        //    var voter = _votersRepository.FindByName(voterName);
-        //    if (voter == null)
-        //    {
-        //        // Optionally, you can handle this case differently, e.g., log the attempt or handle it silently
-        //        return false;
-        //    }
-
-        //    return voter.VerifcationCode == verificationCode;
-        //}
 
         public void StartElection()
         {
             var election = new Election
             {
-                StartTime = DateTime.UtcNow,
-                EndTime = null 
+                StartTime = DateTime.UtcNow 
             };
             _electionRepository.StartNewElection(election);
         }

@@ -95,7 +95,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.ClientSize = new System.Drawing.Size(801, 417);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.LoginAsAdminButton);
             this.Controls.Add(this.LoginFromBoothButton);
