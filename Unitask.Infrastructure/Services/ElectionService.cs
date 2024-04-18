@@ -88,7 +88,7 @@ namespace Unitask.Infrastructure.Services
         public PartyDTO CountElection(Guid electionId, Guid votingSystemId)
         {
             var votingSystem = _votingSystemService.LoadAll();
-            var candidates = _candidatesRepositories.GetAllCandidatesForElection(electionId);
+            var candidates = _candidateService.GetAllCandidatesForElection(electionId);
             var regions = _regionsRepositories.LoadAll();
 
             if (votingSystemId == votingSystem.Single(x => x.Name == "Proportional Representation").ID)

@@ -121,18 +121,28 @@ namespace Unitask.Infrastructure.Services
             return LoadAll();
         }
 
-        public IEnumerable<CandidateXElectionViewModel> CandidateXElectionViewModels(IEnumerable<CandidateXElection> candidateXElections)
+        public IEnumerable<CandidateXElectionViewModel> CandidateXElectionViewModels(IEnumerable<CandidateXElectionDTO> candidateXElections)
         {
             var candidates = new List<CandidateXElectionViewModel>();
             foreach (var c in candidateXElections)
             {
                 candidates.Add(new CandidateXElectionViewModel()
                 {
-                    CandidateXElection = GetCXEDTO(c),
+                    CandidateXElection = c,
                     Candidate = GetDTO(_candidatesRepositories.Load(c.CandidateId))
                 });
             }
             return candidates;
+        }
+
+        public IEnumerable<CandidateDTO> GetCandidatesForRegion(Guid regionID)
+        {
+            return _candidatesRepositories.GetCandidatesForRegion(regionID).Select(GetDTO);
+        }
+
+        public IEnumerable<CandidateXElectionDTO> GetAllCandidatesForElection(Guid electionId)
+        {
+            return _candidatesRepositories.GetAllCandidatesForElection(electionId).Select(GetCXEDTO);
         }
 
         //public IEnumerable<CandidateXElection> GetRegionWinners(Guid electionId)

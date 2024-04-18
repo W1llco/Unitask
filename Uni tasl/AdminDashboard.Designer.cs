@@ -31,10 +31,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.electionControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createElectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteElectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createCandidatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verifyVoterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.getResultsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.welcomeLabel = new System.Windows.Forms.Label();
             this.electionDataGridView = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,8 +46,7 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.electionControlToolStripMenuItem,
-            this.verifyVoterToolStripMenuItem,
-            this.getResultsToolStripMenuItem});
+            this.verifyVoterToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -60,7 +57,6 @@
             // 
             this.electionControlToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createElectionToolStripMenuItem,
-            this.deleteElectionToolStripMenuItem,
             this.createCandidatesToolStripMenuItem});
             this.electionControlToolStripMenuItem.Name = "electionControlToolStripMenuItem";
             this.electionControlToolStripMenuItem.Size = new System.Drawing.Size(104, 20);
@@ -69,20 +65,14 @@
             // createElectionToolStripMenuItem
             // 
             this.createElectionToolStripMenuItem.Name = "createElectionToolStripMenuItem";
-            this.createElectionToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.createElectionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.createElectionToolStripMenuItem.Text = "Create Election";
             this.createElectionToolStripMenuItem.Click += new System.EventHandler(this.createElectionToolStripMenuItem_Click);
-            // 
-            // deleteElectionToolStripMenuItem
-            // 
-            this.deleteElectionToolStripMenuItem.Name = "deleteElectionToolStripMenuItem";
-            this.deleteElectionToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.deleteElectionToolStripMenuItem.Text = "Delete Election";
             // 
             // createCandidatesToolStripMenuItem
             // 
             this.createCandidatesToolStripMenuItem.Name = "createCandidatesToolStripMenuItem";
-            this.createCandidatesToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.createCandidatesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.createCandidatesToolStripMenuItem.Text = "Create Candidates";
             this.createCandidatesToolStripMenuItem.Click += new System.EventHandler(this.createCandidatesToolStripMenuItem_Click);
             // 
@@ -92,12 +82,6 @@
             this.verifyVoterToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
             this.verifyVoterToolStripMenuItem.Text = "Verify Voter";
             this.verifyVoterToolStripMenuItem.Click += new System.EventHandler(this.verifyVoterToolStripMenuItem_Click);
-            // 
-            // getResultsToolStripMenuItem
-            // 
-            this.getResultsToolStripMenuItem.Name = "getResultsToolStripMenuItem";
-            this.getResultsToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
-            this.getResultsToolStripMenuItem.Text = "Get results";
             // 
             // welcomeLabel
             // 

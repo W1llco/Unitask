@@ -46,8 +46,8 @@ namespace  UniTask.data
                 new Election { ID = new Guid("6480BA97-1DCF-470F-BD3A-50905D7FDC3C"), VoteSystem = new Guid("F0372C84-0AA9-4218-9D57-5248F2A99E18"), StartTime = new DateTime(2024, 04, 12, 23, 59, 0), EndTime = new DateTime(2024, 05, 5, 23, 59, 0), Name = "FPTP" });
 
 
-            builder.Entity<VotingSystem>().HasData(new VotingSystem { ID = Guid.NewGuid(), Name = "Proportional Representation" },
-                new VotingSystem { ID = Guid.NewGuid(), Name = "First Past The Post" });
+            builder.Entity<VotingSystem>().HasData(new VotingSystem { ID = new Guid("76F3108D-8960-41C6-AECB-9175896CDD94"), Name = "Proportional Representation" },
+                new VotingSystem { ID = new Guid("F0372C84-0AA9-4218-9D57-5248F2A99E18"), Name = "First Past The Post" });
 
             builder.Entity<Region>().HasData(new Region { ID = new Guid("2E482B35-CC65-4322-B8F5-CB453D0BCE7E"), Name = "Scotland" },
                 new Region { ID = new Guid("EF2B02DB-456D-4E78-8ABD-E34F7CDCDA7D"), Name = "Wales" }, 

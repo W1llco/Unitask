@@ -11,6 +11,7 @@ using Unitask.DTOs;
 using Unitask.Infrastructure.Services;
 using UniTask.data.Repositories;
 using UniTask.entites;
+using UniTask.Entites;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Uni_tasl
@@ -21,11 +22,17 @@ namespace Uni_tasl
         private readonly ElectionsRepositories _electionsRepositories;
         private readonly VotingSystemsRepositories _votingSystemsRepositories;
         private readonly ElectionService _electionService;
-        public ModifyElection(ElectionsRepositories electionsRepositories, VotingSystemsRepositories votingSystemsRepositories, ElectionService electionService)
+        private readonly CandidateService _candidateService;
+        private readonly RegionService _regionService;
+        private readonly PartyService _partyService;
+        public ModifyElection(ElectionsRepositories electionsRepositories, VotingSystemsRepositories votingSystemsRepositories, ElectionService electionService, CandidateService candidateService, RegionService regionService, PartyService partyService)
         {
             _electionsRepositories = electionsRepositories;
             _votingSystemsRepositories = votingSystemsRepositories;
             _electionService = electionService;
+            _candidateService = candidateService;
+            _regionService = regionService;
+            _partyService = partyService;
             InitializeComponent();
             startDateTimePicker.Format = DateTimePickerFormat.Custom;
             startDateTimePicker.CustomFormat = "MM/dd/yyyy hh:mm";
@@ -35,28 +42,46 @@ namespace Uni_tasl
         public void InitializePage()
         {
             var votingSystems = _votingSystemsRepositories.LoadAll();
-                List<KeyValuePair<Guid, string>> keyValuePairs = new List<KeyValuePair<Guid, string>>();
-                foreach (var c in votingSystems)
-                {
-                    keyValuePairs.Add(new KeyValuePair<Guid, string>(c.ID, $"{c.Name}"));
-                }
-                votingSystemComboBox.DataSource = new BindingSource(keyValuePairs, null);
-                votingSystemComboBox.DisplayMember = "Value";
-                votingSystemComboBox.ValueMember = "Key";
+            List<KeyValuePair<Guid, string>> keyValuePairs = new List<KeyValuePair<Guid, string>>();
+            foreach (var c in votingSystems)
+            {
+                keyValuePairs.Add(new KeyValuePair<Guid, string>(c.ID, $"{c.Name}"));
+            }
+            votingSystemComboBox.DataSource = new BindingSource(keyValuePairs, null);
+            votingSystemComboBox.DisplayMember = "Value";
+            votingSystemComboBox.ValueMember = "Key";
 
             electionName.Text = _election.Name;
             startDateTimePicker.Value = _election.StartTime;
             endDateTimePicker.Value = _election.EndTime;
-            votingSystemComboBox.SelectedItem = keyValuePairs.Where( x => x.Key == _election.VoteSystem);
+            votingSystemComboBox.SelectedItem = keyValuePairs.Where(x => x.Key == _election.VoteSystem);
             winnerLabel.Text = _election.Winner?.ToString();
             startDateTimePicker.Enabled = false;
             endDateTimePicker.Enabled = false;
             votingSystemComboBox.Enabled = false;
+
+            var candidateXElection = _candidateService.GetAllCandidatesForElection(_election.ID);
+            var electionData = _candidateService.CandidateXElectionViewModels(candidateXElection).OrderBy(x => x.Candidate.RegionID).ThenBy(n => n.Candidate.PartyID);
+            var regions = _regionService.LoadAll();
+            var partys = _partyService.LoadAll();
+            electionDataGridView.Columns.Add("Candidate Name", "Candidate Name");
+            electionDataGridView.Columns.Add("Region", "Region");
+            electionDataGridView.Columns.Add("Party","Party");
+            electionDataGridView.Columns.Add("Vote Count","Vote Count");
+
+            foreach (var c in electionData)
+            {
+                electionDataGridView.Rows.Add(c.Candidate.Name, regions.Single(x => x.ID == c.Candidate.RegionID).Name, partys.Single(x => x.ID == c.Candidate.PartyID).Name, c.CandidateXElection.VoteCount);
+            }
+
+
         }
         public void SetElection(Election election)
         {
             _election = election;
         }
+
+        
 
         private void modifyButton_Click(object sender, EventArgs e)
         {

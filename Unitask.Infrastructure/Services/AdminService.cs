@@ -99,9 +99,9 @@ namespace Unitask.Infrastructure.Services
             return _electionRepository.CountVotes();
         }
 
-        public Candidate RegisterCandidate(Candidate candidate)
-        {
-            return _candidatesRepository.Save(candidate);
-        }
+        //public CandidateDTO RegisterCandidate(CandidateDTO candidate)
+        //{
+        //    return _candidatesRepository.Save(ConvertEntity candidate);
+        //}
     }
 }

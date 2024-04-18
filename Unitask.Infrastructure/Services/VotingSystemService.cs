@@ -96,24 +96,25 @@ namespace Unitask.Infrastructure.Services
             return labourWins > conservativeWins ? partys.Single(x => x.Name == "Labour") : partys.Single(x => x.Name == "Conservative");
         }
 
-        public PartyDTO GetWinnerProportional(IEnumerable<CandidateXElection> candidates)
+        public PartyDTO GetWinnerProportional(IEnumerable<CandidateXElectionDTO> candidates)
         {
             var partys = _partyService.LoadAll();
             int labourVoteCount = 0;
             int conservativeVoteCount = 0;
+            var candidateViewModels = _candidateService.CandidateXElectionViewModels(candidates);
 
-            foreach (CandidateXElection candidateXElection in candidates)
+            foreach (var c in candidateViewModels)
             {
-                var candidate = _candidateService.Load(candidateXElection.CandidateId);
-                if (candidate.PartyID == partys.First(x => x.Name == "Labour").ID)
+                if (c.Candidate.PartyID == partys.First(x => x.Name == "Labour").ID)
                 {
-                    labourVoteCount++;
+                    labourVoteCount += c.CandidateXElection.VoteCount ;
                 }
                 else
                 {
-                    conservativeVoteCount++;
+                    conservativeVoteCount+= c.CandidateXElection.VoteCount;
                 }
             }
+            
             return labourVoteCount > conservativeVoteCount ? partys.Single(x => x.Name == "Labour") : partys.Single(x => x.Name == "Conservative");
         }
     }

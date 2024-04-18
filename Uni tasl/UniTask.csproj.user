@@ -7,16 +7,10 @@
     <Compile Update="AdminLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="CountElection.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="CreateCandidates.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="CreateElection.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="DeleteElection.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ExternalVoterLogin.cs">

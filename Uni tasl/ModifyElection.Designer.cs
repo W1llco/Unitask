@@ -41,6 +41,8 @@
             this.winnerLabel = new System.Windows.Forms.Label();
             this.startElection = new System.Windows.Forms.Button();
             this.endElection = new System.Windows.Forms.Button();
+            this.electionDataGridView = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.electionDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // electionName
@@ -159,11 +161,21 @@
             this.endElection.UseVisualStyleBackColor = true;
             this.endElection.Click += new System.EventHandler(this.endElection_Click);
             // 
+            // electionDataGridView
+            // 
+            this.electionDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.electionDataGridView.Location = new System.Drawing.Point(30, 216);
+            this.electionDataGridView.Name = "electionDataGridView";
+            this.electionDataGridView.RowTemplate.Height = 25;
+            this.electionDataGridView.Size = new System.Drawing.Size(666, 222);
+            this.electionDataGridView.TabIndex = 15;
+            // 
             // ModifyElection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.electionDataGridView);
             this.Controls.Add(this.endElection);
             this.Controls.Add(this.startElection);
             this.Controls.Add(this.winnerLabel);
@@ -179,6 +191,7 @@
             this.Controls.Add(this.electionName);
             this.Name = "ModifyElection";
             this.Text = "ModifyElection";
+            ((System.ComponentModel.ISupportInitialize)(this.electionDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,5 +213,6 @@
         private Button startElection;
         private Button endElection;
         private Button updateModificationButton;
+        private DataGridView electionDataGridView;
     }
 }
