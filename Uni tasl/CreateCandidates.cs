@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unitask.DTOs;
+using Unitask.Infrastructure.Services;
 using UniTask.data;
 using UniTask.data.Repositories;
 using UniTask.entites;
@@ -17,49 +18,69 @@ namespace Uni_tasl
 {
     public partial class CreateCandidates : Form
     {
+        // Private readonly fields for database context and services.
         private readonly VotingContext _dbContext;
-        private readonly PartysRepositories _partysRepositories;
-        private readonly RegionsRepositories _regionsRepositories;
-        private readonly CandidatesRepositories _candidatesRepositories;
-        public CreateCandidates(VotingContext dbContext, PartysRepositories partysRepositories, RegionsRepositories regionsRepositories, CandidatesRepositories candidatesRepositories)
+        private readonly PartyService _partyService;
+        private readonly RegionService _regionService;
+        private readonly CandidateService _candidateService;
+
+        // Constructor initializing the form and its dependencies.
+        public CreateCandidates(VotingContext dbContext, PartyService partyService, RegionService regionService, CandidateService candidateService)
         {
             InitializeComponent();
             _dbContext = dbContext;
-            _partysRepositories = partysRepositories;
-            _regionsRepositories = regionsRepositories;
-            _candidatesRepositories = candidatesRepositories;
+            _partyService = partyService;
+            _regionService = regionService;
+            _candidateService = candidateService;
             InitializeRegionComboBox();
             InitializePartyComboBox();
         }
 
+        // Method to populate the Region ComboBox with region names.
         private void InitializeRegionComboBox()
         {
-            var region = _regionsRepositories.LoadAll();
-            foreach (var r in region)
+            var regions = _regionService.LoadAll(); // Load all regions using the region service.
+            foreach (var r in regions)
             {
-                regionComboBox.Items.Add($"{r.Name}");
+                regionComboBox.Items.Add(r.Name); // Add each region's name to the combo box.
             }
         }
 
+        // Method to populate the Party ComboBox with party names.
         private void InitializePartyComboBox()
         {
-            var party = _partysRepositories.LoadAll();
-            foreach (var p in party)
+            var parties = _partyService.LoadAll(); // Load all parties using the party service.
+            foreach (var p in parties)
             {
-                partyComboBox.Items.Add($"{p.Name}");
+                partyComboBox.Items.Add(p.Name); // Add each party's name to the combo box.
             }
         }
 
+        // Event handler for the submit button click.
         private void submitButton_Click(object sender, EventArgs e)
         {
-            var entity = new Candidate()
+            // Create a new CandidateDTO object with details from the form.
+            var candidateDTO = new CandidateDTO()
             {
-                Name = nameTextBox.Text,
-                RegionID = _regionsRepositories.GetRegion(regionComboBox.SelectedItem.ToString()).ID,
-                PartyID = _partysRepositories.GetParty(partyComboBox.SelectedItem.ToString()).ID
+                Name = nameTextBox.Text, // Set the candidate's name from the text box.
+                RegionID = _regionService.GetRegion(regionComboBox.SelectedItem.ToString()).ID, // Set the region ID based on selected item in combo box.
+                PartyID = _partyService.GetParty(partyComboBox.SelectedItem.ToString()).ID // Set the party ID based on selected item in combo box.
             };
-            _candidatesRepositories.Save(entity);
-            MessageBox.Show("New person made", "Yay", MessageBoxButtons.OK);
+
+            // Save the candidate using the candidate service and receive the saved candidate.
+            var savedCandidate = _candidateService.Save(candidateDTO);
+            // Check if the save operation was successful.
+            if (savedCandidate != null)
+            {
+                MessageBox.Show("New candidate created successfully!", "Success", MessageBoxButtons.OK);
+                nameTextBox.Clear(); // Clear the name text box.
+                nameTextBox.Focus(); // Set focus back to the name text box for potential new entries.
+            }
+            else
+            {
+                // If the save operation failed, show an error message.
+                MessageBox.Show("Failed to create a new candidate.", "Error", MessageBoxButtons.OK);
+            }
         }
     }
 }

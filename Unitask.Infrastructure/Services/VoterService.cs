@@ -7,24 +7,29 @@ using UniTask.data.Repositories;
 using Unitask.DTOs;
 using UniTask.entites;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Cryptography;
+using Microsoft.EntityFrameworkCore;
+using System.Xml.Linq;
 
 namespace Unitask.Infrastructure.Services
 {
+    // Service class responsible for managing voter-related operations.
     public class VoterService
     {
-        //declare
+        // Repositories for accessing voter and voting data.
         private readonly VotersRepositories _votersRepositories;
         private readonly CandidateService _candidateService;
         private readonly VotesRepositories _votesRepositories;
 
-        //construsuror for service depenedency injection
+        // Constructor for dependency injection.
         public VoterService(VotersRepositories votersRepositories, CandidateService candidateService, VotesRepositories votesRepositories)
         {
             _votersRepositories = votersRepositories;
             _candidateService = candidateService;
             _votesRepositories = votesRepositories;
         }
-        // load object based on id
+
+        // Loads a voter by their ID and converts it to a DTO.
         public VoterDTO Load(Guid id)
         {
             var entity = _votersRepositories.Load(id);
@@ -32,14 +37,14 @@ namespace Unitask.Infrastructure.Services
             return GetDTO(entity);
         }
 
-        //select them all get them each
+        // Loads all voters and converts each to a DTO.
         public IEnumerable<VoterDTO> LoadAll()
         {
             var entities = _votersRepositories.LoadAll();
             return entities.Select(GetDTO);
         }
 
-        //cobverting data transfer object to database model for svaing
+        // Saves or updates a voter based on the provided DTO.
         public VoterDTO Save(VoterDTO DTO)
         {
             var entity = GetEntity(DTO);
@@ -47,13 +52,25 @@ namespace Unitask.Infrastructure.Services
             return GetDTO(entity);
         }
 
+        // Deletes a voter based on the provided DTO.
         public void Delete(VoterDTO DTO)
         {
             var entity = GetEntity(DTO);
             _votersRepositories.Delete(entity);
         }
 
-        //converting database modle to data treansfer object dto
+        // Generates a random verification code using a secure method.
+        public string GetRandomCode(int length)
+        {
+            //secure algorithm for creating passcode 
+            var provider = new RNGCryptoServiceProvider();
+            var bytes = new byte[length];
+            provider.GetBytes(bytes);
+            var code = Convert.ToBase64String(bytes).Replace("/", "-").Replace("+", "_");
+            return code;
+        }
+
+        // Converts a Voter entity to a VoterDTO.
         private VoterDTO GetDTO(Voter entity)
         {
             if (entity == null) return null;
@@ -69,10 +86,11 @@ namespace Unitask.Infrastructure.Services
                 DateOfBirth = entity.DateOfBirth,
                 Name = entity.Name,
                 Email = entity.Email,
+                Salt = entity.Salt,
             };
         }
 
-        // convert sata transfer obeject to database model
+        // Converts a VoterDTO to a Voter entity.
         private Voter GetEntity(VoterDTO DTO)
         {
             return new Voter()
@@ -81,15 +99,17 @@ namespace Unitask.Infrastructure.Services
                 UserID = DTO.UserID,
                 Password = DTO.Password,
                 VerifcationCode = DTO.VerifcationCode,
-                IsVerified=DTO.IsVerified,
+                IsVerified = DTO.IsVerified,
                 HasVoted = DTO.HasVoted,
                 RegionID = DTO.RegionID,
                 DateOfBirth = DTO.DateOfBirth,
                 Name = DTO.Name,
-                Email = DTO.Email
+                Email = DTO.Email,
+                Salt = DTO.Salt,
             };
         }
 
+        // Verifies a voter's ID using their verification code.
         public bool VerifyId(string verificationCode)
         {
             // Find the voter by the verification ID
@@ -104,7 +124,7 @@ namespace Unitask.Infrastructure.Services
             return false;
         }
 
-        // Method to cast a vote
+        // Casts a vote for a voter, updating the vote and candidate records accordingly.
         public Vote? CastVote(Guid voterId, Guid electionId, Guid candidateId)
         {
             var vote = _votesRepositories.GetVote(voterId, electionId);
@@ -119,7 +139,71 @@ namespace Unitask.Infrastructure.Services
             {
                 return null;
             }
-            
+
+        }
+
+        // Confirms a voter's login credentials.
+        public VoterDTO ConfirmVoterLogin(VoterDTO voterDTO)
+        {
+            var voter = GetEntity(voterDTO);
+            var confirmedVoter = _votersRepositories.ConfirmVoterLogin(voter);
+            if (confirmedVoter != null)
+            {
+                return GetDTO(confirmedVoter);
+            }
+            return null;
+        }
+
+        // Confirms a voter's login credentials.
+        public VoterDTO ConfirmInternalVoterLogin(VoterDTO voterDTO)
+        {
+            var voter = GetEntity(voterDTO);
+            var confirmedVoter = _votersRepositories.ConfirmVoterLogin(voter);
+            if (confirmedVoter != null)
+            {
+                return GetDTO(confirmedVoter);
+            }
+            return null;
+        }
+
+        // Finds voters by name and returns their DTOs.
+        public IEnumerable<VoterDTO> FindByName(string name)
+        {
+            return _votersRepositories.FindByName(name).Select(x => GetDTO(x));
+        }
+
+        // Finds voters by email and returns their DTOs.
+        public IEnumerable<VoterDTO> FindByEmail(string? email)
+        {
+            return _votersRepositories.FindByEmail(email).Select(x => GetDTO(x));
+        }
+
+        // Updates the information of an existing voter in the database.
+        public void Update(VoterDTO voterDTO)
+        {
+            // Convert DTO to Entity
+            Voter updatedVoter = GetEntity(voterDTO);
+
+            // Fetch existing voter from the database
+            Voter existingVoter = _votersRepositories.Load(updatedVoter.ID);
+            if (existingVoter == null)
+                throw new InvalidOperationException("Voter not found.");
+
+            // Update properties
+            existingVoter.UserID = updatedVoter.UserID;
+            existingVoter.Password = updatedVoter.Password;
+            existingVoter.VerifcationCode = updatedVoter.VerifcationCode;
+            existingVoter.IsVerified = updatedVoter.IsVerified;
+            existingVoter.HasVoted = updatedVoter.HasVoted;
+            existingVoter.RegionID = updatedVoter.RegionID;
+            existingVoter.DateOfBirth = updatedVoter.DateOfBirth;
+            existingVoter.Name = updatedVoter.Name;
+            existingVoter.Email = updatedVoter.Email;
+            existingVoter.Salt = updatedVoter.Salt;
+
+            // Save the updated entity
+            _votersRepositories.Update(existingVoter);
         }
     }
+    
 }

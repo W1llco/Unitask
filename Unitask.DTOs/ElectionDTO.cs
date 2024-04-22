@@ -17,9 +17,9 @@ namespace Unitask.DTOs
 
         public Guid RegionID { get; set; }
 
-        public Guid StartTime { get; set; }
+        public DateTime StartTime { get; set; }
 
-        public Guid EndTime { get; set; }
+        public DateTime EndTime { get; set; }
 
         public string Name { get; set; }
     }

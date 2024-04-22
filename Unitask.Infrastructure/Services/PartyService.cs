@@ -10,17 +10,19 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Unitask.Infrastructure.Services
 {
+    // The service class responsible for managing operations related to political parties.
     public class PartyService
     {
-        //declare
+        // Repository for accessing party data.
         private readonly PartysRepositories _partysRepositories;
 
-        //construsuror for service depenedency injection
+        // Constructor for injecting the party repository.
         public PartyService(PartysRepositories partysRepositories)
         {
             _partysRepositories = partysRepositories;
         }
-        // load object based on id
+
+        // Loads a party by its ID and converts it to a DTO.
         public PartyDTO Load(Guid id)
         {
             var entity = _partysRepositories.Load(id);
@@ -28,14 +30,14 @@ namespace Unitask.Infrastructure.Services
             return GetDTO(entity);
         }
 
-        //select them all get them each
+        // Loads all parties and converts them to DTOs.
         public IEnumerable<PartyDTO> LoadAll()
         {
             var entities = _partysRepositories.LoadAll();
             return entities.Select(GetDTO);
         }
 
-        //cobverting data transfer object to database model for svaing
+        // Saves a party based on the provided DTO.
         public PartyDTO Save(PartyDTO DTO)
         {
             var entity = GetEntity(DTO);
@@ -43,13 +45,14 @@ namespace Unitask.Infrastructure.Services
             return GetDTO(entity);
         }
 
+        // Deletes a party based on the provided DTO.
         public void Delete(PartyDTO DTO)
         {
             var entity = GetEntity(DTO);
             _partysRepositories.Delete(entity);
         }
 
-        //converting database modle to data treansfer object dto
+        // Converts a Party entity to a PartyDTO.
         private PartyDTO GetDTO(Party entity)
         {
             if (entity == null) return null;
@@ -62,7 +65,7 @@ namespace Unitask.Infrastructure.Services
             };
         }
 
-        // convert sata transfer obeject to database model
+        // Converts a PartyDTO to a Party entity.
         private Party GetEntity(PartyDTO DTO)
         {
             return new Party()
@@ -74,11 +77,26 @@ namespace Unitask.Infrastructure.Services
             };
         }
 
-        // Retrieves all party entities, converting them to PartyDTO objects
+        // Retrieves all parties and converts them to DTOs.
         public IEnumerable<PartyDTO> GetAllParties()
         {
             var entities = _partysRepositories.LoadAll();
             return entities.Select(entity => GetDTO(entity));
+        }
+
+        // Retrieves a party by name and converts it to a DTO if found.
+        public PartyDTO GetParty(string partyName)
+        {
+            var party = _partysRepositories.GetParty(partyName);
+            if (party != null)
+            {
+                return new PartyDTO
+                {
+                    ID = party.ID,
+                    Name = party.Name
+                };
+            }
+            return null;
         }
     }
 }

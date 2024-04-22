@@ -8,73 +8,79 @@ using UniTask.entites;
 
 namespace UniTask.data.Repositories
 {
-    public class AdminsRepositories : BaseRepositories
+    public class AdminsRepositories
     {
-        //Variable depenedency injection 
+        // Field to hold the database context, injected via the constructor.
         private readonly VotingContext _context;
 
-        // construstor  dependency injection
+        // Constructor that injects the VotingContext to be used by this repository.
         public AdminsRepositories(VotingContext context)
         {
             _context = context;
         }
 
-        // Load object based on primary key 
+        // Retrieves an Admin entity by its ID. Returns null if the ID is empty (Guid.Empty).
         public Admin Load(Guid id)
         {
             if (id == Guid.Empty)
-                return null;
-            return _context.Admins.Local.First(x => x.ID == id);
+                return null; // Return null if the provided ID is empty, indicating no valid ID was provided.
+            return _context.Admins.Local.First(x => x.ID == id); // Return the first local Admin matching the ID.
         }
-        //Load all
+
+        // Retrieves all Admin entities from the local context.
         public IEnumerable<Admin> LoadAll()
         {
-            return _context.Admins.Local.AsEnumerable();
+            return _context.Admins.Local.AsEnumerable(); // Return all Admin entities as an IEnumerable.
         }
 
-        //save new object 
+        // Saves an Admin entity to the context. If the Admin is new, it inserts; if existing, it updates.
         public Admin Save(Admin entity)
         {
-            if (entity.ID == Guid.Empty)
+            if (entity.ID == Guid.Empty) // Check if the Admin entity is new.
             {
-                entity.ID = Guid.NewGuid();
-                Insert(entity);
-                return entity;
+                entity.ID = Guid.NewGuid(); // Assign a new GUID.
+                Insert(entity); // Insert the new Admin entity into the context.
+                return entity; // Return the newly added entity.
             }
-            Update(entity);
-            return entity;
+            Update(entity); // Update the existing entity.
+            return entity; // Return the updated entity.
         }
 
-        //dele existing object 
+        // Deletes an Admin entity from the context.
         public void Delete(Admin entity)
         {
-            if (entity.ID != Guid.Empty)
+            if (entity.ID != Guid.Empty) // Ensure the Admin has a valid ID.
             {
-                _context.Remove(entity);
-                _context.SaveChanges();
+                _context.Remove(entity); // Remove the Admin from the context.
+                _context.SaveChanges(); // Persist changes to the database.
             }
         }
 
-        // insert new object 
+        // Inserts a new Admin entity into the database.
         private void Insert(Admin entity)
         {
-            _context.Admins.Add(entity);
-            _context.SaveChanges();
-
+            _context.Admins.Add(entity); // Add the new Admin to the context.
+            _context.SaveChanges(); // Save changes to the database.
         }
 
-        //update existing object 
+        // Updates an existing Admin entity in the database.
         private void Update(Admin entity)
         {
-            var admin = _context.Admins.FirstOrDefault(x => x.ID == entity.ID);
-            admin.UserID = entity.UserID;
-            admin.Username = entity.Username;
-            admin.Password = entity.Password;
-            _context.SaveChanges();
+            var admin = _context.Admins.FirstOrDefault(x => x.ID == entity.ID); // Find the existing Admin by ID.
+            if (admin != null) // Ensure the Admin exists before updating.
+            {
+                // Update the Admin properties.
+                admin.UserID = entity.UserID;
+                admin.Username = entity.Username;
+                admin.Password = entity.Password;
+                _context.SaveChanges(); // Save the updated properties to the database.
+            }
         }
 
+        // Authenticates an Admin by username and password.
         public Admin ConfirmVoterLogin(Admin admin)
         {
+            // Return the Admin whose username and password match those provided.
             return _context.Admins.FirstOrDefault(x => x.Username == admin.Username && x.Password == admin.Password);
         }
     }

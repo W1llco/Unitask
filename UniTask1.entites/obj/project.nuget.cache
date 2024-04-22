@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "8+yZVYcr9/kX0POYi1/V/9MKdRP71q+TltDnckeKhVL7Sgin39ftxFh+Ny0eY3Dc4OZv45oGatFrCaNgah1o8g==",
+  "dgSpecHash": "ZIdYEwEI5PcGyBNcP7frcb+p830iLxLj9R3uEUOKurDFs0o6zr16eUUaPP8ECItUtG9ucAsa45RPpEEOyZqXRg==",
   "success": true,
   "projectFilePath": "C:\\Git\\Unitask\\UniTask1.entites\\UniTask.Entites.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\wkirk\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\8.0.4\\microsoft.aspnetcore.cryptography.internal.8.0.4.nupkg.sha512",
+    "C:\\Users\\wkirk\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\8.0.4\\microsoft.aspnetcore.cryptography.keyderivation.8.0.4.nupkg.sha512",
     "C:\\Users\\wkirk\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.28\\microsoft.data.sqlite.core.6.0.28.nupkg.sha512",
     "C:\\Users\\wkirk\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.28\\microsoft.entityframeworkcore.6.0.28.nupkg.sha512",
     "C:\\Users\\wkirk\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.28\\microsoft.entityframeworkcore.abstractions.6.0.28.nupkg.sha512",

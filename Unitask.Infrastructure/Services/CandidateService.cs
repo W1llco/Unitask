@@ -8,20 +8,23 @@ using Unitask.DTOs;
 using UniTask.entites;
 using UniTask.Entites;
 using Unitask.DTOs.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace Unitask.Infrastructure.Services
 {
+    // Class responsible for handling business logic related to candidate operations.
     public class CandidateService
     {
-        //declare
+        // Repository for accessing candidate data.
         private readonly CandidatesRepositories _candidatesRepositories;
 
-        //construsuror for service depenedency injection
+        // Constructor for injecting the candidate repository.
         public CandidateService(CandidatesRepositories candidatesRepositories)
         {
             _candidatesRepositories = candidatesRepositories;
         }
-        // load object based on id
+
+        // Retrieves a candidate by their ID and converts them to a DTO.
         public CandidateDTO Load(Guid id)
         {
             var entity = _candidatesRepositories.Load(id);
@@ -29,14 +32,14 @@ namespace Unitask.Infrastructure.Services
             return GetDTO(entity);
         }
 
-        //select them all get them each
+        // Retrieves all candidates and converts them to DTOs.
         public IEnumerable<CandidateDTO> LoadAll()
         {
             var entities = _candidatesRepositories.LoadAll();
             return entities.Select(GetDTO);
         }
 
-        //cobverting data transfer object to database model for svaing
+        // Saves or updates a candidate based on the DTO provided.
         public CandidateDTO Save(CandidateDTO DTO)
         {
             var entity = GetEntity(DTO);
@@ -44,13 +47,14 @@ namespace Unitask.Infrastructure.Services
             return GetDTO(entity);
         }
 
+        // Deletes a candidate based on the DTO provided.
         public void Delete(CandidateDTO DTO)
         {
             var entity = GetEntity(DTO);
             _candidatesRepositories.Delete(entity);
         }
 
-        //converting database modle to data treansfer object dto
+        // Converts a Candidate entity to a CandidateDTO.
         private CandidateDTO GetDTO(Candidate entity)
         {
             if (entity == null) return null;
@@ -63,7 +67,7 @@ namespace Unitask.Infrastructure.Services
             };
         }
 
-        // convert sata transfer obeject to database model
+        // Converts a CandidateDTO to a Candidate entity.
         private Candidate GetEntity(CandidateDTO DTO)
         {
             return new Candidate()
@@ -75,7 +79,7 @@ namespace Unitask.Infrastructure.Services
             };
         }
 
-        //converting database modle to data treansfer object dto
+        // Converts a CandidateXElection entity to a CandidateXElectionDTO.
         private CandidateXElectionDTO GetCXEDTO(CandidateXElection entity)
         {
             if (entity == null) return null;
@@ -88,7 +92,7 @@ namespace Unitask.Infrastructure.Services
             };
         }
 
-        // convert sata transfer obeject to database model
+        // Converts a CandidateXElectionDTO to a CandidateXElection entity.
         private CandidateXElection GetCXEEntity(CandidateXElectionDTO DTO)
         {
             return new CandidateXElection()
@@ -100,7 +104,7 @@ namespace Unitask.Infrastructure.Services
             };
         }
 
-        // Method to increase a candidate's vote count
+        // Increases the vote count for a candidate in a specific election.
         public bool IncreaseCandidateVote(Guid candidateId, Guid electionId)
         {
             var candidate = _candidatesRepositories.GetElectionCandidate(candidateId, electionId);
@@ -116,11 +120,13 @@ namespace Unitask.Infrastructure.Services
             return false;
         }
 
+        // Retrieves all candidates
         public IEnumerable<CandidateDTO> GetAllCandidates()
         {
             return LoadAll();
         }
 
+        // Retrieves all candidates with additional information from the CandidateXElection table.
         public IEnumerable<CandidateXElectionViewModel> CandidateXElectionViewModels(IEnumerable<CandidateXElectionDTO> candidateXElections)
         {
             var candidates = new List<CandidateXElectionViewModel>();
@@ -135,21 +141,41 @@ namespace Unitask.Infrastructure.Services
             return candidates;
         }
 
+        // Retrieves all candidates for a given region and converts them to DTOs.
         public IEnumerable<CandidateDTO> GetCandidatesForRegion(Guid regionID)
         {
             return _candidatesRepositories.GetCandidatesForRegion(regionID).Select(GetDTO);
         }
 
+        // Retrieves all candidate entries for a specific election.
         public IEnumerable<CandidateXElectionDTO> GetAllCandidatesForElection(Guid electionId)
         {
             return _candidatesRepositories.GetAllCandidatesForElection(electionId).Select(GetCXEDTO);
         }
 
-        //public IEnumerable<CandidateXElection> GetRegionWinners(Guid electionId)
-        //{
-        //    var candidateXElection = _
-        //        var candidates = _candidatesRepositories.GetAllCandidatesForElection(electionId);
-        //}
+        // Retrieves candidates filtered by region and party.
+        public IEnumerable<CandidateDTO> GetCandidates(Guid regionId, Guid partyId)
+        {
+            return _candidatesRepositories.GetCandidates(regionId, partyId).Select(GetDTO);
+        }
+
+        // Retrieves candidates filtered by region and party.
+        public IEnumerable<CandidateDTO> GetCandidatesForElectionByRegion(Guid electionID, Guid regionID)
+        {
+            return _candidatesRepositories.GetCandidatesForElectionByRegion(electionID, regionID).Select(GetDTO);
+        }
+
+        // Updates a candidate based on changes in the DTO and returns the updated DTO.
+        public CandidateDTO Update(CandidateDTO selectedCandidate)
+        {
+            var entity = _candidatesRepositories.Load(selectedCandidate.ID);
+            entity.Name = selectedCandidate.Name;
+            entity.PartyID = selectedCandidate.PartyID;
+            entity.RegionID = selectedCandidate.RegionID;
+            _candidatesRepositories.Save(entity);
+            return GetDTO(entity);
+        }
+
     }
 
 }

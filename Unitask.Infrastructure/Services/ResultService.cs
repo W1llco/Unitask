@@ -9,17 +9,19 @@ using UniTask.entites;
 
 namespace Unitask.Infrastructure.Services
 {
+    // The service class responsible for managing operations related to election results.
     public class ResultService
     {
-        //declare
+        // Repository for accessing result data.
         private readonly ResultsRepositories _resultsRepositories;
 
-        //construsuror for service depenedency injection
+        // Constructor for dependency injection, which enhances testability and modularity.
         public ResultService(ResultsRepositories resultsRepositories)
         {
             _resultsRepositories = resultsRepositories;
         }
-        // load object based on id
+
+        // Loads a result by its ID and converts it to a DTO.
         public ResultDTO Load(Guid id)
         {
             var entity = _resultsRepositories.Load(id);
@@ -27,14 +29,14 @@ namespace Unitask.Infrastructure.Services
             return GetDTO(entity);
         }
 
-        //select them all get them each
+        // Loads all results and converts each to a DTO.
         public IEnumerable<ResultDTO> LoadAll()
         {
             var entities = _resultsRepositories.LoadAll();
             return entities.Select(GetDTO);
         }
 
-        //cobverting data transfer object to database model for svaing
+        // Saves or updates a result based on the provided DTO.
         public ResultDTO Save(ResultDTO DTO)
         {
             var entity = GetEntity(DTO);
@@ -42,13 +44,14 @@ namespace Unitask.Infrastructure.Services
             return GetDTO(entity);
         }
 
+        // Deletes a result based on the provided DTO.
         public void Delete(ResultDTO DTO)
         {
             var entity = GetEntity(DTO);
             _resultsRepositories.Delete(entity);
         }
 
-        //converting database modle to data treansfer object dto
+        // Helper method to convert a Result entity to a ResultDTO.
         private ResultDTO GetDTO(Result entity)
         {
             if (entity == null) return null;
@@ -59,7 +62,7 @@ namespace Unitask.Infrastructure.Services
             };
         }
 
-        // convert sata transfer obeject to database model
+        // Helper method to convert a ResultDTO to a Result entity.
         private Result GetEntity(ResultDTO DTO)
         {
             return new Result()

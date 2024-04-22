@@ -11,15 +11,16 @@ namespace Unitask.Infrastructure.Services
 {
     public class VoteService
     {
-        //declare
+        // Repository for accessing vote data.
         private readonly VotesRepositories _votesRepositories;
 
-        //construsuror for service depenedency injection
+        // Repository for accessing vote data.
         public VoteService(VotesRepositories votesRepositories)
         {
             _votesRepositories = votesRepositories;
         }
-        // load object based on id
+
+        // Load a vote object based on its ID.
         public VoteDTO Load(Guid id)
         {
             var entity = _votesRepositories.Load(id);
@@ -27,14 +28,14 @@ namespace Unitask.Infrastructure.Services
             return GetDTO(entity);
         }
 
-        //select them all get them each
+        // Load all vote objects and convert each to a DTO.
         public IEnumerable<VoteDTO> LoadAll()
         {
             var entities = _votesRepositories.LoadAll();
             return entities.Select(GetDTO);
         }
 
-        //cobverting data transfer object to database model for svaing
+        // Convert a data transfer object to a database model for saving.
         public VoteDTO Save(VoteDTO DTO)
         {
             var entity = GetEntity(DTO);
@@ -42,13 +43,14 @@ namespace Unitask.Infrastructure.Services
             return GetDTO(entity);
         }
 
+        // Convert a database model to a data transfer object (DTO).
         public void Delete(VoteDTO DTO)
         {
             var entity = GetEntity(DTO);
             _votesRepositories.Delete(entity);
         }
 
-        //converting database modle to data treansfer object dto
+        // Convert a database model to a data transfer object (DTO).
         private VoteDTO GetDTO(Vote entity)
         {
             if (entity == null) return null;
@@ -71,6 +73,12 @@ namespace Unitask.Infrastructure.Services
                 CandiateId = DTO.CandiateId,
                 ElectionId = DTO.ElectionId
             };
+        }
+
+        // Get a list of used votes for a specific voter.
+        public IEnumerable<Guid> GetUsedVotes(Guid voterId)
+        {
+            return _votesRepositories.GetUsedVotes(voterId);
         }
     }
 }

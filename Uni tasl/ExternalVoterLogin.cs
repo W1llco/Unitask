@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Uni_tasl;
+using Unitask.DTOs;
+using Unitask.Infrastructure.Services;
 using UniTask.data;
 using UniTask.data.Repositories;
 using UniTask.entites;
@@ -20,30 +22,31 @@ namespace Uni_tasl
     {
         //injecting voting context
         private readonly VotingContext _dbContext;
-        private readonly VotesRepositories _votesRepositories;
-        private readonly ElectionsRepositories _electionsRepositories;
-        private readonly VotersRepositories _votersRepositories;
+        private readonly VoteService _voteService;
+        private readonly ElectionService _electionService;
+        private readonly VoterService _voterService;
 
-        public ExternalVoterLogin(VotingContext dbContext, VotersRepositories votersRepositories, VotesRepositories votesRepositories, ElectionsRepositories electionsRepositories)
+        public ExternalVoterLogin(VotingContext dbContext, VoterService voterService, VoteService voteService, ElectionService electionService)
         {
             InitializeComponent();
             _dbContext = dbContext;
-            _votesRepositories = votesRepositories;
-            _electionsRepositories = electionsRepositories;
-            _votersRepositories = votersRepositories;
+            _voteService = voteService;
+            _electionService = electionService;
+            _voterService = voterService;
+            PasswordTextBox.UseSystemPasswordChar = true;
         }
 
         private void Login_Click(object sender, EventArgs e)
         {
-            var elections = _electionsRepositories.LoadAll();
+            var elections = _electionService.LoadAll();
             DateTime dateOfBirth = DobDateTimePicker.Value.Date;
 
-            var x = _votersRepositories.LoadAll();
-            var voter = _votersRepositories.ConfirmVoterLogin(new Voter() {Name = UsernameTextBox.Text, Password = PasswordTextBox.Text, DateOfBirth = dateOfBirth, VerifcationCode = CodeTextBox.Text });
+            var x = _voterService.LoadAll();
+            var voter = _voterService.ConfirmVoterLogin(new VoterDTO() {Name = UsernameTextBox.Text, Password = PasswordTextBox.Text, DateOfBirth = dateOfBirth, VerifcationCode = CodeTextBox.Text });
 
             if (voter != null )
             {
-                var votes = _votesRepositories.LoadAll().Where(x => x.VoterId == voter.ID);
+                var votes = _voteService.LoadAll().Where(x => x.VoterId == voter.ID);
                 var existingVoteIds = votes.Select(x => x.ElectionId).ToList();
                 var electionIds = elections.Select(x => x.ID).ToList();
                 var electionsWithNoVotes = electionIds.Except(existingVoteIds).ToList();
@@ -54,7 +57,7 @@ namespace Uni_tasl
                     {
                         foreach (var id in electionsWithNoVotes)
                         {
-                            _votesRepositories.Save(new Vote() {ElectionId = id, VoterId = voter.ID});
+                            _voteService.Save(new VoteDTO() {ElectionId = id, VoterId = voter.ID});
                         }
                     }
                 }
@@ -62,12 +65,13 @@ namespace Uni_tasl
                 {
                     foreach (var id in electionsWithNoVotes)
                     {
-                        _votesRepositories.Save(new Vote() { ElectionId = id, VoterId = voter.ID });
+                        _voteService.Save(new VoteDTO() { ElectionId = id, VoterId = voter.ID });
                     }
 
                 }
                 SelectElection selectElection = (SelectElection)Program._provider.GetService(typeof(SelectElection));
                 selectElection.SetIds(voter.ID);
+                selectElection.InitializePage();
                 selectElection.Show();
                 this.Hide();
             }
@@ -81,6 +85,13 @@ namespace Uni_tasl
                 DobDateTimePicker.ResetText();
                 UsernameTextBox.Focus();
             }
+        }
+
+        private void mainMenuButton_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1(_dbContext);
+            form1.Show();
+            this.Close();
         }
     }
 }

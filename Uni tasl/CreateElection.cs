@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Uni_tasl.Helpers;
+using Unitask.Infrastructure.Services;
 using UniTask.data;
 using UniTask.data.Repositories;
 using UniTask.entites;
@@ -19,43 +20,52 @@ namespace Uni_tasl
 {
     public partial class CreateElection : Form
     {
+        // Fields for database context and various services that are used to interact with underlying data.
         private readonly VotingContext _dbContext;
-        private readonly CandidatesRepositories _candidatesRepositories;
-        private readonly ElectionsRepositories _electionsRepositories;
-        private readonly PartysRepositories _partysRepositories;
-        private readonly RegionsRepositories _regionsRepositories;
-        private readonly VotingSystemsRepositories _votingSystemsRepositories;
+        private readonly CandidateService _candidateService;
+        private readonly ElectionService _electionService;
+        private readonly PartyService _partyService;
+        private readonly RegionService _regionService;
+        private readonly VotingSystemService _votingSystemService;
+
+        // Helper class that contains utility functions for UI operations.
         public HelperFunctions helpersFunctions;
 
-        public CreateElection( VotingContext dbContext, CandidatesRepositories candidatesRepositories, ElectionsRepositories electionsRepositories, PartysRepositories partysRepositories, RegionsRepositories regionsRepositories, VotingSystemsRepositories votingSystemsRepositories)
+        // Constructor initializes services, context, and form components.
+        public CreateElection( VotingContext dbContext, CandidateService candidateService, ElectionService electionService, PartyService partyService, RegionService regionService, VotingSystemService votingSystemService)
         {
             InitializeComponent();
             _dbContext = dbContext;
-            _candidatesRepositories = candidatesRepositories;
-            _electionsRepositories = electionsRepositories;
-            _partysRepositories = partysRepositories;
-            _regionsRepositories = regionsRepositories;
-            _votingSystemsRepositories = votingSystemsRepositories;
-            helpersFunctions = new HelperFunctions(_partysRepositories);
+            _candidateService = candidateService;
+            _electionService = electionService;
+            _partyService = partyService;
+            _regionService = regionService;
+            _votingSystemService = votingSystemService;
+            helpersFunctions = new HelperFunctions(_partyService);// Initialize helper functions with party service.
             InitializeComboBoxAll();
+
+            // Set custom date/time format for DateTimePickers.
             startDateTimePicker.Format = DateTimePickerFormat.Custom;
             startDateTimePicker.CustomFormat = "MM/dd/yyyy hh:mm";
             endDateTimePicker.Format = DateTimePickerFormat.Custom;
             endDateTimePicker.CustomFormat = "MM/dd/yyyy hh:mm";
         }
 
+        // Initializes all ComboBoxes by loading data from services and setting them up.
         private void InitializeComboBoxAll()
         {
-            var partys = _partysRepositories.LoadAll();
-            var regions = _regionsRepositories.LoadAll();
-            var englandConservative = _candidatesRepositories.GetCandidates(regions.Single(x => x.Name == "England").ID, partys.Single(x => x.Name == "Conservative").ID);
-            var englandLabour = _candidatesRepositories.GetCandidates(regions.Single(x => x.Name == "England").ID, partys.Single(x => x.Name == "Labour").ID);
-            var scotlandConservative = _candidatesRepositories.GetCandidates(regions.Single(x => x.Name == "Scotland").ID, partys.Single(x => x.Name == "Conservative").ID);
-            var scotlandLabour = _candidatesRepositories.GetCandidates(regions.Single(x => x.Name == "Scotland").ID, partys.Single(x => x.Name == "Labour").ID);
-            var walesConservative = _candidatesRepositories.GetCandidates(regions.Single(x => x.Name == "Wales").ID, partys.Single(x => x.Name == "Conservative").ID);
-            var walesLabour = _candidatesRepositories.GetCandidates(regions.Single(x => x.Name == "Wales").ID, partys.Single(x => x.Name == "Labour").ID);
-            var votingsystem = _votingSystemsRepositories.LoadAll();
+            // Load parties, regions, and retrieve specific candidates based on region and party.
+            var partys = _partyService.LoadAll();
+            var regions = _regionService.LoadAll();
+            var englandConservative = _candidateService.GetCandidates(regions.Single(x => x.Name == "England").ID, partys.Single(x => x.Name == "Conservative").ID);
+            var englandLabour = _candidateService.GetCandidates(regions.Single(x => x.Name == "England").ID, partys.Single(x => x.Name == "Labour").ID);
+            var scotlandConservative = _candidateService.GetCandidates(regions.Single(x => x.Name == "Scotland").ID, partys.Single(x => x.Name == "Conservative").ID);
+            var scotlandLabour = _candidateService.GetCandidates(regions.Single(x => x.Name == "Scotland").ID, partys.Single(x => x.Name == "Labour").ID);
+            var walesConservative = _candidateService.GetCandidates(regions.Single(x => x.Name == "Wales").ID, partys.Single(x => x.Name == "Conservative").ID);
+            var walesLabour = _candidateService.GetCandidates(regions.Single(x => x.Name == "Wales").ID, partys.Single(x => x.Name == "Labour").ID);
+            var votingsystem = _votingSystemService.LoadAll();
 
+            // Populate ComboBoxes with candidates and voting systems without displaying party names.
             helpersFunctions.GetCandidateValuesForDropdown(candiateEnglandConservativeComboBox, englandConservative, false);
             helpersFunctions.GetCandidateValuesForDropdown(candiateEnglandLabourComboBox, englandLabour, false);
             helpersFunctions.GetCandidateValuesForDropdown(candiateScotlandConservativeComboBox, scotlandConservative, false);
@@ -65,24 +75,36 @@ namespace Uni_tasl
             helpersFunctions.GetVotingSystemValuesForDropdown(votingSystemComboBox, votingsystem);
         }
 
+        // Handler for the form's submit button to create a new election.
         private void button1_Click(object sender, EventArgs e)
         {
-            if((Guid)candiateEnglandConservativeComboBox.SelectedValue == Guid.Empty||
-                (Guid)candiateEnglandLabourComboBox.SelectedValue == Guid.Empty||
-                (Guid)candiateScotlandConservativeComboBox.SelectedValue == Guid.Empty||
-                (Guid)candiateScotlandLabourComboBox.SelectedValue == Guid.Empty||
-                (Guid)candiateWalesLabourComboBox.SelectedValue == Guid.Empty||
+            // Check that all candidate selections and voting system are valid before proceeding.
+            if ((Guid)candiateEnglandConservativeComboBox.SelectedValue == Guid.Empty ||
+                (Guid)candiateEnglandLabourComboBox.SelectedValue == Guid.Empty ||
+                (Guid)candiateScotlandConservativeComboBox.SelectedValue == Guid.Empty ||
+                (Guid)candiateScotlandLabourComboBox.SelectedValue == Guid.Empty ||
+                (Guid)candiateWalesLabourComboBox.SelectedValue == Guid.Empty ||
                 (Guid)candiateWalesConservativeComboBox.SelectedValue == Guid.Empty
                 )
             {
-                MessageBox.Show("Please select for all candidates", "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Please make sure all regions have candidates selected", "Error", MessageBoxButtons.OK);
             }
-            else if((Guid)votingSystemComboBox.SelectedValue == Guid.Empty)
+            else if ((Guid)votingSystemComboBox.SelectedValue == Guid.Empty)
             {
-                MessageBox.Show("Please select a voting system", "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Please select a voting system to use", "Error", MessageBoxButtons.OK);
+            }
+            else if (startDateTimePicker.Value <= DateTime.Now)
+            {
+                MessageBox.Show("The start date and time must be in the future.", "Date Error", MessageBoxButtons.OK);
+            }
+            // Check if the end date/time is in the past
+            else if (endDateTimePicker.Value <= DateTime.Now)
+            {
+                MessageBox.Show("The end date and time must be in the future.", "Date Error", MessageBoxButtons.OK);
             }
             else
             {
+                // Create and save a new election entity with candidates.
                 var entity = new Election()
                 {
                     Name = nameOfElectionTextBox.Text,
@@ -90,13 +112,13 @@ namespace Uni_tasl
                     EndTime = endDateTimePicker.Value,
                     VoteSystem = (Guid)votingSystemComboBox.SelectedValue
                 };
-                _electionsRepositories.Save(entity);
-                _electionsRepositories.SaveElectionCandidate(entity.ID, (Guid)candiateEnglandConservativeComboBox.SelectedValue);
-                _electionsRepositories.SaveElectionCandidate(entity.ID, (Guid)candiateEnglandLabourComboBox.SelectedValue);
-                _electionsRepositories.SaveElectionCandidate(entity.ID, (Guid)candiateScotlandConservativeComboBox.SelectedValue);
-                _electionsRepositories.SaveElectionCandidate(entity.ID, (Guid)candiateScotlandLabourComboBox.SelectedValue);
-                _electionsRepositories.SaveElectionCandidate(entity.ID, (Guid)candiateWalesConservativeComboBox.SelectedValue);
-                _electionsRepositories.SaveElectionCandidate(entity.ID, (Guid)candiateWalesLabourComboBox.SelectedValue);
+                _electionService.Save(entity);// Save the election.
+                _electionService.SaveElectionCandidate(entity.ID, (Guid)candiateEnglandConservativeComboBox.SelectedValue);// Assign selected candidates to the election.
+                _electionService.SaveElectionCandidate(entity.ID, (Guid)candiateEnglandLabourComboBox.SelectedValue);
+                _electionService.SaveElectionCandidate(entity.ID, (Guid)candiateScotlandConservativeComboBox.SelectedValue);
+                _electionService.SaveElectionCandidate(entity.ID, (Guid)candiateScotlandLabourComboBox.SelectedValue);
+                _electionService.SaveElectionCandidate(entity.ID, (Guid)candiateWalesConservativeComboBox.SelectedValue);
+                _electionService.SaveElectionCandidate(entity.ID, (Guid)candiateWalesLabourComboBox.SelectedValue);
 
                 MessageBox.Show("New Election Made", "Created", MessageBoxButtons.OK);
             }

@@ -9,17 +9,19 @@ using UniTask.entites;
 
 namespace Unitask.Infrastructure.Services
 {
+    // Service class responsible for managing user-related operations.
     public class UserService
     {
-        //declare
+        // Repository for accessing user data.
         private readonly UsersRepositories _usersRepositories;
 
-        //construsuror for service depenedency injection
+        // Constructor for dependency injection.
         public UserService(UsersRepositories usersRepositories)
         {
             _usersRepositories = usersRepositories;
         }
-        // load object based on id
+
+        // Loads a user by their ID and converts it to a DTO.
         public UserDTO Load(Guid id)
         {
             var entity = _usersRepositories.Load(id);
@@ -27,14 +29,14 @@ namespace Unitask.Infrastructure.Services
             return GetDTO(entity);
         }
 
-        //select them all get them each
+        // Loads all users and converts each to a DTO.
         public IEnumerable<UserDTO> LoadAll()
         {
             var entities = _usersRepositories.LoadAll();
             return entities.Select(GetDTO);
         }
 
-        //cobverting data transfer object to database model for svaing
+        // Saves or updates a user based on the provided DTO.
         public UserDTO Save(UserDTO DTO)
         {
             var entity = GetEntity(DTO);
@@ -42,39 +44,31 @@ namespace Unitask.Infrastructure.Services
             return GetDTO(entity);
         }
 
+        // Deletes a user based on the provided DTO.
         public void Delete(UserDTO DTO)
         {
             var entity = GetEntity(DTO);
             _usersRepositories.Delete(entity);
         }
 
-        //converting database modle to data treansfer object dto
+        // Converts a User entity to a UserDTO.
         private UserDTO GetDTO(User entity)
         {
             if (entity == null) return null;
             return new UserDTO()
             {
                 ID = entity.ID,
-                Name = entity.Name,
                 Username = entity.Username,
-                Password = entity.Password,
-                IsAdmin = entity.IsAdmin,
-                OneTimeCode = entity.OneTimeCode,
-                DateOfBirth = entity.DateOfBirth
             };
         }
-        // convert sata transfer obeject to database model
+
+        // Converts a UserDTO to a User entity.
         private User GetEntity(UserDTO DTO)
         {
             return new User()
             {
                 ID = DTO.ID,
-                Name = DTO.Name,
                 Username = DTO.Username,
-                Password = DTO.Password,
-                IsAdmin = DTO.IsAdmin,
-                OneTimeCode = DTO.OneTimeCode,
-                DateOfBirth = DTO.DateOfBirth
             };
         }
     }
