@@ -27,6 +27,7 @@ namespace Uni_tasl
         private readonly ElectionService _electionService;
         private readonly AdminService _adminService;
         private readonly VotingSystemService _votingSystemService;
+        private readonly PartyService _partyService;
 
         // Public field to store all elections loaded from the database
         public IEnumerable<ElectionDTO> allElections;
@@ -34,11 +35,12 @@ namespace Uni_tasl
         public Guid _adminId;
 
         // Constructor initializing services and database context
-        public AdminDashboard(ElectionService electionService, VotingContext dbContext, AdminService adminService, VotingSystemService votingSystemService)
+        public AdminDashboard(ElectionService electionService, VotingContext dbContext, AdminService adminService, VotingSystemService votingSystemService, PartyService partyService)
         {
             _electionService = electionService;
             _adminService = adminService;
             _votingSystemService = votingSystemService;
+            _partyService = partyService;
             _dbContext = dbContext;
             InitializeComponent();
         }
@@ -67,6 +69,7 @@ namespace Uni_tasl
             // Load admin details and all voting systems
             var admin = _adminService.Load(_adminId);
             var votingSystem = _votingSystemService.LoadAll();
+            var party = _partyService.LoadAll();
             // Set welcome message with the admin's username
             welcomeLabel.Text = $"Welcome {admin.Username}";
             // Load all elections and disable automatic column generation
@@ -76,7 +79,7 @@ namespace Uni_tasl
             // Add rows to the DataGridView for each election
             foreach ( var election in allElections)
             {
-                electionDataGridView.Rows.Add(election.Name, election.StartTime, election.EndTime, votingSystem.Single(x => x.ID == election.VoteSystem).Name, election.Winner, election.ID);
+                electionDataGridView.Rows.Add(election.Name, election.StartTime, election.EndTime, votingSystem.Single(x => x.ID == election.VoteSystem).Name, election.Winner != null ? party.Single(x => x.ID == election.Winner).Name : "", election.ID);
             }
         }
 

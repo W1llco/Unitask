@@ -24,7 +24,7 @@ namespace Uni_tasl
             services.AddSingleton<VotingContext, VotingContext>();
 
             // Registering forms with appropriate lifetimes:
-            // Singleton for Form1, which likely acts as the main form and should maintain state throughout the application's lifecycle.
+            // Singleton for Form1, which acts as the main form and should maintain state throughout the application's lifecycle.
             services.AddSingleton(typeof(Form1));
 
             // Transient services for other forms, ensuring a new instance is created each time the service is requested.

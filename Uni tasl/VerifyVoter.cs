@@ -40,6 +40,7 @@ namespace Uni_tasl
             dataGridViewVoters.Columns.Add("DateOfBirth", "DateOfBirth");
             dataGridViewVoters.Columns.Add("Email", "Email");
             dataGridViewVoters.Columns.Add("Verifcation Code", "Verifcation Code");
+            dataGridViewVoters.Columns.Add("Verifcation Code", "Verifcation Code");
             dataGridViewVoters.AutoGenerateColumns = false; // Prevents automatic generation of columns to use custom setup.
         }
 
@@ -55,7 +56,7 @@ namespace Uni_tasl
                 // Populate the DataGridView with voter details if any are found.
                 foreach (var voter in voters)
                 {
-                    dataGridViewVoters.Rows.Add(voter.Name, voter.IsVerified, voter.DateOfBirth, voter.Email, voter.VerifcationCode);
+                    dataGridViewVoters.Rows.Add(voter.Name, voter.IsVerified, voter.DateOfBirth, voter.Email, voter.VerifcationCode, voter.Password);
                 }
             }
             else

@@ -34,8 +34,12 @@ namespace Unitask.Infrastructure.Services
         // Loads all regions and converts each to a DTO.
         public IEnumerable<RegionDTO> LoadAll()
         {
-            var entities = _regionsRepositories.LoadAll();
-            return entities.Select(GetDTO);
+            var dtos = new List<RegionDTO>();
+            foreach (var c in _regionsRepositories.LoadAll())
+            {
+                dtos.Add(GetDTO(c));
+            }
+            return dtos;
         }
 
         // Saves a region based on the provided DTO.

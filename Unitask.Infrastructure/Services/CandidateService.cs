@@ -35,8 +35,12 @@ namespace Unitask.Infrastructure.Services
         // Retrieves all candidates and converts them to DTOs.
         public IEnumerable<CandidateDTO> LoadAll()
         {
-            var entities = _candidatesRepositories.LoadAll();
-            return entities.Select(GetDTO);
+            var dtos = new List<CandidateDTO>();
+            foreach (var c in _candidatesRepositories.LoadAll())
+            {
+                dtos.Add(GetDTO(c));
+            }
+            return dtos;
         }
 
         // Saves or updates a candidate based on the DTO provided.
@@ -144,7 +148,12 @@ namespace Unitask.Infrastructure.Services
         // Retrieves all candidates for a given region and converts them to DTOs.
         public IEnumerable<CandidateDTO> GetCandidatesForRegion(Guid regionID)
         {
-            return _candidatesRepositories.GetCandidatesForRegion(regionID).Select(GetDTO);
+            var dtos = new List<CandidateDTO>();
+            foreach (var c in _candidatesRepositories.GetCandidatesForRegion(regionID))
+            {
+                dtos.Add(GetDTO(c));
+            }
+            return dtos;
         }
 
         // Retrieves all candidate entries for a specific election.
@@ -156,13 +165,15 @@ namespace Unitask.Infrastructure.Services
         // Retrieves candidates filtered by region and party.
         public IEnumerable<CandidateDTO> GetCandidates(Guid regionId, Guid partyId)
         {
-            return _candidatesRepositories.GetCandidates(regionId, partyId).Select(GetDTO);
+            var candidates = _candidatesRepositories.GetCandidates(regionId, partyId);
+            return candidates.Select(GetDTO);
         }
 
         // Retrieves candidates filtered by region and party.
         public IEnumerable<CandidateDTO> GetCandidatesForElectionByRegion(Guid electionID, Guid regionID)
         {
-            return _candidatesRepositories.GetCandidatesForElectionByRegion(electionID, regionID).Select(GetDTO);
+            var candidates = _candidatesRepositories.GetCandidatesForElectionByRegion(electionID, regionID);
+            return candidates.Select(GetDTO);
         }
 
         // Updates a candidate based on changes in the DTO and returns the updated DTO.

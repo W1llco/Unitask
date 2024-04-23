@@ -42,12 +42,16 @@ namespace Unitask.Infrastructure.Services
         }
 
         // Loads all elections and converts them to DTOs.
+        
         public IEnumerable<ElectionDTO> LoadAll()
         {
-            var entities = _electionsRepositories.LoadAll();
-            return entities.Select(GetDTO).OrderBy(e => e.StartTime); // Sorting by start time
+            var dtos = new List<ElectionDTO>();
+            foreach (var c in _electionsRepositories.LoadAll())
+            {
+                dtos.Add(GetDTO(c));
+            }
+            return dtos.OrderBy(e => e.StartTime);
         }
-
 
 
         // Saves an election based on the provided DTO.
@@ -100,7 +104,7 @@ namespace Unitask.Infrastructure.Services
         }
 
         // Counts votes for a specified election and voting system.
-        public PartyDTO CountElection(Guid electionId, Guid votingSystemId)
+        public PartyDTO? CountElection(Guid electionId, Guid votingSystemId)
         { 
             // Loads all the data 
             var votingSystem = _votingSystemService.LoadAll();
@@ -160,9 +164,13 @@ namespace Unitask.Infrastructure.Services
         // Saves a candidate to a specific election.
         public IEnumerable<ElectionDTO> LoadAllActive()
         {
-            var entities = _electionsRepositories.LoadAllActive();
-            return entities.Select(GetDTO).OrderBy(e => e.StartTime);
+   
+            var dtos = new List<ElectionDTO>();
+            foreach (var c in _electionsRepositories.LoadAllActive())
+            {
+                dtos.Add(GetDTO(c));
+            }
+            return dtos.OrderBy(e => e.StartTime);
         }
-
     }
 }

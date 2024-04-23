@@ -30,7 +30,8 @@ namespace UniTask.data.Repositories
         // Loads all voting systems from the database.
         public IEnumerable<VotingSystem> LoadAll()
         {
-            return _context.VotingSystems.Local.AsEnumerable(); // Returns all voting systems stored locally.
+            var x = _context.VotingSystems.Local.AsEnumerable(); // Returns all voting systems stored locally.
+            return x;
         }
 
         // Saves a voting system to the database. If the system is new, it inserts; if existing, it updates.

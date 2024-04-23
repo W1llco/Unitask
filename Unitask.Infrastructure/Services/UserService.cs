@@ -32,8 +32,12 @@ namespace Unitask.Infrastructure.Services
         // Loads all users and converts each to a DTO.
         public IEnumerable<UserDTO> LoadAll()
         {
-            var entities = _usersRepositories.LoadAll();
-            return entities.Select(GetDTO);
+            var dtos = new List<UserDTO>();
+            foreach (var c in _usersRepositories.LoadAll())
+            {
+                dtos.Add(GetDTO(c));
+            }
+            return dtos;
         }
 
         // Saves or updates a user based on the provided DTO.

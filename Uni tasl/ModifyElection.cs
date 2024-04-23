@@ -53,6 +53,7 @@ namespace Uni_tasl
             votingSystemComboBox.DataSource = new BindingSource(keyValuePairs, null);
             votingSystemComboBox.DisplayMember = "Value";
             votingSystemComboBox.ValueMember = "Key";
+            votingSystemComboBox.Text = keyValuePairs.Single(x => x.Key == _election.VoteSystem).Value;
             // Set the form fields to the existing values from the election data.
             electionName.Text = _election.Name;
             startDateTimePicker.Value = _election.StartTime;
@@ -145,10 +146,10 @@ namespace Uni_tasl
         {
             Guid electionId = _election.ID;
             Guid votingSystemId = _election.VoteSystem;
-            PartyDTO result = _electionService.CountElection(electionId, votingSystemId);
-            _election.Winner = result.ID;
+            PartyDTO? result = _electionService.CountElection(electionId, votingSystemId);
+            _election.Winner = result?.ID;
             _electionService.Update(_election);
-            MessageBox.Show(result.Name);
+            MessageBox.Show(result != null? result.Name: "Draw");
         }
     }
 }

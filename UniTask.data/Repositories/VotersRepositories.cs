@@ -43,7 +43,7 @@ namespace UniTask.data.Repositories
         // Confirm voter login for external authentication.
         public Voter ConfirmVoterLogin(Voter voter)
         {
-            return _context.Voters.FirstOrDefault(x => x.Name == voter.Name && x.Password == voter.Password && x.DateOfBirth == voter.DateOfBirth && x.VerifcationCode == voter.VerifcationCode);
+            return _context.Voters.FirstOrDefault(x => x.Name == voter.Name && x.Password == voter.Password && x.DateOfBirth.Date == voter.DateOfBirth.Date && x.VerifcationCode == voter.VerifcationCode);
         }
 
         // Confirm voter login for internal uses, verifying their identity is validated.

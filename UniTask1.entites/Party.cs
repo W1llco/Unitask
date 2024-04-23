@@ -14,7 +14,6 @@ namespace UniTask.entites
         public string Name { get; set; }
 
         public Guid ElectionID { get; set; }
-        [Required]
 
         public Guid RegionID { get; set; }
         

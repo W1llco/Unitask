@@ -40,8 +40,12 @@ namespace Unitask.Infrastructure.Services
         // Loads all voters and converts each to a DTO.
         public IEnumerable<VoterDTO> LoadAll()
         {
-            var entities = _votersRepositories.LoadAll();
-            return entities.Select(GetDTO);
+            var dtos = new List<VoterDTO>();
+            foreach (var c in _votersRepositories.LoadAll())
+            {
+                dtos.Add(GetDTO(c));
+            }
+            return dtos;
         }
 
         // Saves or updates a voter based on the provided DTO.
@@ -158,7 +162,7 @@ namespace Unitask.Infrastructure.Services
         public VoterDTO ConfirmInternalVoterLogin(VoterDTO voterDTO)
         {
             var voter = GetEntity(voterDTO);
-            var confirmedVoter = _votersRepositories.ConfirmVoterLogin(voter);
+            var confirmedVoter = _votersRepositories.ConfirmInternalVoterLogin(voter);
             if (confirmedVoter != null)
             {
                 return GetDTO(confirmedVoter);

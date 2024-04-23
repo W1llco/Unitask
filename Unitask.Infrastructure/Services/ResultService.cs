@@ -32,8 +32,12 @@ namespace Unitask.Infrastructure.Services
         // Loads all results and converts each to a DTO.
         public IEnumerable<ResultDTO> LoadAll()
         {
-            var entities = _resultsRepositories.LoadAll();
-            return entities.Select(GetDTO);
+            var dtos = new List<ResultDTO>();
+            foreach (var c in _resultsRepositories.LoadAll())
+            {
+                dtos.Add(GetDTO(c));
+            }
+            return dtos;
         }
 
         // Saves or updates a result based on the provided DTO.

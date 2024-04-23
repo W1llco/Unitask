@@ -38,8 +38,12 @@ namespace Unitask.Infrastructure.Services
         // Loads all admins and converts each entity to a DTO.
         public IEnumerable<AdminDTO> LoadAll()
         {
-            var entities = _adminsRepositories.LoadAll();
-            return entities.Select(GetDTO);
+            var dtos = new List<AdminDTO>();
+            foreach (var c in _adminsRepositories.LoadAll())
+            {
+                dtos.Add(GetDTO(c));
+            }
+            return dtos;
         }
 
         // Saves or updates an admin entity converted from a DTO.

@@ -38,7 +38,12 @@ namespace Unitask.Infrastructure.Services
         public IEnumerable<VotingSystemDTO> LoadAll()
         {
             var entities = _votingSystemsRepositories.LoadAll();
-            return entities.Select(GetDTO);
+            var dtos = new List<VotingSystemDTO>();
+            foreach (var e in entities)
+            {
+                dtos.Add(GetDTO(e));
+            }
+            return dtos;
         }
 
         // Saves an VotingSystem based on the provided DTO.
@@ -78,7 +83,7 @@ namespace Unitask.Infrastructure.Services
         }
 
         // Get the winner using First-Past-the-Post (FPTP) voting system.
-        public PartyDTO GetWinnerFPTP(IEnumerable<CandidateXElectionDTO> regionWinners)
+        public PartyDTO? GetWinnerFPTP(IEnumerable<CandidateXElectionDTO> regionWinners)
         {   
             int labourWins = 0;
             int conservativeWins = 0;
@@ -98,11 +103,15 @@ namespace Unitask.Infrastructure.Services
                 }
             }
             // Return the party with the most votes.
+            if (labourWins == conservativeWins)
+            {
+                return null;
+            }
             return labourWins > conservativeWins ? partys.Single(x => x.Name == "Labour") : partys.Single(x => x.Name == "Conservative");
         }
 
         // Get the winner using Proportional Representation voting system.
-        public PartyDTO GetWinnerProportional(IEnumerable<CandidateXElectionDTO> candidates)
+        public PartyDTO? GetWinnerProportional(IEnumerable<CandidateXElectionDTO> candidates)
         {
             var partys = _partyService.LoadAll();
             int labourVoteCount = 0;
@@ -120,6 +129,11 @@ namespace Unitask.Infrastructure.Services
                     conservativeVoteCount+= c.CandidateXElection.VoteCount;
                 }
             }
+            if (labourVoteCount == conservativeVoteCount)
+            {
+                return null;
+            }
+
             // Return the party with the most votes.
             return labourVoteCount > conservativeVoteCount ? partys.Single(x => x.Name == "Labour") : partys.Single(x => x.Name == "Conservative");
         }

@@ -10,15 +10,14 @@ namespace UniTask.entites
     public class Candidate
     {
         public Guid ID { get; set; }
+
         [Required]
         public string Name { get; set; }
-        
-        [Required]
 
+        [Required]
         public Guid PartyID { get; set; }
-        [Required]
 
+        [Required]
         public Guid RegionID { get; set; }
-        
     }
 }

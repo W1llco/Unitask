@@ -74,6 +74,7 @@ namespace Uni_tasl
                 // Open the election selection form and pass along the voter's ID.
                 SelectElection selectElection = (SelectElection)Program._provider.GetService(typeof(SelectElection));
                 selectElection.SetIds(voter.ID);
+                selectElection.InitializePage();
                 selectElection.Show();
                 this.Hide();// Hides the login form after successful navigation.
             }

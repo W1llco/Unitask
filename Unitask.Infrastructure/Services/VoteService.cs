@@ -31,8 +31,12 @@ namespace Unitask.Infrastructure.Services
         // Load all vote objects and convert each to a DTO.
         public IEnumerable<VoteDTO> LoadAll()
         {
-            var entities = _votesRepositories.LoadAll();
-            return entities.Select(GetDTO);
+            var dtos = new List<VoteDTO>();
+            foreach (var c in _votesRepositories.LoadAll())
+            {
+                dtos.Add(GetDTO(c));
+            }
+            return dtos;
         }
 
         // Convert a data transfer object to a database model for saving.

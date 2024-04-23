@@ -92,6 +92,7 @@ namespace Uni_tasl
                         _candidateService.Update(selectedCandidate); // Update the candidate's record post-vote.
                         MessageBox.Show("You have voted for " + candidateName + ".", "Vote Submitted", MessageBoxButtons.OK);
                         voter.IsVerified = false; // Update voter's status post-vote.
+                        _voterService.Update(voter);
                         Form1 form1 = new Form1(_dbContext); // Return to the main form.
                         form1.Show();
                         this.Close(); // Close the current form.

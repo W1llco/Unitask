@@ -34,7 +34,12 @@ namespace Unitask.Infrastructure.Services
         public IEnumerable<PartyDTO> LoadAll()
         {
             var entities = _partysRepositories.LoadAll();
-            return entities.Select(GetDTO);
+            var dtos = new List<PartyDTO>();
+            foreach (var e in entities)
+            {
+                dtos.Add(GetDTO(e));
+            }
+            return dtos;
         }
 
         // Saves a party based on the provided DTO.
